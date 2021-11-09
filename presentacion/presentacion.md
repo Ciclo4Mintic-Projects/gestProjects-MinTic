@@ -22,4 +22,13 @@ Estoy haciendo una tecnología de desarrollo de software en paralelo con la form
 
 Saludos💥
 
+
 ---
+
+Andres Palma Castañeda 
+
+### Hola soy Andres Palma,
+
+Soy ingeniero bioquimico egresado de la Universidad de Antioquia, amante de los procesos pedagogicos y de la enseñanza. Me gusta mucho el tema de las TIC y la programacion, por lo que he estudiado desarrollo frontend con enfasis en React. En este momento estoy buscando oportunidades laborales en el mundo TI, y algun dia poder vincular mi profesion con el mundo de las TIC, por medio de proyectos o estudios de bioinformatica y biologia computacional.
+
+- Hobbies: deporte, crossfit, montar en bici, la lectura.
