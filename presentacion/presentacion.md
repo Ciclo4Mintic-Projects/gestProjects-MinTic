@@ -13,3 +13,13 @@ Me gusta mucho la tecnología y quiero convertirme en una gran desarrolladora de
 
 
 ---
+
+Carlos Andres Rojas Arboleda
+
+### Hola soy Carlos Rojas 🪐
+
+Estoy haciendo una tecnología de desarrollo de software en paralelo con la formación de Mision Tic, ya que se ven oportunidades muy interesantes en este campo, y donde el aprendizaje es continuo, para poder dominar las tecnologías que van surgiendo. El ciclo 3 me parecio un reto muy grande, y aun estoy reforzando muchos de los conceptos vistos, ya que no habia tenido la oportunidad previamente de interactuar con el stack MERN.
+
+Saludos💥
+
+---
