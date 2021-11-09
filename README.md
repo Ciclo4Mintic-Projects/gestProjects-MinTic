@@ -48,7 +48,7 @@ Stack tecnológico a emplear:
 Scrum Team
 
 - **MIguel Angel Pulido** - _Desarrollador_ - []()
-- **Andrés Felipe Rodriguez** - _Desarrollador_ - []()
+- **Andrés Felipe Rodriguez** - _Desarrollador_ - [anddev-rh](https://github.com/anddev-rh)
 - **Andres Steven Palma** - _Analista_ - []()
 - **Juan Felipe Escobar** - _Product Owner_ - []()
 - **Paola Andrea Ríos** - _Administrador de BD_ - [paolaandrearios](https://github.com/paolaandrearios)
