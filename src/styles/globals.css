@@ -2,10 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  @apply font-poppins;
+}
+
 .sidebar {
-  @apply w-64 bg-gray-200 shadow flex-col justify-between;
+  @apply w-64 bg-white shadow flex-col justify-between;
 }
 
 .sidebar-route {
   @apply rounded-md flex w-full justify-between cursor-pointer items-center m-3 p-3;
+}
+
+.navlink-selected .icon-selected {
+  @apply bg-purpleTem text-white w-8 h-8 text-center py-1 rounded-full; 
+}
+
+.navbar-responsive {
+  @apply bg-purpleTem;
 }

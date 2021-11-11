@@ -14,9 +14,9 @@ const SidebarLinks = () => {
 
 const Logo = () => {
   return (
-    <div className='py-3 w-full flex flex-col items-center justify-center'>
-      <img src='logo.png' alt='Logo' className='h-16' />
-      <span className='my-2 text-xl font-bold text-center'>Título de Mi Aplicación</span>
+    <div className='py-8 w-full flex items-center justify-center'>
+      <img src='/images/logo.png' alt='Logo' className='h-16 mr-1' />
+      <span className='my-2 text-xl font-poppins font-bold text-center'>Supremacy</span>
     </div>
   );
 };
@@ -24,7 +24,7 @@ const Logo = () => {
 const Sidebar = () => {
   const [open, setOpen] = useState(true);
   return (
-    <div className='flex flex-col md:flex-row flex-no-wrap md:h-full'>
+    <div className='flex flex-col font-poppins bg-white md:flex-row flex-no-wrap md:h-full'>
       {/* Sidebar starts */}
 
       <div className='sidebar hidden md:flex'>
@@ -33,7 +33,7 @@ const Sidebar = () => {
           <SidebarLinks />
         </div>
       </div>
-      <div className='flex md:hidden w-full justify-between bg-gray-800 p-2 text-white'>
+      <div className='flex md:hidden w-full justify-between p-2 text-white navbar-responsive'>
         <i className={`fas fa-${open ? 'times' : 'bars'}`} onClick={() => setOpen(!open)} />
         <i className='fas fa-home' />
       </div>
@@ -66,12 +66,14 @@ const SidebarRoute = ({ to, title, icon }) => {
         to={to}
         className={({ isActive }) =>
           isActive
-            ? 'sidebar-route text-white bg-indigo-700'
-            : 'sidebar-route text-gray-900 hover:text-white hover:bg-indigo-400'
+            ? 'sidebar-route text-blackTem font-bold bg-purpleTem10 navlink-selected'
+            : 'sidebar-route text-grayTem hover:text-blackTem font-bold'
         }
       >
         <div className='flex items-center'>
-          <i className={icon} />
+          <div className="icon-selected">
+            <i className={icon} />
+          </div>
           <span className='text-sm  ml-2'>{title}</span>
         </div>
       </NavLink>
