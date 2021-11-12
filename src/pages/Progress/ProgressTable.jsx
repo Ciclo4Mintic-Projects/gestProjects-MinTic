@@ -2,25 +2,37 @@ import React from 'react'
 import { data } from './fakeData'
 
 const ProgressTable = () => {
-  console.log(data)
+  const progressData = data;
 
   return (
-    <table className="grid mt-28 grid-rows-2">
-      <tr className=" grid row-start-1 grid-cols-5">
-        <th className="">Creador</th>
-        <th>Proyecto</th>
-        <th>Avance</th>
-        <th>Observaciones</th>
-        <th>Detalles</th>
-      </tr>
-      <tr className="grid row-start-2 grid-cols-5 justify-items-center">
-        <td>Samanta William</td>
-        <td>Proyecto 003</td>
-        <td>Avance#1</td>
-        <td>0</td>
-        <td>Boton</td>
-      </tr>
-    </table>
+    <div className="grid mt-28 justify-items-center ">
+      <div className="grid grid-cols-5 w-full text-lg font-semibold text-purpleTem ">
+        <p>Creador</p>
+        <p>Proyecto</p>
+        <p>Avance</p>
+        <p>Observaciones</p>
+        <p>Detalles</p>
+      </div>
+
+      {/* <div className="grid grid-cols-5 w-full">
+        <p>{progressData[1].creador}</p>
+        <p>Proyecto 003</p>
+        <p>Avance#1</p>
+        <p>0</p>
+        <p>Boton</p>
+      </div> */}
+      {progressData.map(advance => {
+        return (
+          <div className="grid grid-cols-5 w-full py-6 border-t-2">
+            <p>{advance.creador}</p>
+            <p>{advance.proyecto}</p>
+            <p>{advance.avance}</p>
+            <p>{advance.observaciones}</p>
+            <p>{advance.detalle}</p>
+          </div>
+        )
+      })}
+    </div>
   )
 }
 
