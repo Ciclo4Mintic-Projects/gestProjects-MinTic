@@ -49,7 +49,7 @@ Scrum Team
 
 - **MIguel Angel Pulido** - _Desarrollador_ - []()
 - **Andrés Felipe Rodriguez** - _Desarrollador_ - [anddev-rh](https://github.com/anddev-rh)
-- **Andres Steven Palma** - _Analista_ - []()
+- **Andres Steven Palma** - _Analista_ - [as030pc](https://github.com/as030pc)
 - **Juan Felipe Escobar** - _Product Owner_ - []()
 - **Paola Andrea Ríos** - _Administrador de BD_ - [paolaandrearios](https://github.com/paolaandrearios)
 - **Carlos Andres Rojas** - _Scrum master_ - []()
