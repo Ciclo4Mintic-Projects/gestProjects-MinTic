@@ -5,8 +5,8 @@ const ProgressTable = () => {
   const progressData = data;
 
   return (
-    <div className="grid mt-28 justify-items-center ">
-      <div className="grid grid-cols-5 w-full text-lg font-semibold text-purpleTem ">
+    <div className="grid justify-items-center pt-24">
+      <div className="grid grid-cols-5 w-full text-lg font-semibold text-purpleTem  pl-20 mb-6 ">
         <p>Creador</p>
         <p>Proyecto</p>
         <p>Avance</p>
@@ -23,7 +23,7 @@ const ProgressTable = () => {
       </div> */}
       {progressData.map(advance => {
         return (
-          <div className="grid grid-cols-5 w-full py-6 border-t-2">
+          <div className="grid grid-cols-5 w-full py-6 border-t-2  pl-20">
             <p>{advance.creador}</p>
             <p>{advance.proyecto}</p>
             <p>{advance.avance}</p>
