@@ -1,3 +1,4 @@
+# Presentacion de los integrantes del equip de desarrollo Supremacy
 ---
 
 Paola Andrea Ríos Ramírez
@@ -22,10 +23,9 @@ Estoy haciendo una tecnología de desarrollo de software en paralelo con la form
 
 Saludos💥
 
-
 ---
 
-Andres Palma Castañeda 
+Andres Palma Castañeda
 
 ### Hola soy Andres Palma,
 
@@ -37,9 +37,31 @@ Soy ingeniero bioquimico egresado de la Universidad de Antioquia, amante de los 
 
 Juan Felipe Escobar
 
-### Hola soy Juan Felipe Escobar 
+### Hola soy Juan Felipe Escobar
 
 Soy ingeniero de sistemas, trabajo en una empresa de desarrollo como tester y desde hace 6 meses empece el proceso para cambiarme a desarrollo, siempre me ha gustado aunque en estos años de trabajo nunca lo hice, en la empresa me dieron la oportunidad de ir aprendiendo y poner en practica en los proyectos que realizamos mis conocimientos, me ha gustado mucho ver como cada día mejoran mis habilidades y voy aprendiendo, mis compañeros de grupo me han enseñado un monton y han sido muy pacientes.
 Me gustan mucho los idiomas en especial el Italiano, el campo, los animales, montar bici y a caballo, practicar yoga y entrenar a diario.
 En Mintic he aprendido muchas cosas de nuevas tecnologias, formas de desarrollo diferentes al que usamos en la empresa y he ampliado mi panorama.
 
+---
+
+Miguel Angel Pulido Valbuena
+
+### Hola, soy Miguel Pulido,
+
+Estudiante de tecnología en gestión jurídica de la información y del programa de Misión TIC 2022. En resumen, me interesa conocer el mundo del desarrollo web no solo como una carrera emergente, sino también, con miras de liderar programas de innovación que propendan buenas prácticas en el tratamiento de la información (no solo personal) sino en ambientes globales y así lograr mayor transparencia y veracidad de la infromación que circula en la web.
+
+Me gusta estudiar y en mis tiempos libres el compartir con mis familiares o amigos es lo que más aprecio.
+
+Saludos.
+
+---
+
+Andrés Felipe Rodriguez Hernandez
+
+### Hola, soy Andrés Rodriguez Hernandez 👨‍💻, 
+
+Creador audiovisual🎬 y músico, desde hace poco más de un año empecé a aprender programación y desarrollo web a través de diferentes recursos y plataformas. También actualmente curso el programa de Misión TIC 2022.
+Considero que la programación y el desarrollo son herramientas muy potentes y me interesa mucho crecer y volcar mi carrera hacia la industria tecnológica, hace dos meses comencé a trabajar como programador frontend en una multinacional española de manera remota y tengo muchas ganas de continuar aprendiendo y creciendo profesionalmente como desarrollador.
+
+Me apasiona ver películas🎞, leer📖, tocar guitarra🎸, programar👨‍💻, cocinar👨‍🍳, montar en bicicleta🚴‍♂️ y tener buenas conversaciones con amigos. 

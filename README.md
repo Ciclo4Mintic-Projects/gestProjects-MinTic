@@ -52,7 +52,7 @@ Scrum Team
 - **Andres Steven Palma** - _Analista_ - [as030pc](https://github.com/as030pc)
 - **Juan Felipe Escobar** - _Product Owner_ - []()
 - **Paola Andrea Ríos** - _Administrador de BD_ - [paolaandrearios](https://github.com/paolaandrearios)
-- **Carlos Andres Rojas** - _Scrum master_ - []()
+- **Carlos Andres Rojas** - _Scrum master_ - [rojas901](https://github.com/rojas901)
 
 ### ¿Cómo usar este proyecto? 🤔
 
