@@ -57,6 +57,8 @@ Saludos.
 
 ---
 
+Andrés Felipe Rodriguez Hernandez
+
 ### Hola, soy Andrés Rodriguez Hernandez 👨‍💻, 
 
 Creador audiovisual🎬 y músico, desde hace poco más de un año empecé a aprender programación y desarrollo web a través de diferentes recursos y plataformas. También actualmente curso el programa de Misión TIC 2022.
