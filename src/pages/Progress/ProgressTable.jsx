@@ -1,6 +1,6 @@
 import React from 'react'
 import { data } from './fakeData'
-
+import ButtonLong from '../../components/ButtonLong'
 const ProgressTable = () => {
   const progressData = data;
 
@@ -23,12 +23,12 @@ const ProgressTable = () => {
       </div> */}
       {progressData.map(advance => {
         return (
-          <div className="grid grid-cols-5 w-full py-6 border-t-2  pl-20">
+          <div className="grid grid-cols-5 w-full py-6 border-t-2  px-20 items-center">
             <p>{advance.creador}</p>
             <p>{advance.proyecto}</p>
             <p>{advance.avance}</p>
-            <p>{advance.observaciones}</p>
-            <p>{advance.detalle}</p>
+            <p className="justify-self-center">{advance.observaciones}</p>
+            <ButtonLong>Ver más</ButtonLong>
           </div>
         )
       })}
