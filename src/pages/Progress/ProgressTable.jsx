@@ -1,6 +1,9 @@
 import React from 'react'
+import { data } from './fakeData'
 
 const ProgressTable = () => {
+  console.log(data)
+
   return (
     <table className="grid mt-28 grid-rows-2">
       <tr className=" grid row-start-1 grid-cols-5">
