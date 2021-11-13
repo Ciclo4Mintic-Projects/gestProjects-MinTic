@@ -8,6 +8,8 @@ import Page2 from 'pages/Page2';
 import IndexCategory1 from 'pages/category1/Index';
 import Category1 from 'pages/category1/CategoryPage1';
 import IndexProgress from 'pages/Progress/Index'
+import ProgressLog from 'pages/Progress/ProgressLog';
+import ProgressTable from 'pages/Progress/ProgressTable';
 import 'styles/globals.css';
 
 // import PrivateRoute from 'components/PrivateRoute';
@@ -31,6 +33,7 @@ function App() {
               <Route path='category1' element={<IndexCategory1 />} />
               <Route path='category1/page1' element={<Category1 />} />
               <Route path='progress' element={<IndexProgress />} />
+              <Route path="progress/edit" element={<ProgressLog />} />
             </Route>
           </Routes>
         </BrowserRouter>

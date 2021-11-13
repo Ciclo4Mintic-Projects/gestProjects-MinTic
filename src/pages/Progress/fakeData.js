@@ -1,5 +1,6 @@
 const data = [
   {
+    id: 123,
     creador: "Samanta William",
     proyecto: "Proyecto 003",
     avance: "avance#1",
@@ -7,6 +8,7 @@ const data = [
     detalle: "boton"
   },
   {
+    id: 234,
     creador: "Nella Vita",
     proyecto: "Proyecto 002",
     avance: "avance#1",
@@ -14,6 +16,7 @@ const data = [
     detalle: "boton"
   },
   {
+    id: 345,
     creador: "Keny Bell",
     proyecto: "Proyecto 005",
     avance: "avance#2",
@@ -21,6 +24,7 @@ const data = [
     detalle: "boton"
   },
   {
+    id: 456,
     creador: "Park Chan Wook",
     proyecto: "Proyecto 001",
     avance: "avance#3",
@@ -28,6 +32,7 @@ const data = [
     detalle: "boton"
   },
   {
+    id: 678,
     creador: "Shane Carruth",
     proyecto: "Proyecto 001",
     avance: "avance#4",
