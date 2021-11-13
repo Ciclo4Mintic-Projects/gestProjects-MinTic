@@ -7,7 +7,7 @@ body {
 }
 
 .sidebar {
-  @apply w-64 bg-white shadow flex-col justify-between;
+  @apply md:w-64 w-48 bg-white shadow flex-col justify-between;
 }
 
 .sidebar-route {

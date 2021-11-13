@@ -4,7 +4,7 @@ import Logo from './Logo';
 
 const SidebarLinks = () => {
   return (
-    <ul className='mt-12'>
+    <ul className='mt-1 md:mt-12'>
       <SidebarRoute to='' title='Inicio' icon='fas fa-home' />
       <SidebarRoute to='/page2' title='Pagina2' icon='fas fa-smile-wink' />
       <SidebarRoute to='/category1' title='Catego 1' icon='fab fa-amazon' />
@@ -21,14 +21,16 @@ const Sidebar = () => {
       {/* Sidebar starts */}
 
       <div className='sidebar hidden md:flex'>
-        <div className='px-8'>
-          <Logo />
+        <div className='p-8'>
+          <Logo height={'h-16'} sizeText={'text-xl'}/>
           <SidebarLinks />
         </div>
       </div>
-      <div className='flex md:hidden w-full justify-between p-2 text-white navbar-responsive'>
+      <div className='flex md:hidden w-full justify-between p-2 text-white navbar-responsive items-center'>
         <i className={`fas fa-${open ? 'times' : 'bars'}`} onClick={() => setOpen(!open)} />
-        <i className='fas fa-home' />
+        <div className="p-0">
+         <Logo height={'h-10'} sizeText={'text-xs'}/>
+        </div>
       </div>
       {open && <ResponsiveSidebar />}
       {/* Sidebar ends */}
@@ -43,8 +45,7 @@ const ResponsiveSidebar = () => {
         className='sidebar h-full z-40 absolute md:h-full sm:hidden transition duration-150 ease-in-out'
         id='mobile-nav'
       >
-        <div className='px-8'>
-          <Logo />
+        <div className='px-2 md:px-8'>
           <SidebarLinks />
         </div>
       </div>
@@ -67,7 +68,7 @@ const SidebarRoute = ({ to, title, icon }) => {
           <div className="icon-selected">
             <i className={icon} />
           </div>
-          <span className='text-sm  ml-2'>{title}</span>
+          <span className='text-sm ml-2'>{title}</span>
         </div>
       </NavLink>
     </li>
