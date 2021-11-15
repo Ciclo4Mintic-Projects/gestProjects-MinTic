@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.signUp-screen {
+    @apply text-xs h-full w-full flex justify-center items-center bg-gradient-to-r from-purpleHover to-purpleTem;
+}
+
+.signUp-container{
+    height: 90%;
+    @apply md:w-3/6 w-full md:h-auto rounded-lg bg-purpleTem10 m-10;
+}
+
+.form-signUp {
+    @apply flex flex-col text-xs md:text-sm items-start px-10 lg:px-20;
+}
+
+.label-signUp{
+    @apply w-full grid grid-cols-2 lg:block items-center;
+}
+
+.input-signUp {
+    @apply my-1 px-3 py-1 w-full rounded-2xl border-solid border-grayTem border-2 hover:border-purpleHover ml-2 lg:ml-0;
+}
+
+.input-signUp:focus {
+    outline: none;
+    background-color: #dadafa;
+}
+
+.cancel-button-auth {
+   @apply bg-white w-2/4 min-w-min p-3 rounded-3xl border-2 border-purpleTem text-purpleTem font-bold hover:text-purpleHover hover:border-purpleHover;
+}
