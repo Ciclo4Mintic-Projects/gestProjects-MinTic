@@ -31,3 +31,7 @@
 .cancel-button-auth {
    @apply bg-white w-2/4 min-w-min p-3 rounded-3xl border-2 border-purpleTem text-purpleTem font-bold hover:text-purpleHover hover:border-purpleHover;
 }
+
+.accept-button-auth {
+    @apply bg-purpleTem w-2/4 min-w-min p-3 rounded-3xl text-white font-bold hover:bg-purpleHover;
+}

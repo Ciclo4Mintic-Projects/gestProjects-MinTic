@@ -94,7 +94,7 @@ const SignUp = () => {
                 </form>      
                 <div className="p-8 m-2 grid grid-cols-2 place-items-center text-xs md:text-sm" >
                     <button className="cancel-button-auth">Cancelar</button>
-                    <button className="bg-purpleTem w-2/4 min-w-min p-3 rounded-3xl text-white font-bold hover:bg-purpleHover">Registrarse</button>
+                    <button className="accept-button-auth">Registrarse</button>
                 </div>
             </div>
             
