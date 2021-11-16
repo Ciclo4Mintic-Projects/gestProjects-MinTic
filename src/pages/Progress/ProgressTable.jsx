@@ -1,6 +1,7 @@
 import React from 'react'
 import { data } from './fakeData'
 import ButtonLong from '../../components/ButtonLong'
+import { NavLink } from 'react-router-dom';
 const ProgressTable = () => {
   const progressData = data;
 
@@ -28,7 +29,12 @@ const ProgressTable = () => {
             <p>{advance.proyecto}</p>
             <p>{advance.avance}</p>
             <p className="justify-self-center">{advance.observaciones}</p>
-            <ButtonLong>Ver más</ButtonLong>
+            <NavLink
+              to={`edit`}
+            >
+              <ButtonLong>Ver más</ButtonLong>
+            </NavLink>
+
           </div>
         )
       })}

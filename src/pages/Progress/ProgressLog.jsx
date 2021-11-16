@@ -2,8 +2,9 @@ import React, { useState } from 'react'
 import ButtonCircle from 'components/ButtonCircle'
 import diskette from 'assets/diskette.svg'
 import backArrow from 'assets/Arrow.svg'
+import { data } from './fakeData'
 const ProgressLog = () => {
-
+  const progressData = data;
   const [content, setContent] = useState("Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum minus, modi veritatis consequuntur delectus quia iure incidunt dolorem odio cum, unde velit, harum non laboriosam id quod? Rerum, dolores alias!")
   const [name, setName] = useState("Nombre del avance")
 
