@@ -9,10 +9,11 @@ import IndexCategory1 from 'pages/category1/Index';
 import Category1 from 'pages/category1/CategoryPage1';
 import 'styles/globals.css';
 import SignUp from 'pages/authentication/SignUp';
+import Login from 'pages/authentication/Login';
 
 // import PrivateRoute from 'components/PrivateRoute';
 
-function App() {
+function App() {  
   const [userData, setUserData] = useState({});
 
   return (
@@ -26,6 +27,7 @@ function App() {
         <BrowserRouter>
           <Routes>       
               <Route path='/register' element={<SignUp />} />
+              <Route path='/login' element={<Login />} />
             <Route path='/' element={<PrivateLayout />}>
               <Route path='' element={<Index />} />
               <Route path='page2' element={<Page2 />} />
