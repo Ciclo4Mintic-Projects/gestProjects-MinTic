@@ -1,15 +1,22 @@
 
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef ,useContext} from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import { nanoid } from 'nanoid';
 import { Dialog, Tooltip } from '@material-ui/core';
 import 'react-toastify/dist/ReactToastify.css';
 import ReactLoading from 'react-loading';
+import { SupremacyContext } from 'context/supremacyContext';
 
 const Inscripcion = () => {
+
   const [usuarios, setUsuarios] = useState([]);
   const [loading,setLoading] = useState(false);
+  
+  const { setCurrentSection } = useContext(SupremacyContext);
 
+  useEffect(() => {
+    setCurrentSection('Inscripciones');
+  }, [])
 
   return (
     <div className='flex h-full w-full flex-col items-center justify-start p-8'>
