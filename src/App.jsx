@@ -33,7 +33,7 @@ function App() {
               <Route path='category1' element={<IndexCategory1 />} />
               <Route path='category1/page1' element={<Category1 />} />
               <Route path='progress' element={<IndexProgress />} />
-              <Route path="progress/edit" element={<ProgressLog />} />
+              <Route path='progress/edit/:id' element={<ProgressLog />} />
             </Route>
           </Routes>
         </BrowserRouter>

@@ -1,22 +1,33 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import ButtonCircle from 'components/ButtonCircle'
 import diskette from 'assets/diskette.svg'
 import backArrow from 'assets/Arrow.svg'
 import { data } from './fakeData'
+import { NavLink, useParams } from 'react-router-dom';
 const ProgressLog = () => {
   const progressData = data;
-  const [content, setContent] = useState("Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum minus, modi veritatis consequuntur delectus quia iure incidunt dolorem odio cum, unde velit, harum non laboriosam id quod? Rerum, dolores alias!")
-  const [name, setName] = useState("Nombre del avance")
+
+  const { id } = useParams()
+
+  const log = progressData.find(log => log.id == id)
+
+  const [content, setContent] = useState(log.content)
+  const [name, setName] = useState(log.avance)
+  const [project, setProject] = useState(log.proyecto)
+
 
   return (
+
     <div className=" bg-backgContTem">
       <div className=" mt-36 mx-12">
         <h2 className="text-4xl font-bold  ">Avances</h2>
         <div className="bg-white rounded-3xl mt-10 px-16 py-9">
           <div className="flex justify-between items-center">
             <div className="w-full">
-              <img src={backArrow} className=" mb-8" />
-              <p className=" text-grayTem mb-4">nombre proyecto</p>
+              <NavLink to={"/progress"}>
+                <img src={backArrow} className=" mb-8" alt="back arrow icon" />
+              </NavLink>
+              <p className=" text-grayTem mb-4">{project}</p>
               <input
                 className="  text-3xl font-bold outline-none w-full"
                 value={name}
@@ -44,18 +55,24 @@ const ProgressLog = () => {
           </textarea>
           <div>
             <h3 className=" font-bold text-2xl">Observaciones</h3>
-            <ul>
-              <li className=" mt-7 mb-8">
-                <span className="font-bold text-purpleTem">name</span> Lorem Ipsim dolor <br /> <span className=" text-grayTem">Junio 31 2021</span>
-              </li>
-              <li>
-                <span className="font-bold text-purpleTem">name</span> Lorem Ipsim dolor <br /> <span className=" text-grayTem">Julio 01 2021</span>
-              </li>
-            </ul>
+            {log.observaciones.length > 0 &&
+              <ul>
+                {log.observaciones.map(observ => {
+                  return (
+                    <li className=" mt-7 mb-8">
+                      <span className="font-bold text-purpleTem">{observ.name}</span> {observ.label} <br /> <span className=" text-grayTem">{observ.date}</span>
+                    </li>
+                  )
+                })}
+              </ul>
+            }
+            {log.observaciones.length == 0 &&
+              <p className=" text-grayTem">No hay observaciones creadas</p>
+            }
+
           </div>
         </div>
       </div>
-
     </div>
   )
 }

@@ -28,9 +28,9 @@ const ProgressTable = () => {
             <p>{advance.creador}</p>
             <p>{advance.proyecto}</p>
             <p>{advance.avance}</p>
-            <p className="justify-self-center">{advance.observaciones}</p>
+            <p className="justify-self-center">{advance.observaciones.length}</p>
             <NavLink
-              to={`edit`}
+              to={`edit/${advance.id}`}
             >
               <ButtonLong>Ver más</ButtonLong>
             </NavLink>
