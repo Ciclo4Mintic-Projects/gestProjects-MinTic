@@ -1,4 +1,6 @@
 @import 'styles/_authentication.css';
+@import 'styles/_tabla.css';
+
 
 @tailwind base;
 @tailwind components;

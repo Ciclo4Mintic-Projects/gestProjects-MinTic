@@ -1,8 +1,15 @@
-import React, {useRef} from 'react';
+import { SupremacyContext } from 'context/supremacyContext';
+import React, {useRef, useContext, useEffect} from 'react';
 
 const Profile = () => {
 
     const formProfile = useRef(null);
+
+    const { setCurrentSection } = useContext(SupremacyContext);
+
+    useEffect(() => {
+        setCurrentSection('Editar Perfil');
+    }, [])
 
     const submitFormProfile = (e) => {
         e.preventDefault();

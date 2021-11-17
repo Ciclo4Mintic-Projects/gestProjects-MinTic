@@ -12,8 +12,8 @@ import 'styles/globals.css';
 import SignUp from 'pages/authentication/SignUp';
 import Login from 'pages/authentication/Login';
 import Profile from 'pages/authentication/Profile';
-import 'styles/tabla.css';
 import Inscripcion from 'pages/Inscripcion';
+import SupremacyContextProvider from 'context/supremacyContext';
 
 // import PrivateRoute from 'components/PrivateRoute';
 
@@ -28,21 +28,23 @@ function App() {
       audience='api-autenticacion-concesionario-mintic'
     >
       <UserContext.Provider value={{ userData, setUserData }}>
-        <BrowserRouter>
-          <Routes>       
-              <Route path='/register' element={<SignUp />} />
-              <Route path='/login' element={<Login />} />
-            <Route path='/' element={<PrivateLayout />}>
-              <Route path='' element={<Index />} />
-              <Route path='/profile' element={<Profile />} />
-              <Route path='page2' element={<Page2 />} />
-              <Route path='category1' element={<IndexCategory1 />} />
-              <Route path='category1/page1' element={<Category1 />} />
-              <Route path='usuarios/estado' element={<EstadoUsuarios />} />
-              <Route path='inscripcion' element={<Inscripcion />} />
-            </Route>
-          </Routes>
-        </BrowserRouter>
+        <SupremacyContextProvider>
+          <BrowserRouter>
+            <Routes>       
+                <Route path='/register' element={<SignUp />} />
+                <Route path='/login' element={<Login />} />
+              <Route path='/' element={<PrivateLayout />}>
+                <Route path='' element={<Index />} />
+                <Route path='/profile' element={<Profile />} />
+                <Route path='page2' element={<Page2 />} />
+                <Route path='category1' element={<IndexCategory1 />} />
+                <Route path='category1/page1' element={<Category1 />} />
+                <Route path='usuarios/estado' element={<EstadoUsuarios />} />
+                <Route path='inscripcion' element={<Inscripcion />} />
+              </Route>
+            </Routes>
+          </BrowserRouter>
+        </SupremacyContextProvider>
       </UserContext.Provider>
     </Auth0Provider>
   );
