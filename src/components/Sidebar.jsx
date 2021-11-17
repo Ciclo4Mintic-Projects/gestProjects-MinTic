@@ -6,9 +6,10 @@ const SidebarLinks = () => {
   return (
     <ul className='mt-1 md:mt-12'>
       <SidebarRoute to='' title='Inicio' icon='fas fa-home' />
-      <SidebarRoute to='/page2' title='Pagina2' icon='fas fa-smile-wink' />
-      <SidebarRoute to='/category1' title='Catego 1' icon='fab fa-amazon' />
-      <SidebarRoute to='/category1/page1' title='Test' icon='fas fa-car' />
+      <SidebarRoute to='/usuarios/estado' title='Usuarios' icon='fas fa-users' />
+      <SidebarRoute to='/usuarios/asd' title='Proyectos' icon='fas fa-project-diagram' />
+      <SidebarRoute to='/inscripcion' title='Inscripciones' icon='fas fa-user-plus' />
+      <SidebarRoute to='/usuarios/asd' title='Avance' icon='fas fa-pen-alt' />
     </ul>
   );
 };
