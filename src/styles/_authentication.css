@@ -49,3 +49,11 @@
 .link-register {
     @apply font-bold text-xs text-purpleTem hover:text-purpleHover text-center p-2 underline cursor-pointer;
 }
+
+.profile-container {
+    @apply  m-auto sm:mx-40 mb-10 mt-2 text-xs rounded-lg bg-backgContTem w-2/3 sm:w-auto 
+}
+
+.form-profile {
+    @apply flex flex-col p-6 sm:grid sm:grid-cols-2 sm:gap-3 sm:gap-x-6
+}

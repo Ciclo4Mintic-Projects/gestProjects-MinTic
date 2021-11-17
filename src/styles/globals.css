@@ -25,7 +25,7 @@ body {
 }
 
 .header-container {
-  @apply flex flex-row h-10 md:h-20 justify-between bg-white border-b-2 border-purpleTem10;
+  @apply flex flex-row h-10 md:h-20 justify-between bg-white;
 }
 
 .header-user {
