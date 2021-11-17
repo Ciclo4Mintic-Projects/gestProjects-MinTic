@@ -9,7 +9,7 @@ body {
 }
 
 .sidebar {
-  @apply md:w-64 w-48 bg-white shadow flex-col justify-between;
+  @apply md:w-64 w-48 bg-white shadow flex-col justify-between bg-white border-r-2 border-purpleTem10;
 }
 
 .sidebar-route {
@@ -25,7 +25,7 @@ body {
 }
 
 .header-container {
-  @apply flex flex-row h-10 md:h-20 justify-between bg-white;
+  @apply flex flex-row h-10 md:h-20 justify-between bg-white border-b-2 border-purpleTem10;
 }
 
 .header-user {
@@ -33,10 +33,10 @@ body {
 }
 
 .header-container i {
-  @apply text-purpleTem text-xl hover:text-white hover:bg-purpleTem w-8 h-8 rounded-full text-center self-center pt-0.5;
+  @apply text-purpleTem text-xl hover:text-white hover:bg-purpleTem w-8 h-8 rounded-full text-center self-center pt-0.5 ;
 }
  
-.header-container i:nth-of-type(2){
+.header-container .fa-user {
   @apply bg-purpleTem text-white;
 }
 

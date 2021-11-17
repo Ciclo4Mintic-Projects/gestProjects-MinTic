@@ -10,6 +10,7 @@ import Category1 from 'pages/category1/CategoryPage1';
 import 'styles/globals.css';
 import SignUp from 'pages/authentication/SignUp';
 import Login from 'pages/authentication/Login';
+import Profile from 'pages/authentication/Profile';
 
 // import PrivateRoute from 'components/PrivateRoute';
 
@@ -30,6 +31,7 @@ function App() {
               <Route path='/login' element={<Login />} />
             <Route path='/' element={<PrivateLayout />}>
               <Route path='' element={<Index />} />
+              <Route path='/profile' element={<Profile />} />
               <Route path='page2' element={<Page2 />} />
               <Route path='category1' element={<IndexCategory1 />} />
               <Route path='category1/page1' element={<Category1 />} />
