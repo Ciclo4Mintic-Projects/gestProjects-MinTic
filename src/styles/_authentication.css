@@ -5,7 +5,7 @@
 
 .auth-container{
     height: 90%;
-    @apply md:w-5/12 w-full md:h-auto rounded-lg bg-purpleTem10 m-10;
+    @apply sm:w-5/12 w-full md:h-auto rounded-lg bg-purpleTem10 m-10;
 }
 
 .form-auth {
@@ -13,7 +13,7 @@
 }
 
 .label-auth{
-    @apply w-full my-0 md:my-2 sm:grid sm:grid-cols-2 lg:block items-center;
+    @apply w-full my-0 md:my-2 lg:block items-center;
 }
 
 .input-auth {

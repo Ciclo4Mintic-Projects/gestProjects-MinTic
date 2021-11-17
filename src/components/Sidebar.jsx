@@ -17,7 +17,7 @@ const SidebarLinks = () => {
 const Sidebar = () => {
   const [open, setOpen] = useState(true);
   return (
-    <div className='flex flex-col font-poppins bg-white md:flex-row flex-no-wrap md:h-full'>
+    <div className='flex flex-col font-poppins bg-white md:flex-row flex-no-wrap '>
       {/* Sidebar starts */}
 
       <div className='sidebar hidden md:flex'>

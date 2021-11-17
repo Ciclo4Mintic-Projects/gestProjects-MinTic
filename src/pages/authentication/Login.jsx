@@ -12,7 +12,7 @@ const Login = () => {
         <div className="auth-container w-auto h-auto">
             <div className="md:p-6 p-4">
                 <Logo height={'h-16'} sizeText={'text-xl'}/>
-                <h2 className="text-sm text-center mt-4 text-purpleHover font-bold">Bienvenido<br/> Plataforma de Gestión de Proyectos</h2>
+                <h2 className="text-sm text-center mt-4 text-purpleHover font-bold">Bienvenido a la Plataforma <br/> de Gestión de Proyectos</h2>
             </div>
             <form className="form-auth px-8 items-center" >
                 <label htmlFor="user" className="label-auth w-full">
