@@ -2,6 +2,8 @@ import Sidebar from 'components/Sidebar';
 import Header from 'components/header';
 import { Outlet } from 'react-router';
 import React from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const PrivateLayout = () => {
   return (
@@ -14,6 +16,7 @@ const PrivateLayout = () => {
           <Outlet />
         </div>
       </div>
+      <ToastContainer position='bottom-center' autoClose={2000} />
     </div>
   );
 };
