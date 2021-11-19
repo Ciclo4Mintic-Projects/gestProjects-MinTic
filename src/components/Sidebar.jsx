@@ -4,12 +4,14 @@ import Logo from './Logo';
 
 const SidebarLinks = () => {
   return (
-    <ul className='mt-1 md:mt-12'>
+    <ul className='mt-1 md:mt-12 sidebar-links'>
       <SidebarRoute to='' title='Inicio' icon='fas fa-home' />
       <SidebarRoute to='/usuarios/estado' title='Usuarios' icon='fas fa-users' />
       <SidebarRoute to='/usuarios/asd' title='Proyectos' icon='fas fa-project-diagram' />
       <SidebarRoute to='/inscripcion' title='Inscripciones' icon='fas fa-user-plus' />
       <SidebarRoute to='/usuarios/asd' title='Avance' icon='fas fa-pen-alt' />
+      <SidebarRoute to='/profile' title='Perfil' icon='fas fa-solid fa-user' />
+      <SidebarRoute to='/login' title='Salir' icon='fas fa-sign-out-alt' />      
     </ul>
   );
 };
@@ -47,7 +49,7 @@ const ResponsiveSidebar = () => {
         id='mobile-nav'
       >
         <div className='px-2 md:px-8'>
-          <SidebarLinks />
+          <SidebarLinks />        
         </div>
       </div>
     </div>
