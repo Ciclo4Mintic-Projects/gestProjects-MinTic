@@ -9,5 +9,11 @@ const Enum_Rol = {
     AUTORIZADO: 'Autorizado',
     NO_AUTORIZADO: 'No autorizado',
   };
+
+  const Enum_EstadoInscripcion = {
+    ACEPTADO: 'Aceptado',
+    RECHAZADO: 'Rechazado',
+    PENDIENTE: 'Pendiente',
+  };
   
-  export { Enum_Rol, Enum_EstadoUsuario };
+  export { Enum_Rol, Enum_EstadoUsuario, Enum_EstadoInscripcion };

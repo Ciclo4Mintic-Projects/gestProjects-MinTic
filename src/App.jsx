@@ -13,7 +13,8 @@ import 'styles/globals.css';
 import SignUp from 'pages/authentication/SignUp';
 import Login from 'pages/authentication/Login';
 import Profile from 'pages/authentication/Profile';
-import Inscripcion from 'pages/Inscripcion';
+import Inscripcion from 'pages/inscripcion/Index';
+import EditarInscripcion from 'pages/inscripcion/Editar';
 import SupremacyContextProvider from 'context/supremacyContext';
 
 // import PrivateRoute from 'components/PrivateRoute';
@@ -46,6 +47,7 @@ function App() {
                 <Route path='usuarios' element={<EstadoUsuarios />} />
                 <Route path='usuarios/editar/:_id' element={<EditarUsuario />} />
                 <Route path='inscripcion' element={<Inscripcion />} />
+                <Route path='inscripcion/editar/:_id' element={<EditarInscripcion />} />
               </Route>
             </Routes>
           </BrowserRouter>
