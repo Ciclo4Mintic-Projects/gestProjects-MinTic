@@ -43,7 +43,7 @@ function App() {
                 <Route path='page2' element={<Page2 />} />
                 <Route path='category1' element={<IndexCategory1 />} />
                 <Route path='category1/page1' element={<Category1 />} />
-                <Route path='usuarios/' element={<EstadoUsuarios />} />
+                <Route path='usuarios' element={<EstadoUsuarios />} />
                 <Route path='usuarios/editar/:_id' element={<EditarUsuario />} />
                 <Route path='inscripcion' element={<Inscripcion />} />
               </Route>
