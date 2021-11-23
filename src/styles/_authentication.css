@@ -1,0 +1,59 @@
+
+.auth-screen {
+    @apply text-xs h-full w-full flex justify-center items-center bg-gradient-to-r from-purpleHover to-purpleTem;
+}
+
+.auth-container{
+    height: 90%;
+    @apply sm:w-5/12 w-full md:h-auto rounded-lg bg-purpleTem10 m-10;
+}
+
+.form-auth {
+    @apply flex flex-col text-xs md:text-sm items-start px-10 lg:px-20;
+}
+
+.label-auth{
+    @apply w-full my-0 md:my-2 lg:block items-center;
+}
+
+.input-auth {
+    @apply  my-2 px-3 py-2 w-full rounded-3xl border-solid border-gray-400 border-2 hover:border-purpleHover ml-0 sm:ml-2 lg:ml-0;
+}
+
+.input-auth:focus {
+    outline: none;
+    background-color: #dadafa;
+}
+
+.cancel-button-auth {
+   @apply bg-white w-2/4 min-w-min p-3 rounded-3xl border-2 border-purpleTem text-purpleTem font-bold hover:text-purpleHover hover:border-purpleHover;
+}
+
+.accept-button-auth {
+    @apply bg-purpleTem w-2/4 min-w-min p-3 rounded-3xl border-2 text-white font-bold hover:bg-purpleHover;
+}
+
+
+.input-auth option {
+    @apply text-blackTem;
+}
+
+.label-auth span {
+    @apply font-semibold text-grayTem;
+}
+
+.auth-container button {
+    width: 100px;
+}
+
+.link-register {
+    @apply font-bold text-xs text-purpleTem hover:text-purpleHover text-center p-2 underline cursor-pointer;
+}
+
+.profile-container {
+    @apply  m-auto sm:mx-40 mb-14 md:mb-10 mt-2 text-xs rounded-lg bg-backgContTem w-2/3 sm:w-auto 
+}
+
+.form-profile {
+    @apply flex flex-col p-3 sm:grid sm:grid-cols-2 sm:gap-3 sm:gap-x-6
+}

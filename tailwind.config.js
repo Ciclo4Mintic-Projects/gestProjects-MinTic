@@ -15,7 +15,7 @@ module.exports = {
         greenTem: '#00A389',
         redTem: '#FF4A55',
         backgContTem: '#F9F9F9',
-      },
+       },
       fontFamily: {
         poppins: "'Poppins', sans-serif",
       },

@@ -1,3 +1,7 @@
+@import 'styles/_authentication.css';
+@import 'styles/_tabla.css';
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,11 +11,19 @@ body {
 }
 
 .sidebar {
-  @apply w-64 bg-white shadow flex-col justify-between;
+  @apply md:w-64 w-48 bg-white shadow flex-col justify-between bg-white border-r-2 border-purpleTem10;
 }
 
 .sidebar-route {
-  @apply rounded-md flex w-full justify-between cursor-pointer items-center m-3 p-3;
+  @apply rounded-md flex w-full justify-between cursor-pointer items-center p-2;
+}
+
+.sidebar-links li:nth-of-type(6n+0) {
+  @apply flex md:hidden
+}
+
+.sidebar-links li:nth-of-type(7n+0) {
+  @apply flex md:hidden
 }
 
 .navlink-selected .icon-selected {
@@ -21,3 +33,35 @@ body {
 .navbar-responsive {
   @apply bg-purpleTem;
 }
+
+.header-container {
+  @apply flex flex-row h-10 md:h-20 justify-between bg-white;
+}
+
+.header-user {
+  @apply hidden text-center pr-10 md:flex;
+}
+
+.header-container i {
+  @apply text-purpleTem text-xl hover:text-white hover:bg-purpleTem w-8 h-8 rounded-full text-center self-center pt-0.5 ;
+}
+ 
+.header-container .fa-user {
+  @apply bg-purpleTem text-white;
+}
+
+.dropdown-options {
+  @apply flex flex-col text-xs bg-purpleTem text-white font-bold font-poppins px-3 py-1 justify-center rounded-xl absolute z-10 p-3 right-48 top-14;
+}
+
+.dropdown-options a {
+  @apply p-1 hover:text-blackTem;
+}
+
+.dropdown-container {
+  @apply flex flex-col justify-center;
+}
+
+.dropdown-container .fa-cog {
+  @apply text-purpleTem text-xl hover:text-white hover:bg-purpleTem w-8 h-8 rounded-full text-center self-center pt-0.5;
+} 
