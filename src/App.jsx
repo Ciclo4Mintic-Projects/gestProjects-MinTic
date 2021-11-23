@@ -16,6 +16,8 @@ import Profile from 'pages/authentication/Profile';
 import Inscripcion from 'pages/inscripcion/Index';
 import EditarInscripcion from 'pages/inscripcion/Editar';
 import SupremacyContextProvider from 'context/supremacyContext';
+import EstadoProyectos from 'pages/proyectos/EstadoProyectos';
+
 
 // import PrivateRoute from 'components/PrivateRoute';
 
@@ -43,11 +45,13 @@ function App() {
                 <Route path='/profile' element={<Profile />} />
                 <Route path='page2' element={<Page2 />} />
                 <Route path='category1' element={<IndexCategory1 />} />
+                <Route path='proyectos' element={ <EstadoProyectos/>} />
                 <Route path='category1/page1' element={<Category1 />} />
                 <Route path='usuarios' element={<EstadoUsuarios />} />
                 <Route path='usuarios/editar/:_id' element={<EditarUsuario />} />
                 <Route path='inscripcion' element={<Inscripcion />} />
                 <Route path='inscripcion/editar/:_id' element={<EditarInscripcion />} />
+                
               </Route>
             </Routes>
           </BrowserRouter>
