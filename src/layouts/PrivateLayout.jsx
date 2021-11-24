@@ -12,7 +12,7 @@ const PrivateLayout = () => {
       <Sidebar />
       <div className='w-full overflow-hidden'>
         <Header />  
-        <div className='w-full h-full overflow-y-scroll'>
+        <div className='w-full h-5/6 overflow-y-scroll'>
           <Outlet />
         </div>
       </div>
