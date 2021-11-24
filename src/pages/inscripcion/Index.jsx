@@ -45,8 +45,8 @@ const Inscripcion = () => {
           <tr>
             <th>Id inscripcion</th>
             <th>Proyecto</th>
-            <th>Nombre</th>
-            <th>Apellido</th>
+            <th>Lider Proyecto</th>
+            <th>Nombre Estudiante</th>
             <th>Estado</th>
             <th>Fecha ingreso</th>
             <th>Fecha egreso</th>
@@ -60,8 +60,8 @@ const Inscripcion = () => {
                 <tr key={i._id}>
                   <td>{i._id}</td>
                   <td>{i.proyecto.nombre}</td>
-                  <td>{i.estudiante.nombre}</td>
-                  <td>{i.estudiante.apellido}</td>
+                  <td>{i.proyecto.lider.nombre +" "+ i.proyecto.lider.apellido}</td>
+                  <td>{i.estudiante.nombre +" "+ i.estudiante.apellido}</td>
                   <td>{Enum_EstadoInscripcion[i.estado]}</td>
                   <td>{i.fechaIngreso}</td>
                   <td>{i.fechaEgreso}</td>

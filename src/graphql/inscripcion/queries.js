@@ -3,17 +3,21 @@ import { gql } from '@apollo/client';
 const GET_INSCRIPCIONES = gql`
     query Inscripciones {
         Inscripciones {
-        _id
-        proyecto {
+            _id
+            proyecto {
             nombre
-        }
-        estudiante {
-            nombre
-            apellido
-        }
-        estado
-        fechaIngreso
-        fechaEgreso  
+            lider {
+                nombre
+                apellido
+            }
+            }
+            estudiante {
+                nombre
+                apellido
+            }
+            estado
+            fechaIngreso
+            fechaEgreso 
         }
     }
 `;
