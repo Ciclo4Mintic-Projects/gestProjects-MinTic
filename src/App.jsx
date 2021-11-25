@@ -7,6 +7,9 @@ import Index from 'pages/Index';
 import Page2 from 'pages/Page2';
 import IndexCategory1 from 'pages/category1/Index';
 import Category1 from 'pages/category1/CategoryPage1';
+import IndexAvances from 'pages/Avances/Index'
+import AvancesLog from 'pages/Avances/AvancesLog';
+import AvancesTable from 'pages/Avances/AvancesTable';
 import EstadoUsuarios from 'pages/usuarios/Index';
 import EditarUsuario from 'pages/usuarios/Editar';
 import 'styles/globals.css';
@@ -31,7 +34,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-function App() {  
+function App() {
   const [userData, setUserData] = useState({});
   return (
     <ApolloProvider client={client}>
@@ -48,13 +51,15 @@ function App() {
                 <Route path='/profile' element={<Profile />} />
                 <Route path='page2' element={<Page2 />} />
                 <Route path='category1' element={<IndexCategory1 />} />
-                <Route path='proyectos' element={ <EstadoProyectos/>} />
+                <Route path='proyectos' element={<EstadoProyectos />} />
                 <Route path='category1/page1' element={<Category1 />} />
                 <Route path='usuarios' element={<EstadoUsuarios />} />
                 <Route path='usuarios/editar/:_id' element={<EditarUsuario />} />
                 <Route path='inscripcion' element={<Inscripcion />} />
                 <Route path='inscripcion/editar/:_id' element={<EditarInscripcion />} />
-                
+                <Route path='avances' element={<IndexAvances />} />
+                <Route path='avances/edit/:id' element={<AvancesLog />} />
+
               </Route>
             </Routes>
           </BrowserRouter>

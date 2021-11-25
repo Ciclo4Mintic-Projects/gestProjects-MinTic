@@ -5,6 +5,7 @@ import { Dialog, Tooltip } from '@material-ui/core';
 import 'react-toastify/dist/ReactToastify.css';
 import ReactLoading from 'react-loading';
 import 'styles/EstadoProyectos.css'
+import "styles/_tabla.css"
 
 const EstadoProyectos = () => {
   const [proyectos, setProyectos] = useState([]);
@@ -14,7 +15,7 @@ const EstadoProyectos = () => {
   return (
     <div className='flex h-full w-full flex-col items-center justify-start p-8'>
       <div className='flex flex-col'>
-        <h2 className='text-3xl font-poppins text-blackTem'>
+        <h2 className='title text-3xl font-poppins text-blackTem'>
           Estado de proyectos
         </h2>
       </div>
@@ -29,9 +30,10 @@ const TablaProyectos = ({ loading, listaProyectos, setEjecutarConsulta }) => {
   const [proyectosFiltrados, setProyectosFiltrados] = useState(listaProyectos);
 
   return (
-    <div className='flex flex-col'>
+    <div className='flex h-full w-full flex-col items-center justify-start p-8'>
 
-        <div> <button  className='boton-registro bg-purpleTem text-purpleTem10 px-2 rounded-xl hover:bg-purpleHover py-2 justify-end'> Registrar Proyecto </button></div>
+        <div className = "flex flex-row justify-evenly w-full"> 
+      
       <div className="w-96 bg-white border border-gray-300 rounded-xl flex m-3 self-start py-2 justify-between">
         <input 
         value={busqueda} 
@@ -39,6 +41,10 @@ const TablaProyectos = ({ loading, listaProyectos, setEjecutarConsulta }) => {
         placeholder="Busqueda" 
         className="focus-within:outline-none m-0 w-72 pl-2"/>
         <div className="pr-2"><i class="fas fa-search"></i></div>
+        
+      </div>
+      <button  className='boton-registro bg-purpleTem text-purpleTem10 px-2 rounded-xl hover:bg-purpleHover py-2 justify-end'> Registrar Proyecto </button>
+
       </div>
 
       <h3 className="title">
@@ -47,7 +53,7 @@ const TablaProyectos = ({ loading, listaProyectos, setEjecutarConsulta }) => {
       {loading ? (
           <ReactLoading type='Spokes' color='#4338CA' height={667} width={375} />
         ) : (
-      <table className = "table-fixed">
+      <table className = "tabla table-fixed">
         <thead>
           <tr>
             <th> Nombre </th>

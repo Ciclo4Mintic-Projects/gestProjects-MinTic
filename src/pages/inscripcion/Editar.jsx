@@ -56,7 +56,7 @@ const EditarUsuario = () => {
   if (queryLoading) return <div>Cargando....</div>;
 
   return (
-    <div className='flew flex-col w-full h-full items-center justify-center p-10'>
+    <div className='flew flex-col h-full items-center justify-center p-10 border border-gray-400 rounded-xl ml-10 mr-10 bg-grayLight'>
       <Link to='/inscripcion'>
         <i className='fas fa-arrow-left text-gray-600 cursor-pointer font-bold text-xl hover:text-gray-900' />
       </Link>
@@ -67,10 +67,12 @@ const EditarUsuario = () => {
         ref={form}
         className='flex flex-col items-center justify-center'
       >
-        <span>Id Inscripcion: {queryData.Inscripcion._id}</span>
-        <span>nombre: {queryData.Inscripcion.proyecto.nombre}</span>
-        <span>nombre: {queryData.Inscripcion.estudiante.nombre}</span>
-        <span>nombre: {queryData.Inscripcion.estudiante.apellido}</span>
+        <span className='font-bold text-lg'>Id Inscripcion: </span>
+        <span className= 'mb-2'>{queryData.Inscripcion._id}</span>
+        <span className='font-bold text-lg'>Proyecto: </span>
+        <span className= 'mb-2'>{queryData.Inscripcion.proyecto.nombre}</span>
+        <span className='font-bold text-lg'>Estudiante:</span>
+        <span className= 'mb-2'>{queryData.Inscripcion.estudiante.nombre +" "+ queryData.Inscripcion.estudiante.apellido}</span>
         <DropDown
           label='Estado de la inscripción:'
           name='estado'
@@ -78,8 +80,10 @@ const EditarUsuario = () => {
           required={true}
           options={Enum_EstadoInscripcion}
         />
-        <span>Fecha de ingreso: {queryData.Inscripcion.fechaIngreso}</span>
-        <span>Fecha de egreso: {queryData.Inscripcion.fechaEgreso}</span>
+        <span className='font-bold text-lg'>Fecha de ingreso:</span>
+        <span className= 'mb-2'>{queryData.Inscripcion.fechaIngreso}</span>
+        <span className='font-bold text-lg'>Fecha de egreso:</span>
+        <span className= 'mb-2'>{queryData.Inscripcion.fechaEgreso}</span>
         <ButtonLoading
           disabled={Object.keys(formData).length === 0}
           loading={mutationLoading}

@@ -11,8 +11,8 @@ const PrivateLayout = () => {
     <div className='flex flex-col md:flex-row sm:flex-no-wrap h-screen overflow-hidden'>
       <Sidebar />
       <div className='w-full overflow-hidden'>
-        <Header />  
-        <div className='w-full h-full overflow-y-scroll'>
+        <Header />
+        <div className='w-full h-5/6 overflow-y-scroll'>
           <Outlet />
         </div>
       </div>

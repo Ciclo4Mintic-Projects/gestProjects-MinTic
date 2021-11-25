@@ -1,16 +1,18 @@
-th {
-  padding-left: 40px;
-  margin: 40px;
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.tableUser th {
+
   justify-content: center;
   width: 150px;
- 
 font-style: normal;
 font-weight: 600;
 font-size: 18px;
 line-height: 22px;
 }
 
-td {
+.tableUser td {
   padding-left: 52px;
   justify-content: center;
   width: 50px;
@@ -27,18 +29,18 @@ td {
   margin-top: 32px;
 }
 
-table {
+.tableUser {
   justify-content: center;
 }
 
-.boton-registro {
-  margin-left: 900px;
-}
 
-h2 {
+
+.tituloUser {
   font-family: Inter;
   font-style: normal;
   font-weight: bold;
   font-size: 36px;
   line-height: 44px;
-}
+} */
+
+

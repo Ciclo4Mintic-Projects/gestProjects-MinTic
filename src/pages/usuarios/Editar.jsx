@@ -55,7 +55,7 @@ const EditarUsuario = () => {
   if (queryLoading) return <div>Cargando....</div>;
 
   return (
-    <div className='flew flex-col w-full h-full items-center justify-center p-10'>
+    <div className='flew flex-col h-full items-center justify-center p-10 border border-gray-400 rounded-xl ml-10 mr-10 bg-grayLight'>
       <Link to='/usuarios'>
         <i className='fas fa-arrow-left text-gray-600 cursor-pointer font-bold text-xl hover:text-gray-900' />
       </Link>
@@ -66,34 +66,14 @@ const EditarUsuario = () => {
         ref={form}
         className='flex flex-col items-center justify-center'
       >
-        <Input
-          label='Nombre de la persona:'
-          type='text'
-          name='nombre'
-          defaultValue={queryData.Usuario.nombre}
-          required={true}
-        />
-        <Input
-          label='Apellido de la persona:'
-          type='text'
-          name='apellido'
-          defaultValue={queryData.Usuario.apellido}
-          required={true}
-        />
-        <Input
-          label='Correo de la persona:'
-          type='email'
-          name='correo'
-          defaultValue={queryData.Usuario.correo}
-          required={true}
-        />
-        <Input
-          label='Identificación de la persona:'
-          type='text'
-          name='identificacion'
-          defaultValue={queryData.Usuario.identificacion}
-          required={true}
-        />
+        <span className='font-bold text-lg'>Usuario:</span>
+        <span className= 'mb-2'>{queryData.Usuario.nombre + " " + queryData.Usuario.apellido}</span>
+
+        <span className='font-bold text-lg'>Correo:</span>
+        <span className= 'mb-2'>{queryData.Usuario.correo}</span>
+
+        <span className='font-bold text-lg'>Identificación:</span>
+        <span className= 'mb-2'>{queryData.Usuario.identificacion}</span>
         <DropDown
           label='Estado de la persona:'
           name='estado'
@@ -101,7 +81,8 @@ const EditarUsuario = () => {
           required={true}
           options={Enum_EstadoUsuario}
         />
-        <span>Rol del usuario: {queryData.Usuario.rol}</span>
+        <span className='font-bold text-lg'>Rol del usuario:</span>
+        <span className= 'mb-2'>{queryData.Usuario.rol}</span>
         <ButtonLoading
           disabled={Object.keys(formData).length === 0}
           loading={mutationLoading}
