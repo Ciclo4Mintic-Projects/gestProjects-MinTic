@@ -10,13 +10,14 @@ import Category1 from 'pages/category1/CategoryPage1';
 import EstadoUsuarios from 'pages/usuarios/Index';
 import EditarUsuario from 'pages/usuarios/Editar';
 import 'styles/globals.css';
-import SignUp from 'pages/authentication/SignUp';
-import Login from 'pages/authentication/Login';
-import Profile from 'pages/authentication/Profile';
+import SignUp from 'pages/auth/SignUp';
+import Login from 'pages/auth/Login';
+import Profile from 'pages/auth/Profile';
 import Inscripcion from 'pages/inscripcion/Index';
 import EditarInscripcion from 'pages/inscripcion/Editar';
 import SupremacyContextProvider from 'context/supremacyContext';
 import EstadoProyectos from 'pages/proyectos/EstadoProyectos';
+import AuthLayout from 'layouts/AuthLayout';
 
 
 // import PrivateRoute from 'components/PrivateRoute';
@@ -37,9 +38,11 @@ function App() {
       <UserContext.Provider value={{ userData, setUserData }}>
         <SupremacyContextProvider>
           <BrowserRouter>
-            <Routes>       
-                <Route path='/register' element={<SignUp />} />
-                <Route path='/login' element={<Login />} />
+            <Routes> 
+              <Route path='/auth' element={<AuthLayout/>}>
+                <Route path='register' element={<SignUp />} />
+                <Route path='login' element={<Login />} />
+              </Route>      
               <Route path='/' element={<PrivateLayout />}>
                 <Route path='' element={<Index />} />
                 <Route path='/profile' element={<Profile />} />
