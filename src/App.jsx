@@ -7,9 +7,9 @@ import Index from 'pages/Index';
 import Page2 from 'pages/Page2';
 import IndexCategory1 from 'pages/category1/Index';
 import Category1 from 'pages/category1/CategoryPage1';
-import IndexProgress from 'pages/Progress/Index'
-import ProgressLog from 'pages/Progress/ProgressLog';
-import ProgressTable from 'pages/Progress/ProgressTable';
+import IndexAvances from 'pages/Avances/Index'
+import AvancesLog from 'pages/Avances/AvancesLog';
+import AvancesTable from 'pages/Avances/AvancesTable';
 import EstadoUsuarios from 'pages/usuarios/Index';
 import EditarUsuario from 'pages/usuarios/Editar';
 import 'styles/globals.css';
@@ -54,8 +54,8 @@ function App() {
                 <Route path='usuarios/editar/:_id' element={<EditarUsuario />} />
                 <Route path='inscripcion' element={<Inscripcion />} />
                 <Route path='inscripcion/editar/:_id' element={<EditarInscripcion />} />
-                <Route path='progress' element={<IndexProgress />} />
-                <Route path='progress/edit/:id' element={<ProgressLog />} />
+                <Route path='avances' element={<IndexAvances />} />
+                <Route path='avances/edit/:id' element={<AvancesLog />} />
 
               </Route>
             </Routes>

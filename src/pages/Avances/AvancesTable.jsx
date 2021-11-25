@@ -2,7 +2,7 @@ import React from 'react'
 import { data } from './fakeData'
 import ButtonLong from '../../components/ButtonLong'
 import { NavLink } from 'react-router-dom';
-const ProgressTable = () => {
+const AvancesTable = () => {
   const progressData = data;
 
   return (
@@ -42,4 +42,4 @@ const ProgressTable = () => {
   )
 }
 
-export default ProgressTable
+export default AvancesTable

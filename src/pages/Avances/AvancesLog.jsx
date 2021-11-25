@@ -4,7 +4,7 @@ import diskette from 'assets/diskette.svg'
 import backArrow from 'assets/Arrow.svg'
 import { data } from './fakeData'
 import { NavLink, useParams } from 'react-router-dom';
-const ProgressLog = () => {
+const AvancesLog = () => {
   const progressData = data;
 
   const { id } = useParams()
@@ -24,7 +24,7 @@ const ProgressLog = () => {
         <div className="bg-white rounded-3xl mt-10 px-16 py-9">
           <div className="flex justify-between items-center">
             <div className="w-full">
-              <NavLink to={"/progress"}>
+              <NavLink to={"/avances"}>
                 <img src={backArrow} className=" mb-8" alt="back arrow icon" />
               </NavLink>
               <p className=" text-grayTem mb-4">{project}</p>
@@ -77,4 +77,4 @@ const ProgressLog = () => {
   )
 }
 
-export default ProgressLog
+export default AvancesLog
