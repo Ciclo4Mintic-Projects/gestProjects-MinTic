@@ -6,10 +6,10 @@ const SidebarLinks = () => {
   return (
     <ul className='mt-1 md:mt-12 sidebar-links'>
       <SidebarRoute to='' title='Inicio' icon='fas fa-home' />
-      <SidebarRoute to='/avances' title='avances' icon='fas fa-pen' />
       <SidebarRoute to='/usuarios' title='Usuarios' icon='fas fa-users' />
       <SidebarRoute to='/proyectos' title='Proyectos' icon='fas fa-project-diagram' />
       <SidebarRoute to='/inscripcion' title='Inscripciones' icon='fas fa-user-plus' />
+      <SidebarRoute to='/avances' title='avances' icon='fas fa-pen' />
       <SidebarRoute to='/profile' title='Perfil' icon='fas fa-solid fa-user' />
       <SidebarRoute to='/login' title='Salir' icon='fas fa-sign-out-alt' />
     </ul>
