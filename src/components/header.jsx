@@ -15,8 +15,8 @@ const DropdownHeader = () => {
             {
                 dropdown && 
                 <div class="dropdown-options">                            
-                    <a href="/profile">Editar perfil</a>
-                    <a href="/login">Cerrar sesión</a>
+                    <a href="/perfil">Editar perfil</a>
+                    <a href="/auth/login">Cerrar sesión</a>
                 </div>
             }
         </div>

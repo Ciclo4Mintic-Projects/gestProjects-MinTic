@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import Logo from 'components/Logo';
 import InputAuth from 'components/InputAuth';
+import { Link } from 'react-router-dom';
+import ButtonAccept from 'components/ButtonAccept';
 
 const Login = () => {
 
@@ -17,24 +19,33 @@ const Login = () => {
             </div>
             <form className="form-auth px-8 items-center" >
                 <InputAuth 
-                name='user'
-                className='label-auth w-full'
-                label='Usuario:'
-                type='email'
-                placeholder='Ingrese su Correo'
-                required
+                    name='user'
+                    className='label-auth w-full'
+                    label='Usuario:'
+                    type='email'
+                    placeholder='Ingrese su Correo'
+                    defaultValue=''
+                    required
                 />
                 <InputAuth 
-                name='password'
-                className='label-auth w-full'
-                label='Contraseña:'
-                type='password'
-                placeholder='Ingrese su Contraseña'
-                required
+                    name='password'
+                    className='label-auth w-full'
+                    label='Contraseña:'
+                    type='password'
+                    placeholder='Ingrese su Contraseña'
+                    defaultValue=''
+                    required
                 />
                 <div className="md:p-4 py-2 px-0 mb-4 text-xs md:text-sm flex flex-col justify-between" >
-                    <button className="accept-button-auth px-20">Ingresar</button>
-                    <a className="link-register">Quiero registrarme</a>
+                    <ButtonAccept
+                    //  disabled={Object.keys(formData).length === 0}
+                     loading={false}
+                     text='Ingresar'
+                     className='accept-button-auth px-20'
+                    />
+                    <Link className="link-register" to= '/auth/registro'>
+                        Quiero registrarme
+                    </Link>
                 </div>
             </form>          
         </div>

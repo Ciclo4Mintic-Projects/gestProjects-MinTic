@@ -51,7 +51,7 @@
 }
 
 .profile-container {
-    @apply  m-auto sm:mx-40 mb-14 md:mb-10 mt-2 text-xs rounded-lg bg-backgContTem w-2/3 sm:w-auto 
+    @apply  m-auto sm:mx-40 mb-14 md:mb-10 mt-2 text-xs rounded-lg bg-backgContTem w-2/3 sm:w-auto h-4/5
 }
 
 .form-profile {

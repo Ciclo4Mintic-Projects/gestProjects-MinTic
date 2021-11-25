@@ -1,123 +1,143 @@
+import React, {useContext, useEffect} from 'react';
+import { useParams, Link } from 'react-router-dom';
+import { useQuery, useMutation } from '@apollo/client';
+import { GET_USUARIO } from 'graphql/usuarios/queries';
 import { SupremacyContext } from 'context/supremacyContext';
-import React, {useRef, useContext, useEffect} from 'react';
+import InputAuth from 'components/InputAuth';
+import DropdownAuth from 'components/DropdownAuth';
+import useFormData from 'hooks/useFormData';
+import { toast } from 'react-toastify';
+import { EDITAR_USUARIO } from 'graphql/usuarios/mutations';
+import { Enum_Rol } from 'utils/enum';
+import ButtonAccept from 'components/ButtonAccept';
 
-const Profile = () => {
-
-    const formProfile = useRef(null);
+const EditarPerfil = () => {
 
     const { setCurrentSection } = useContext(SupremacyContext);
 
     useEffect(() => {
         setCurrentSection('Editar Perfil');
-    }, [])
+    }, []);
 
-    const submitFormProfile = (e) => {
+    const { form, formData, updateFormData } = useFormData(null);
+    const { _id } = useParams();
+
+    const {
+        data: queryData,
+        error: queryError,
+        loading: queryLoading,
+    } = useQuery(GET_USUARIO, {
+        variables: { _id },
+    });
+
+    console.log(queryData);
+
+    const [editarUsuario, { data: mutationData, loading: mutationLoading, error: mutationError }] =
+        useMutation(EDITAR_USUARIO);
+
+    const submitForm = (e) => {
         e.preventDefault();
-        const fd = new FormData(formProfile.current); 
-
-        const editProfile = {};
-        fd.forEach((value, key) => {
-            editProfile[key] = value;
+        console.log('fd', formData);
+        delete formData.rol;
+        editarUsuario({
+        variables: { _id, ...formData },
         });
-    }
+    };
+
+    useEffect(() => {
+        if (mutationData) {
+        toast.success('Usuario modificado correctamente');
+        }
+    }, [mutationData]);
+
+    useEffect(() => {
+        if (mutationError) {
+        toast.error('Error modificando el usuario');
+        }
+
+        if (queryError) {
+        toast.error('Error consultando el usuario');
+        }
+    }, [queryError, mutationError]);
+
+    if (queryLoading) return <div>Cargando....</div>; 
+
 
     return (
 
         <div className="profile-container">    
-            <form ref={formProfile} onSubmit= {submitFormProfile} className="form-profile" >
-                <label htmlFor="nombre" className="label-auth">
-                    <span className="hidden sm:block">
-                        Nombre <br/>
-                    </span>
-                    <input
-                    name = "nombre" 
-                    className="input-auth"
-                    type="text"
-                    placeholder="Luis"
+            <form ref={form} onSubmit={submitForm} onChange= {updateFormData} className="form-profile" >
+                <InputAuth 
+                    name='name'
+                    className='label-auth'
+                    label='Nombre:'
+                    type='text'
+                    // defaultValue={queryData.Usuario.nombre}
+                    required={true}
+                />
+                <InputAuth 
+                    name='lastname'
+                    className='label-auth'
+                    label='Apellido:'
+                    type='text'
+                    defaultValue=''
                     required
-                    />
-                </label>
-                <label htmlFor="apellido" className="label-auth">
-                    <span className="hidden sm:block">
-                        Apellido <br/>
-                    </span>
-                    <input
-                    name = "apellido" 
-                    className="input-auth"
-                    type="text"
-                    placeholder="Zapata"
+                />
+                <InputAuth 
+                    name='identification'
+                    className='label-auth'
+                    label='Identificación:'
+                    type='text'
+                    // defaultValue={queryData.Usuario.identificacion}
                     required
-                    />
-                </label>
-                <label htmlFor="identificacion" className="label-auth">
-                    <span className="hidden sm:block">
-                        Identificación <br/>
-                    </span>
-                    <input
-                    name = "identificacion" 
-                    className="input-auth"
-                    type="text"
-                    placeholder="123456789"
+                />
+                <DropdownAuth
+                    label='Rol:'
+                    name='rol'                    
+                    required={true}
+                    options={Enum_Rol}
+                /> 
+                <InputAuth 
+                    name='email'
+                    className='label-auth'
+                    label='Correo Electrónico:'
+                    type='email'
+                    // defaultValue={queryData.Usuario.correo}
                     required
-                    />
-                </label>
-                <label htmlFor="rol" className="label-auth">
-                    <span className="hidden sm:block">
-                        Rol <br/>
-                    </span>
-                    <input className="input-auth text-grayTem"
-                    name = "identificacion" 
-                    className="input-auth"
-                    type="text"
-                    placeholder="Lider"
-                    disabled
-                    > 
-                    </input>
-                </label>
-                <label htmlFor="email" className="label-auth">
-                    <span className="hidden sm:block">
-                        Correo Electrónico <br/>
-                    </span>
-                    <input
-                    name = "email" 
-                    className="input-auth"
-                    type="email"
-                    placeholder="luiszapata@hotmail.com"
+                />
+                <InputAuth 
+                    name='password'
+                    className='label-auth'
+                    label='Contraseña:'
+                    type='password'
+                    defaultValue=''
                     required
-                    />
-                </label>
-                <label htmlFor="contraseña" className="label-auth">
-                    <span className="hidden sm:block">
-                        Contraseña <br/>
-                    </span>
-                    <input
-                    name = "contraseña" 
-                    className="input-auth"
-                    type="password"
-                    placeholder="********"
+                />            
+                <InputAuth 
+                    name='verifyPassword'
+                    className='label-auth'
+                    label='Verificar Contraseña:'
+                    type='password'
+                    defaultValue=''
                     required
-                    />
-                </label>                    
-                <label htmlFor="verificarCont" className="label-auth">
-                    <span className="hidden sm:block">
-                        Verificar Contraseña <br/>
-                    </span>
-                    <input
-                    name = "VerificarCont" 
-                    className="input-auth"
-                    type="password"
-                    placeholder="********"
-                    required
-                    />
-                </label>                    
+                />                              
             </form>      
             <div className="p-2 grid grid-cols-2 place-items-center text-xs md:text-xs" >
-                <button className="cancel-button-auth">Cancelar</button>
-                <button className="accept-button-auth">Aceptar</button>
+                <button  className="cancel-button-auth">         
+                    <Link to= '/'>
+                        Cancelar
+                    </Link>
+                </button>
+                <ButtonAccept
+                     disabled={Object.keys(formData).length === 0}
+                     loading={false}
+                     text='Registrarme'
+                     className='accept-button-auth'
+                />
             </div>
         </div>            
 
     )
 }
 
-export default Profile;
+export default EditarPerfil;

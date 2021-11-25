@@ -10,8 +10,8 @@ const SidebarLinks = () => {
       <SidebarRoute to='/usuarios' title='Usuarios' icon='fas fa-users' />
       <SidebarRoute to='/proyectos' title='Proyectos' icon='fas fa-project-diagram' />
       <SidebarRoute to='/inscripcion' title='Inscripciones' icon='fas fa-user-plus' />
-      <SidebarRoute to='/profile' title='Perfil' icon='fas fa-solid fa-user' />
-      <SidebarRoute to='/login' title='Salir' icon='fas fa-sign-out-alt' />
+      <SidebarRoute to='/perfil' title='Perfil' icon='fas fa-solid fa-user' />
+      <SidebarRoute to='/auth/login' title='Salir' icon='fas fa-sign-out-alt' />
     </ul>
   );
 };
