@@ -12,6 +12,8 @@ import { useMutation } from '@apollo/client';
 
 const SignUp = () => {
 
+    const navigate = useNavigate();
+
     const { form, formData, updateFormData } = useFormData();
 
     const [registro, { data: dataMutation, loading: loadingMutation, error: errorMutation }] =
@@ -24,7 +26,13 @@ const SignUp = () => {
 
     useEffect(() => {
         console.log('data mutation', dataMutation);
-    }, [dataMutation])
+        if(dataMutation) {
+            if(dataMutation.registro.token) {
+                localStorage.setItem('token', dataMutation.registro.token);
+                navigate('/');
+            }
+        }
+    }, [dataMutation]);
    
     return (
         <div className="auth-screen">
@@ -33,7 +41,7 @@ const SignUp = () => {
                     <Logo height={'h-16'} sizeText={'text-xl'}/>
                     <h2 className="text-sm text-center mt-4 text-purpleHover font-bold">Bienvenido al Resgistro <br/> Plataforma de Gestión de Proyectos</h2>
                 </div>
-                <form ref={form} onSubmit= {submitFormSignUp} onChange={updateFormData} className="form-auth" >
+                <form ref={form} onSubmit={submitFormSignUp} onChange={updateFormData} className="form-auth" >
                     <InputAuth 
                         name='nombre'
                         className='label-auth'
