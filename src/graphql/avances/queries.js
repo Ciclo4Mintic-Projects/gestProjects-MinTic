@@ -3,6 +3,7 @@ import { gql } from "@apollo/client";
 const GET_AVANCES = gql`
 query Avances {
   Avances {
+    titulo
     descripcion
     fecha
     observaciones

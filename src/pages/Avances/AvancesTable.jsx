@@ -22,7 +22,7 @@ const AvancesTable = ({ avancesData }) => {
           <div className="grid grid-cols-5 w-full py-6 border-t-2  px-20 items-center" key={avance._id}>
             <p>{avance.creadoPor.nombre}</p>
             <p>{avance.proyecto.nombre}</p>
-            <p>nombre avance</p>
+            <p>{avance.titulo}</p>
             <p className="justify-self-center">{avance.observaciones.length}</p>
             <NavLink
               to={`edit/${avance._id}`}
