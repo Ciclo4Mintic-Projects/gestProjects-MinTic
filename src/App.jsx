@@ -18,6 +18,7 @@ import EditarInscripcion from 'pages/inscripcion/Editar';
 import SupremacyContextProvider from 'context/supremacyContext';
 import EstadoProyectos from 'pages/proyectos/EstadoProyectos';
 import AuthLayout from 'layouts/AuthLayout';
+import { AuthContext } from 'context/authContext';
 
 
 // import PrivateRoute from 'components/PrivateRoute';
@@ -33,31 +34,42 @@ const client = new ApolloClient({
 
 function App() {
   const [userData, setUserData] = useState({});
+  const [authToken, setAuthToken] = useState('');
+
+  const setToken = (token) => {
+    setAuthToken(token)
+    if(token){
+      localStorage.setItem('token', JSON.stringify(token));
+    }
+  }
+
   return (
     <ApolloProvider client={client}>
-      <UserContext.Provider value={{ userData, setUserData }}>
-        <SupremacyContextProvider>
-          <BrowserRouter>
-            <Routes> 
-              <Route path='/auth' element={<AuthLayout/>}>
-                <Route path='registro' element={<SignUp />} />
-                <Route path='login' element={<Login />} />
-              </Route>      
-              <Route path='/' element={<PrivateLayout />}>
-                <Route path='' element={<Index />} />
-                <Route path='/perfil' element={<Profile />} />             
-                <Route path='proyectos' element={<EstadoProyectos />} />            
-                <Route path='usuarios' element={<EstadoUsuarios />} />
-                <Route path='usuarios/editar/:_id' element={<EditarUsuario />} />
-                <Route path='inscripcion' element={<Inscripcion />} />
-                <Route path='inscripcion/editar/:_id' element={<EditarInscripcion />} />
-                <Route path='avances' element={<IndexAvances />} />
-                <Route path='avances/edit/:id' element={<AvancesLog />} />
-              </Route>
-            </Routes>
-          </BrowserRouter>
-        </SupremacyContextProvider>
-      </UserContext.Provider>
+      <AuthContext.Provider value={{setToken}}>
+        <UserContext.Provider value={{ userData, setUserData }}>
+          <SupremacyContextProvider>
+            <BrowserRouter>
+              <Routes> 
+                <Route path='/auth' element={<AuthLayout/>}>
+                  <Route path='registro' element={<SignUp />} />
+                  <Route path='login' element={<Login />} />
+                </Route>      
+                <Route path='/' element={<PrivateLayout />}>
+                  <Route path='' element={<Index />} />
+                  <Route path='/perfil' element={<Profile />} />             
+                  <Route path='proyectos' element={<EstadoProyectos />} />            
+                  <Route path='usuarios' element={<EstadoUsuarios />} />
+                  <Route path='usuarios/editar/:_id' element={<EditarUsuario />} />
+                  <Route path='inscripcion' element={<Inscripcion />} />
+                  <Route path='inscripcion/editar/:_id' element={<EditarInscripcion />} />
+                  <Route path='avances' element={<IndexAvances />} />
+                  <Route path='avances/edit/:id' element={<AvancesLog />} />
+                </Route>
+              </Routes>
+            </BrowserRouter>
+          </SupremacyContextProvider>
+        </UserContext.Provider>
+      </AuthContext.Provider>
     </ApolloProvider>
   );
 }
