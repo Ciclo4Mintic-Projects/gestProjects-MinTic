@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useRef, useEffect} from 'react';
 import Logo from 'components/Logo';
 import InputAuth from 'components/InputAuth';
 import ButtonAccept from 'components/ButtonAccept';
@@ -7,14 +7,24 @@ import DropdownAuth from 'components/DropdownAuth';
 import { Enum_Rol } from 'utils/enum';
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
+import { REGISTRO } from 'graphql/auth/mutations';
+import { useMutation } from '@apollo/client';
 
 const SignUp = () => {
 
     const { form, formData, updateFormData } = useFormData();
 
+    const [registro, { data: dataMutation, loading: loadingMutation, error: errorMutation }] =
+    useMutation(REGISTRO);
+
     const submitFormSignUp = (e) => {
         e.preventDefault();
+        registro({variables: formData });
     };
+
+    useEffect(() => {
+        console.log('data mutation', dataMutation);
+    }, [dataMutation])
    
     return (
         <div className="auth-screen">
@@ -25,7 +35,7 @@ const SignUp = () => {
                 </div>
                 <form ref={form} onSubmit= {submitFormSignUp} onChange={updateFormData} className="form-auth" >
                     <InputAuth 
-                        name='name'
+                        name='nombre'
                         className='label-auth'
                         label='Nombre:'
                         type='text'
@@ -34,7 +44,7 @@ const SignUp = () => {
                         required
                     />
                     <InputAuth 
-                        name='lastname'
+                        name='apellido'
                         className='label-auth'
                         label='Apellido:'
                         type='text'
@@ -43,7 +53,7 @@ const SignUp = () => {
                         required
                     />
                     <InputAuth 
-                        name='identification'
+                        name='identificacion'
                         className='label-auth'
                         label='Identificación:'
                         type='text'
@@ -52,13 +62,13 @@ const SignUp = () => {
                         required
                     />    
                      <DropdownAuth
-                        label='Rol:'
+                        label='Rol deseado:'
                         name='rol'                    
                         required={true}
                         options={Enum_Rol}
                     />              
                     <InputAuth 
-                        name='email'
+                        name='correo'
                         className='label-auth'
                         label='Correo Electrónico:'
                         type='email'
@@ -82,22 +92,22 @@ const SignUp = () => {
                         type='password'
                         placeholder='Ingrese nuevamente su contraseña'
                         defaultValue=''
-                        required
+                        // required
                     />                     
+                    <div className="p-6 mx-auto flex justify-center text-xs md:text-sm" >
+                        <button  className="cancel-button-auth w-3/12 mx-auto lg:mx-6">         
+                            <Link to= '/auth/login'>
+                                Cancelar
+                            </Link>
+                        </button>
+                        <ButtonAccept
+                        disabled={Object.keys(formData).length === 0}
+                        loading={false}
+                        text='Registrarme'
+                        className='accept-button-auth w-3/12 mx-auto lg:mx-6'
+                        />
+                    </div>
                 </form>      
-                <div className="md:p-8 p-2 m-2 grid grid-cols-2 place-items-center text-xs md:text-sm" >
-                    <button  className="cancel-button-auth">         
-                        <Link to= '/auth/login'>
-                            Cancelar
-                        </Link>
-                    </button>
-                    <ButtonAccept
-                     disabled={Object.keys(formData).length === 0}
-                     loading={false}
-                     text='Registrarme'
-                     className='accept-button-auth'
-                    />
-                </div>
             </div>            
         </div>
     )

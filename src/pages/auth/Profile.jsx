@@ -65,10 +65,10 @@ const EditarPerfil = () => {
 
     return (
 
-        <div className="profile-container">    
-            <form ref={form} onSubmit={submitForm} onChange= {updateFormData} className="form-profile" >
+        <form ref={form} onSubmit={submitForm} onChange= {updateFormData} className="profile-container " >
+            <div className="form-profile">    
                 <InputAuth 
-                    name='name'
+                    name='nombre'
                     className='label-auth'
                     label='Nombre:'
                     type='text'
@@ -76,7 +76,7 @@ const EditarPerfil = () => {
                     required={true}
                 />
                 <InputAuth 
-                    name='lastname'
+                    name='apellido'
                     className='label-auth'
                     label='Apellido:'
                     type='text'
@@ -84,7 +84,7 @@ const EditarPerfil = () => {
                     required
                 />
                 <InputAuth 
-                    name='identification'
+                    name='identificacion'
                     className='label-auth'
                     label='Identificación:'
                     type='text'
@@ -98,7 +98,7 @@ const EditarPerfil = () => {
                     options={Enum_Rol}
                 /> 
                 <InputAuth 
-                    name='email'
+                    name='correo'
                     className='label-auth'
                     label='Correo Electrónico:'
                     type='email'
@@ -120,23 +120,22 @@ const EditarPerfil = () => {
                     type='password'
                     defaultValue=''
                     required
-                />                              
-            </form>      
-            <div className="p-2 grid grid-cols-2 place-items-center text-xs md:text-xs" >
-                <button  className="cancel-button-auth">         
+                />     
+            </div>            
+            <div className="p-1 mx-auto flex justify-around text-xs md:text-sm" >
+                <button  className="cancel-button-auth w-3/12">         
                     <Link to= '/'>
                         Cancelar
                     </Link>
                 </button>
                 <ButtonAccept
-                     disabled={Object.keys(formData).length === 0}
-                     loading={false}
-                     text='Registrarme'
-                     className='accept-button-auth'
+                    disabled={Object.keys(formData).length === 0}
+                    loading={false}
+                    text='Aceptar'
+                    className='accept-button-auth w-3/12'
                 />
             </div>
-        </div>            
-
+        </form>     
     )
 }
 

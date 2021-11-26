@@ -19,9 +19,9 @@ const Login = () => {
             </div>
             <form className="form-auth px-8 items-center" >
                 <InputAuth 
-                    name='user'
+                    name='correo'
                     className='label-auth w-full'
-                    label='Usuario:'
+                    label='Correo Electrónico:'
                     type='email'
                     placeholder='Ingrese su Correo'
                     defaultValue=''
