@@ -1,9 +1,11 @@
 import React from 'react'
-import { data } from './fakeData'
 import ButtonLong from '../../components/ButtonLong'
 import { NavLink } from 'react-router-dom';
-const AvancesTable = () => {
-  const progressData = data;
+import { useQuery } from '@apollo/client'
+import { GET_AVANCES } from 'graphql/avances/queries'
+const AvancesTable = ({ avancesData }) => {
+  const { data, error, loading } = useQuery(GET_AVANCES)
+
 
   return (
     <div className="grid  pt-24">
@@ -15,22 +17,15 @@ const AvancesTable = () => {
         <p>Detalles</p>
       </div>
 
-      {/* <div className="grid grid-cols-5 w-full">
-        <p>{progressData[1].creador}</p>
-        <p>Proyecto 003</p>
-        <p>Avance#1</p>
-        <p>0</p>
-        <p>Boton</p>
-      </div> */}
-      {progressData.map(advance => {
+      {data && data.Avances.map((avance) => {
         return (
-          <div className="grid grid-cols-5 w-full py-6 border-t-2  px-20 items-center" key={advance.id}>
-            <p>{advance.creador}</p>
-            <p>{advance.proyecto}</p>
-            <p>{advance.avance}</p>
-            <p className="justify-self-center">{advance.observaciones.length}</p>
+          <div className="grid grid-cols-5 w-full py-6 border-t-2  px-20 items-center" key={avance._id}>
+            <p>{avance.creadoPor.nombre}</p>
+            <p>{avance.proyecto.nombre}</p>
+            <p>nombre avance</p>
+            <p className="justify-self-center">{avance.observaciones.length}</p>
             <NavLink
-              to={`edit/${advance.id}`}
+              to={`edit/${avance._id}`}
             >
               <ButtonLong>Ver más</ButtonLong>
             </NavLink>
