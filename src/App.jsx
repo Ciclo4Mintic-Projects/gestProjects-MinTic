@@ -55,7 +55,7 @@ function App() {
                 <Route path='inscripcion' element={<Inscripcion />} />
                 <Route path='inscripcion/editar/:_id' element={<EditarInscripcion />} />
                 <Route path='avances' element={<IndexAvances />} />
-                <Route path='avances/edit/:id' element={<AvancesLog />} />
+                <Route path='avances/edit/:_id' element={<AvancesLog />} />
 
               </Route>
             </Routes>

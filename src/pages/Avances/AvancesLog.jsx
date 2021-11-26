@@ -2,18 +2,23 @@ import React, { useState, useEffect } from 'react'
 import ButtonCircle from 'components/ButtonCircle'
 import diskette from 'assets/diskette.svg'
 import backArrow from 'assets/Arrow.svg'
-import { data } from './fakeData'
+//import { data } from './fakeData'
 import { NavLink, useParams } from 'react-router-dom';
+import { useQuery } from '@apollo/client'
+import { GET_AVANCES } from 'graphql/avances/queries'
 const AvancesLog = () => {
-  const progressData = data;
 
-  const { id } = useParams()
+  const { data, error, loading } = useQuery(GET_AVANCES)
 
-  const log = progressData.find(log => log.id == id)
+  //const progressData = data;
 
-  const [content, setContent] = useState(log.content)
-  const [name, setName] = useState(log.avance)
-  const [project, setProject] = useState(log.proyecto)
+  const { _id } = useParams()
+
+  const log = data.Avances.find(log => log._id == _id)
+
+  const [content, setContent] = useState(log.descripcion)
+  const [name, setName] = useState(log.titulo)
+  const [project, setProject] = useState(log.proyecto.nombre)
 
 
   return (
