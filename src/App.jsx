@@ -3,6 +3,7 @@ import PrivateLayout from 'layouts/PrivateLayout';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { UserContext } from 'context/userContext';
 import { ApolloProvider, ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
 import Index from 'pages/Index';
 import IndexAvances from 'pages/Avances/Index'
 import AvancesLog from 'pages/Avances/AvancesLog';
@@ -23,12 +24,23 @@ import { AuthContext } from 'context/authContext';
 
 // import PrivateRoute from 'components/PrivateRoute';
 
-// const httpLink = createHttpLink({
-//   uri: 'https://gestion-proyectos-back.herokuapp.com/graphql',
-// });
-
-const client = new ApolloClient({
+const httpLink = createHttpLink({
   uri: 'http://localhost:4000/graphql',
+});
+
+const authLink = setContext((_, { headers }) => {
+  // get the authentication token from local storage if it exists
+  const token = JSON.parse(localStorage.getItem('token'));
+  // return the headers to the context so httpLink can read them
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
 
@@ -45,7 +57,7 @@ function App() {
 
   return (
     <ApolloProvider client={client}>
-      <AuthContext.Provider value={{setToken}}>
+      <AuthContext.Provider value={{ authToken, setAuthToken, setToken}}>
         <UserContext.Provider value={{ userData, setUserData }}>
           <SupremacyContextProvider>
             <BrowserRouter>

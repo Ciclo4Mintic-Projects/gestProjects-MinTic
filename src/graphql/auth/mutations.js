@@ -32,4 +32,13 @@ const LOGIN = gql`
   }
 `;
 
-export { REGISTRO, LOGIN };
+const VALIDATE_TOKEN = gql`
+mutation ValidateToken {
+  validateToken {
+    token
+    error
+  }
+}
+`
+
+export { REGISTRO, LOGIN, VALIDATE_TOKEN };
