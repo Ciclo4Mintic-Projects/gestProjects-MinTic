@@ -52,6 +52,8 @@ function App() {
     setAuthToken(token)
     if(token){
       localStorage.setItem('token', JSON.stringify(token));
+    } else {
+      localStorage.removeItem('token');
     }
   }
 

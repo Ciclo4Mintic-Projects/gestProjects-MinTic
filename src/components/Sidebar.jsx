@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
 import Logo from './Logo';
+import SidebarRoute from './SidebarRoute';
+import Logout from './Logout';
 
 const SidebarLinks = () => {
   return (
@@ -10,8 +11,8 @@ const SidebarLinks = () => {
       <SidebarRoute to='/proyectos' title='Proyectos' icon='fas fa-project-diagram' />
       <SidebarRoute to='/inscripcion' title='Inscripciones' icon='fas fa-user-plus' />
       <SidebarRoute to='/avances' title='avances' icon='fas fa-pen' />
-      <SidebarRoute to='/perfil' title='Perfil' icon='fas fa-solid fa-user' />
-      <SidebarRoute to='/auth/login' title='Salir' icon='fas fa-sign-out-alt' />
+      <SidebarRoute to='/perfil' title='Perfil' icon='fas fa-solid fa-user' />     
+      <Logout/>
     </ul>
   );
 };
@@ -56,26 +57,6 @@ const ResponsiveSidebar = () => {
   );
 };
 
-const SidebarRoute = ({ to, title, icon }) => {
-  return (
-    <li>
-      <NavLink
-        to={to}
-        className={({ isActive }) =>
-          isActive
-            ? 'sidebar-route text-blackTem font-bold bg-purpleTem10 navlink-selected'
-            : 'sidebar-route text-grayTem hover:text-blackTem font-bold'
-        }
-      >
-        <div className='flex items-center'>
-          <div className="icon-selected">
-            <i className={icon} />
-          </div>
-          <span className='text-sm ml-2'>{title}</span>
-        </div>
-      </NavLink>
-    </li>
-  );
-};
+
 
 export default Sidebar;
