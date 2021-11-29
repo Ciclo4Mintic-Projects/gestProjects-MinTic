@@ -18,6 +18,8 @@ import EditarInscripcion from 'pages/inscripcion/Editar';
 import SupremacyContextProvider from 'context/supremacyContext';
 import EstadoProyectos from 'pages/proyectos/EstadoProyectos';
 import AuthLayout from 'layouts/AuthLayout';
+import EditarProyectos from 'pages/proyectos/EditarProyectos';
+import CrearProyecto from 'pages/proyectos/CrearProyecto';
 
 
 // import PrivateRoute from 'components/PrivateRoute';
@@ -46,7 +48,9 @@ function App() {
               <Route path='/' element={<PrivateLayout />}>
                 <Route path='' element={<Index />} />
                 <Route path='/perfil' element={<Profile />} />             
-                <Route path='proyectos' element={<EstadoProyectos />} />            
+                <Route path='proyectos' element={<EstadoProyectos />} /> 
+                <Route path='proyectos/editar/:_id' element={< EditarProyectos/>} /> 
+                <Route path='proyectos/add' element={<CrearProyecto/>} />
                 <Route path='usuarios' element={<EstadoUsuarios />} />
                 <Route path='usuarios/editar/:_id' element={<EditarUsuario />} />
                 <Route path='inscripcion' element={<Inscripcion />} />
