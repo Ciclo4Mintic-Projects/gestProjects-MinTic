@@ -1,13 +1,26 @@
 import { SupremacyContext } from "context/supremacyContext";
-import React, {useState, useContext} from "react";
+import React, {useState, useContext, useEffect} from "react";
+import { useAuth } from 'context/authContext';
 
 const DropdownHeader = () => {
     
+    const { authToken, setToken, setAuthToken } = useAuth();
+
     const [dropdown, setDropdown] = useState(false);
 
     const openCloseDropdown = () => {
         setDropdown(!dropdown)
     }
+
+    const deleteToken = () => {     
+        console.log(authToken)  
+        setAuthToken(null)
+        setToken(null);
+      };
+
+    useEffect(() => {
+       console.log('auth token', authToken)
+    }, [authToken])
 
     return ( 
         <div className="dropdown-container">
@@ -15,8 +28,8 @@ const DropdownHeader = () => {
             {
                 dropdown && 
                 <div class="dropdown-options">                            
-                    <a href="/profile">Editar perfil</a>
-                    <a href="/login">Cerrar sesión</a>
+                    <a href="/perfil">Editar perfil</a>
+                    <a onClick={() => deleteToken()}>Cerrar sesión</a>
                 </div>
             }
         </div>
