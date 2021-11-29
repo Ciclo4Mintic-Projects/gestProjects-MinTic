@@ -1,11 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import AvancesTable from './AvancesTable'
+import ButtonCircle from 'components/ButtonCircle';
+import ButtonPurple from 'components/ButtonPurple';
+import { NavLink } from 'react-router-dom';
+
 const IndexAvances = () => {
+
   return (
-    <div className=" bg-backgContTem">
-      <div className=" mt-36 mx-12">
+    <div>
+      <div className="  mx-12">
         <h2 className="text-4xl font-bold font-poppins ">Avances</h2>
-        <div className="bg-white rounded-3xl mt-10">
+        <div className=" flex mt-10 flex-col">
+          <NavLink to={"/avances/add"}>
+            <ButtonPurple>
+              Añadir avance
+            </ButtonPurple>
+          </NavLink>
           <AvancesTable />
         </div>
       </div>

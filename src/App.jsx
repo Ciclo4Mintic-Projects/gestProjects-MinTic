@@ -6,7 +6,7 @@ import { ApolloProvider, ApolloClient, createHttpLink, InMemoryCache } from '@ap
 import Index from 'pages/Index';
 import IndexAvances from 'pages/Avances/Index'
 import AvancesLog from 'pages/Avances/AvancesLog';
-import AvancesTable from 'pages/Avances/AvancesTable';
+import AvancesAdd from 'pages/Avances/AvancesAdd';
 import EstadoUsuarios from 'pages/usuarios/Index';
 import EditarUsuario from 'pages/usuarios/Editar';
 import 'styles/globals.css';
@@ -52,7 +52,10 @@ function App() {
                 <Route path='inscripcion' element={<Inscripcion />} />
                 <Route path='inscripcion/editar/:_id' element={<EditarInscripcion />} />
                 <Route path='avances' element={<IndexAvances />} />
-                <Route path='avances/edit/:id' element={<AvancesLog />} />
+                <Route path='avances/edit/:_id' element={<AvancesLog />} />
+                <Route path='avances/add' element={<AvancesAdd />} />
+
+
               </Route>
             </Routes>
           </BrowserRouter>
