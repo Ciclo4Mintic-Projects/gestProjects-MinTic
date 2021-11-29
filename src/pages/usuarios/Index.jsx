@@ -27,7 +27,7 @@ const EstadoUsuarios = () => {
   if (loading) return <div>Cargando....</div>;
 
   return (
-    <PrivateRoute roleList={['ADMINISTRADOR']}>
+    <PrivateRoute roleList={['ADMINISTRADOR']} stateList={['AUTORIZADO']}>
       <div className='flex h-full w-full flex-col items-center justify-start p-8'>
         <div className='flex flex-col'>
           <h2 className='text-3xl font-poppins text-blackTem text-center'>
