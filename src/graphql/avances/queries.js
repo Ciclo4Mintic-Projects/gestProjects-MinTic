@@ -10,6 +10,7 @@ const GET_AVANCES = gql`
       _id
       creadoPor {
         nombre
+        apellido
         _id
       }  
       proyecto {

@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import ButtonCircle from 'components/ButtonCircle'
 import diskette from 'assets/diskette.svg'
 import backArrow from 'assets/Arrow.svg'
-//import { data } from './fakeData'
 import { NavLink, useParams } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client'
 import { GET_AVANCE } from 'graphql/avances/queries'
 import useFormData from 'hooks/useFormData'
-import Input from 'components/Input'
 import { EDITAR_AVANCE } from 'graphql/avances/mutations';
 const AvancesLog = () => {
 
@@ -32,36 +30,24 @@ const AvancesLog = () => {
     })
   }
 
-
-
-
-
-
   return (
-
-    <div className=" bg-backgContTem">
-      <form className=" mt-36 mx-12" onSubmit={submitForm} ref={form}>
-        <h2 className="text-4xl font-bold  ">Avances</h2>
-        <div className="bg-white rounded-3xl mt-10 px-16 py-9">
+    <div >
+      <form className=" mx-12" onSubmit={submitForm} ref={form}>
+        <h2 className="text-4xl font-bold  ">Edición de avance</h2>
+        <div className="bg-backgContTem rounded-3xl mt-10 px-16 py-9">
           <div className="flex justify-between items-center">
             <div className="w-full">
               <NavLink to={"/avances"}>
                 <img src={backArrow} className=" mb-8" alt="back arrow icon" />
               </NavLink>
-              <p className=" text-grayTem mb-4">{queryData.Avance.proyecto.nombre}</p>
+              <p className=" text-purpleTem mb-4"><span className=" text-black font-bold">Proyecto</span>  {queryData.Avance.proyecto.nombre}</p>
+              <h6 className=" text-grayTem mt-14 mb-4">Título del avance:</h6>
               <input
                 className="  text-3xl font-bold outline-none w-full"
                 defaultValue={queryData.Avance.titulo}
                 placeholder="Escribe el nombre del avance"
                 name="titulo"
               />
-
-              {/* <Input
-                styles="text-3xl font-bold outline-none w-full"
-                defaultValue={data.Avance.proyecto.nombre}
-                placeholder="Escribe el nombre del avance"
-                name="titulo"
-              /> */}
             </div>
             <div className="flex">
               <ButtonCircle label="guardar" update={updateFormData}>
@@ -70,8 +56,7 @@ const AvancesLog = () => {
               <ButtonCircle>+</ButtonCircle>
             </div>
           </div>
-          <h6 className=" text-grayTem mt-24 mb-9">Especifica acá los aportes de este avance:</h6>
-          {/* <input className=" w-full h-28" value={content} onChange={e => { setContent(e.target.value) }} /> */}
+          <h6 className=" text-grayTem mt-14 mb-4">Especifica acá los aportes de este avance:</h6>
           <textarea
             name="descripcion"
             id=""
@@ -79,7 +64,6 @@ const AvancesLog = () => {
             rows="10"
             defaultValue={queryData.Avance.descripcion}
             className=" outline-none resize-none"
-
           >
 
           </textarea>
