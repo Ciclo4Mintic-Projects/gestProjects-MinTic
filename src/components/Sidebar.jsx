@@ -2,12 +2,15 @@ import React, { useState } from 'react';
 import Logo from './Logo';
 import SidebarRoute from './SidebarRoute';
 import Logout from './Logout';
+import PrivateComponent from './PrivateComponent';
 
 const SidebarLinks = () => {
   return (
     <ul className='mt-1 md:mt-12 sidebar-links'>
       <SidebarRoute to='' title='Inicio' icon='fas fa-home' />
+        <PrivateComponent roleList={['ADMINISTRADOR']}>
       <SidebarRoute to='/usuarios' title='Usuarios' icon='fas fa-users' />
+      </PrivateComponent>
       <SidebarRoute to='/proyectos' title='Proyectos' icon='fas fa-project-diagram' />
       <SidebarRoute to='/inscripcion' title='Inscripciones' icon='fas fa-user-plus' />
       <SidebarRoute to='/avances' title='avances' icon='fas fa-pen' />
