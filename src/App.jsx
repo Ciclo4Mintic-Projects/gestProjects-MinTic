@@ -7,7 +7,7 @@ import { setContext } from '@apollo/client/link/context';
 import Index from 'pages/Index';
 import IndexAvances from 'pages/Avances/Index'
 import AvancesLog from 'pages/Avances/AvancesLog';
-import AvancesTable from 'pages/Avances/AvancesTable';
+import AvancesAdd from 'pages/Avances/AvancesAdd';
 import EstadoUsuarios from 'pages/usuarios/Index';
 import EditarUsuario from 'pages/usuarios/Editar';
 import 'styles/globals.css';
@@ -19,11 +19,11 @@ import EditarInscripcion from 'pages/inscripcion/Editar';
 import SupremacyContextProvider from 'context/supremacyContext';
 import EstadoProyectos from 'pages/proyectos/EstadoProyectos';
 import AuthLayout from 'layouts/AuthLayout';
-import { AuthContext } from 'context/authContext';
 import jwt_decode from 'jwt-decode';
+import { AuthContext } from 'context/authContext';
+import EditarProyectos from 'pages/proyectos/EditarProyectos';
 
 
-// import PrivateRoute from 'components/PrivateRoute';
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:4000/graphql',
@@ -93,6 +93,7 @@ function App() {
                   <Route path='inscripcion/editar/:_id' element={<EditarInscripcion />} />
                   <Route path='avances' element={<IndexAvances />} />
                   <Route path='avances/edit/:id' element={<AvancesLog />} />
+                  <Route path='avances/add' element={<AvancesAdd />} />
                 </Route>
               </Routes>
             </BrowserRouter>

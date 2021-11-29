@@ -1,63 +1,77 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import ButtonCircle from 'components/ButtonCircle'
 import diskette from 'assets/diskette.svg'
 import backArrow from 'assets/Arrow.svg'
-import { data } from './fakeData'
 import { NavLink, useParams } from 'react-router-dom';
+import { useQuery, useMutation } from '@apollo/client'
+import { GET_AVANCE } from 'graphql/avances/queries'
+import useFormData from 'hooks/useFormData'
+import { EDITAR_AVANCE } from 'graphql/avances/mutations';
 const AvancesLog = () => {
-  const progressData = data;
 
-  const { id } = useParams()
+  const { form, formData, updateFormData } = useFormData(null)
 
-  const log = progressData.find(log => log.id == id)
+  const { _id } = useParams()
+  const { data: queryData, error: queryError, loading: queryLoading } = useQuery(GET_AVANCE, {
+    variables: { _id }
+  })
 
-  const [content, setContent] = useState(log.content)
-  const [name, setName] = useState(log.avance)
-  const [project, setProject] = useState(log.proyecto)
+  const [editarAvance, { data: mutationData, loading: mutationLoading, error: mutationError }] = useMutation(EDITAR_AVANCE)
 
+
+  if (queryLoading) { return <div>cargando...</div> }
+
+
+  const submitForm = (e) => {
+    e.preventDefault();
+    console.log("form datas: ", formData);
+    editarAvance({
+      variables: { ...formData, _id }
+    })
+  }
 
   return (
-
-    <div className=" bg-backgContTem">
-      <div className=" mt-36 mx-12">
-        <h2 className="text-4xl font-bold  ">Avances</h2>
-        <div className="bg-white rounded-3xl mt-10 px-16 py-9">
+    <div >
+      <form className=" mx-12" onSubmit={submitForm} ref={form}>
+        <h2 className="text-4xl font-bold  ">Edición de avance</h2>
+        <div className="bg-backgContTem rounded-3xl mt-10 px-16 py-9">
           <div className="flex justify-between items-center">
             <div className="w-full">
               <NavLink to={"/avances"}>
                 <img src={backArrow} className=" mb-8" alt="back arrow icon" />
               </NavLink>
-              <p className=" text-grayTem mb-4">{project}</p>
+              <p className=" text-purpleTem mb-4"><span className=" text-black font-bold">Proyecto</span>  {queryData.Avance.proyecto.nombre}</p>
+              <h6 className=" text-grayTem mt-14 mb-4">Título del avance:</h6>
               <input
                 className="  text-3xl font-bold outline-none w-full"
-                value={name}
+                defaultValue={queryData.Avance.titulo}
                 placeholder="Escribe el nombre del avance"
-                onChange={e => { setName(e.target.value) }}
+                name="titulo"
               />
             </div>
             <div className="flex">
-              <ButtonCircle>
+              <ButtonCircle label="guardar" update={updateFormData}>
                 <img src={diskette} alt="" />
               </ButtonCircle>
               <ButtonCircle>+</ButtonCircle>
             </div>
           </div>
-          <h6 className=" text-grayTem mt-24 mb-9">Especifica acá los aportes de este avance:</h6>
-          {/* <input className=" w-full h-28" value={content} onChange={e => { setContent(e.target.value) }} /> */}
+          <h6 className=" text-grayTem mt-14 mb-4">Especifica acá los aportes de este avance:</h6>
           <textarea
-            name=""
+            name="descripcion"
             id=""
             cols="170"
             rows="10"
-            onChange={e => { setContent(e.target.value) }}
-            className=" outline-none resize-none">
-            {content}
+            defaultValue={queryData.Avance.descripcion}
+            className=" outline-none resize-none"
+          >
+
           </textarea>
           <div>
             <h3 className=" font-bold text-2xl">Observaciones</h3>
-            {log.observaciones.length > 0 &&
+            {queryData.Avance.observaciones.length > 0 &&
               <ul>
-                {log.observaciones.map(observ => {
+                {queryData.Avance.observaciones.map(observ => {
                   return (
                     <li className=" mt-7 mb-8">
                       <span className="font-bold text-purpleTem">{observ.name}</span> {observ.label} <br /> <span className=" text-grayTem">{observ.date}</span>
@@ -66,15 +80,16 @@ const AvancesLog = () => {
                 })}
               </ul>
             }
-            {log.observaciones.length == 0 &&
+            {queryData.Avance.observaciones.length == 0 &&
               <p className=" text-grayTem">No hay observaciones creadas</p>
             }
 
           </div>
         </div>
-      </div>
+      </form>
     </div>
   )
 }
+
 
 export default AvancesLog
