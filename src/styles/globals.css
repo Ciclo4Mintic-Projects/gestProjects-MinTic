@@ -18,11 +18,11 @@ body {
   @apply rounded-md flex w-full justify-between cursor-pointer items-center p-2;
 }
 
-.sidebar-links li:nth-of-type(6n+0) {
+.sidebar-links li:nth-last-of-type(2) {
   @apply flex md:hidden
 }
 
-.sidebar-links li:nth-of-type(7n+0) {
+.sidebar-links li:nth-last-of-type(1) {
   @apply flex md:hidden
 }
 
