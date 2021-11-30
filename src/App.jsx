@@ -26,7 +26,8 @@ import EditarProyectos from 'pages/proyectos/EditarProyectos';
 
 
 const httpLink = createHttpLink({
-  uri: 'http://localhost:4000/graphql',
+  //uri: 'http://localhost:4000/graphql',
+  uri:'https://gestion-proyectos-back.herokuapp.com/graphql',
 });
 
 const authLink = setContext((_, { headers }) => {
