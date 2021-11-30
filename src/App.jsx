@@ -22,6 +22,8 @@ import AuthLayout from 'layouts/AuthLayout';
 import jwt_decode from 'jwt-decode';
 import { AuthContext } from 'context/authContext';
 import EditarProyectos from 'pages/proyectos/EditarProyectos';
+import EditarProyectoLider from 'pages/proyectos/EditarProyectoLider';
+import EditarProyectoAdmin from 'pages/proyectos/EditarProyectoAdmin';
 
 
 
@@ -88,7 +90,9 @@ function App() {
                 <Route path='/' element={<PrivateLayout />}>
                   <Route path='' element={<Index />} />
                   <Route path='/perfil' element={<Profile />} />             
-                  <Route path='proyectos' element={<EstadoProyectos />} />            
+                  <Route path='proyectos' element={<EstadoProyectos />} /> 
+                  <Route path='proyectos/editarLider/:_id' element={<EditarProyectoLider />} /> 
+                  <Route path='proyectos/editarAdmin/:_id' element={<EditarProyectoAdmin />} /> 
                   <Route path='usuarios' element={<EstadoUsuarios />} />
                   <Route path='usuarios/editar/:_id' element={<EditarUsuario />} />
                   <Route path='inscripcion' element={<Inscripcion />} />
