@@ -1,4 +1,4 @@
-import React, {useRef, useEffect} from 'react';
+import React, {useRef, useEffect, useState} from 'react';
 import Logo from 'components/Logo';
 import InputAuth from 'components/InputAuth';
 import ButtonAccept from 'components/ButtonAccept';
@@ -22,20 +22,27 @@ const SignUp = () => {
     const [registro, { data: dataMutation, loading: loadingMutation, error: errorMutation }] =
     useMutation(REGISTRO);
 
+    const [error, setError] = useState('');
+
     const submitFormSignUp = (e) => {
         e.preventDefault();
+        setError('');
         registro({variables: formData });
     };
 
     useEffect(() => {
-        console.log('data mutation', dataMutation);
         if(dataMutation) {
             if(dataMutation.registro.token) {
                 setToken(dataMutation.registro.token);
                 navigate('/');
+            } else {
+                setError(dataMutation.registro.error)
             }
         }
+ 
     }, [dataMutation, setToken, navigate]);
+
+
    
     return (
         <div className="auth-screen">
@@ -43,6 +50,9 @@ const SignUp = () => {
                 <div className="md:p-10 p-4">
                     <Logo height={'h-16'} sizeText={'text-xl'}/>
                     <h2 className="text-sm text-center mt-4 text-purpleHover font-bold">Bienvenido al Resgistro <br/> Plataforma de Gestión de Proyectos</h2>
+                </div>
+                <div className="p-2 -mt-6">
+                    <h2 className="text-sm text-center mt-4 text-redTem font-extrabold">{error}</h2>
                 </div>
                 <form ref={form} onSubmit={submitFormSignUp} onChange={updateFormData} className="form-auth" >
                     <InputAuth 
