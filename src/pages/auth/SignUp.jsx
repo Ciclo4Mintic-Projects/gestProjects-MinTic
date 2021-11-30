@@ -51,9 +51,6 @@ const SignUp = () => {
                     <Logo height={'h-16'} sizeText={'text-xl'}/>
                     <h2 className="text-sm text-center mt-4 text-purpleHover font-bold">Bienvenido al Resgistro <br/> Plataforma de Gestión de Proyectos</h2>
                 </div>
-                <div className="p-2 -mt-6">
-                    <h2 className="text-sm text-center mt-4 text-redTem font-extrabold">{error}</h2>
-                </div>
                 <form ref={form} onSubmit={submitFormSignUp} onChange={updateFormData} className="form-auth" >
                     <InputAuth 
                         name='nombre'
@@ -115,6 +112,9 @@ const SignUp = () => {
                         defaultValue=''
                         // required
                     />                     
+                    <div className="p-2 flex mx-auto">
+                        <h2 className="text-sm text-center mt-4 text-redTem font-extrabold">{error}</h2>
+                    </div>
                     <div className="p-6 mx-auto flex justify-center text-xs md:text-sm" >
                         <button  className="cancel-button-auth w-3/12 mx-auto lg:mx-6">         
                             <Link to= '/auth/login'>
