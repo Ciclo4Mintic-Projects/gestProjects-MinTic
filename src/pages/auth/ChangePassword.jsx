@@ -18,7 +18,7 @@ const EditarPerfil = () => {
     const { setCurrentSection } = useContext(SupremacyContext);
 
     useEffect(() => {
-        setCurrentSection('Editar Perfil');
+        setCurrentSection('Cambiar Contraseña');
     }, []);
 
     const { form, formData, updateFormData } = useFormData(null);
@@ -45,52 +45,35 @@ const EditarPerfil = () => {
 
     return (
 
-        <form ref={form} onSubmit={submitForm} onChange= {updateFormData} className="profile-container " >
-            <div className="form-profile">    
+        <form ref={form} onSubmit={submitForm} onChange= {updateFormData} className="profile-container mt-14 " >
+            <div className="form-profile">                 
                 <InputAuth 
-                    name='nombre'
+                    name='password'
                     className='label-auth'
-                    label='Nombre:'
-                    type='text'
-                    defaultValue={userData.nombre}
-                    required={true}
-                />
-                <InputAuth 
-                    name='apellido'
-                    className='label-auth'
-                    label='Apellido:'
-                    type='text'
-                    defaultValue={userData.apellido}
+                    label='Contraseña Actual:'
+                    type='password'
+                    placeholder="Contraseña Actual"
                     required
-                />
+                />            
                 <InputAuth 
-                    name='identificacion'
+                    name='password'
                     className='label-auth'
-                    label='Identificación:'
-                    type='text'
-                    defaultValue={userData.identificacion}
+                    label='Nueva Contraseña:'
+                    type='password'
+                    placeholder="Nueva Contraseña"
                     required
-                />
+                />            
                 <InputAuth 
-                    name='rol'
+                    name='verifyPassword'
                     className='label-auth'
-                    label='Rol:'
-                    type='text'
-                    defaultValue={userData.rol}
-                    disabled
-                    readOnly
-                />
-                <InputAuth 
-                    name='correo'
-                    className='label-auth'
-                    label='Correo Electrónico:'
-                    type='email'
-                    defaultValue={userData.correo}
+                    label='Verificar Contraseña:'
+                    type='password'
+                    placeholder="Verificar Contraseña"
                     required
-                />
+                />     
             </div>            
             <div className="p-1 mx-auto flex justify-center text-xs md:text-sm" >
-                <Link className="" to= '/'>
+                <Link className="" to= '/perfil'>
                     <button  className="cancel-button-auth mr-6 lg:px-8">         
                             Cancelar
                     </button>
@@ -99,12 +82,9 @@ const EditarPerfil = () => {
                     disabled={Object.keys(formData).length === 0}
                     loading={false}
                     text='Aceptar'
-                    className='accept-button-auth w-2/12'
+                    className='accept-button-auth w-3/12'
                 />
             </div>
-            <Link to= '/perfil/cambiarpassword' className="link-register font-extrabold flex justify-center p-4 text-sm">
-                Cambiar Contraseña
-            </Link>
         </form>     
     )
 }

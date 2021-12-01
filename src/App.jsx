@@ -14,6 +14,7 @@ import 'styles/globals.css';
 import SignUp from 'pages/auth/SignUp';
 import Login from 'pages/auth/Login';
 import Profile from 'pages/auth/Profile';
+import ChangePassword from 'pages/auth/ChangePassword'
 import Inscripcion from 'pages/inscripcion/Index';
 import EditarInscripcion from 'pages/inscripcion/Editar';
 import SupremacyContextProvider from 'context/supremacyContext';
@@ -88,6 +89,7 @@ function App() {
                 <Route path='/' element={<PrivateLayout />}>
                   <Route path='' element={<Index />} />
                   <Route path='/perfil' element={<Profile />} />             
+                  <Route path='/perfil/cambiarpassword' element={<ChangePassword/>} />             
                   <Route path='proyectos' element={<EstadoProyectos />} />            
                   <Route path='usuarios' element={<EstadoUsuarios />} />
                   <Route path='usuarios/editar/:_id' element={<EditarUsuario />} />
