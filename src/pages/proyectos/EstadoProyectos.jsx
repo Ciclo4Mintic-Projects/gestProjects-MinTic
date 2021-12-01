@@ -1,18 +1,24 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ReactLoading from 'react-loading';
 import 'styles/EstadoProyectos.css'
 import "styles/_tabla.css"
 import { GET_PROYECTOS } from 'graphql/proyectos/queries';
-import { useQuery } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { Link } from 'react-router-dom';
 import PrivateComponent from 'components/PrivateComponent';
 import PrivateRoute from 'components/PrivateRoute';
+import { CREAR_INSCRIPCION } from 'graphql/inscripcion/mutations';
+import { useUser } from 'context/userContext';
 
 const EstadoProyectos = () => {
 
+  const {userData} = useUser();  
   const { data, error, loading } = useQuery(GET_PROYECTOS);
+  const [creaInscripcion, { data: mutationData, loading: mutationLoading, error: mutationError }] =
+    useMutation(CREAR_INSCRIPCION);
+
 
   useEffect(() => {
     console.log('data servidor', data);
@@ -81,7 +87,12 @@ const EstadoProyectos = () => {
                         <button className='bg-purpleTem text-purpleTem10 px-2 rounded-xl mb-1 hover:bg-purpleHover'>Detalles</button>
                       </Link>
                       <PrivateComponent roleList={['ESTUDIANTE']} stateList={['AUTORIZADO']}>
-                      <button className='bg-purpleTem text-purpleTem10 px-2 rounded-xl hover:bg-purpleHover'> Inscribirse </button>
+                        <button onClick={() => {
+                          creaInscripcion({
+                            variables: { proyecto: u._id, estudiante: userData._id },
+                          });
+                          window.location.href = "/inscripcion"
+                        }} className='bg-purpleTem text-purpleTem10 px-2 rounded-xl hover:bg-purpleHover'> Inscribirse </button>
                       </PrivateComponent>
                     </td>
                   </tr>
