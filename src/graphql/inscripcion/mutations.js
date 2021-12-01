@@ -9,4 +9,12 @@ const APROBAR_INSCRIPCION = gql`
     }
 `;
 
-export { APROBAR_INSCRIPCION };
+const CREAR_INSCRIPCION = gql`
+  mutation CrearInscripcion($proyecto: String!, $estudiante: String!) {
+  crearInscripcion(proyecto: $proyecto, estudiante: $estudiante) {
+    _id
+    }
+  }
+`;
+
+export { APROBAR_INSCRIPCION, CREAR_INSCRIPCION };
