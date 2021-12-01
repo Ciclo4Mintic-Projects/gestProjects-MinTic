@@ -8,6 +8,7 @@ import { GET_PROYECTOS } from 'graphql/proyectos/queries';
 import { useQuery } from '@apollo/client';
 import { Link } from 'react-router-dom';
 import PrivateComponent from 'components/PrivateComponent';
+import PrivateRoute from 'components/PrivateRoute';
 
 const EstadoProyectos = () => {
 
@@ -26,6 +27,7 @@ const EstadoProyectos = () => {
   if (loading) return <div>Cargando....</div>;
 
   return (
+    <PrivateRoute roleList={['ADMINISTRADOR', 'LIDER', 'ESTUDIANTE']} stateList={['AUTORIZADO']}>
     <div className='flex h-full w-full flex-col items-center justify-start p-8'>
       <div className='flex flex-col'>
         <h2 className='title text-3xl font-poppins text-blackTem'>
@@ -70,13 +72,17 @@ const EstadoProyectos = () => {
                     <td>{u.objetivoGeneral}</td>
                     <td>{u.fase}</td>
                     <td className="flex flex-col justify-between">
+                    <PrivateComponent roleList={['LIDER', 'ADMINISTRADOR']} stateList={['AUTORIZADO']}>
                       <Link to={`/proyectos/editar/${u._id}`}>
                         <button className='bg-purpleTem text-purpleTem10 px-2 rounded-xl mb-1 hover:bg-purpleHover'>Editar</button>
                       </Link>
+                    </PrivateComponent>
                       <Link to={`editar/${u._id}`}>
                         <button className='bg-purpleTem text-purpleTem10 px-2 rounded-xl mb-1 hover:bg-purpleHover'>Detalles</button>
                       </Link>
+                      <PrivateComponent roleList={['ESTUDIANTE']} stateList={['AUTORIZADO']}>
                       <button className='bg-purpleTem text-purpleTem10 px-2 rounded-xl hover:bg-purpleHover'> Inscribirse </button>
+                      </PrivateComponent>
                     </td>
                   </tr>
                 );
@@ -86,6 +92,7 @@ const EstadoProyectos = () => {
         </table>)}
 
     </div>
+    </PrivateRoute>
   )
 }
 
