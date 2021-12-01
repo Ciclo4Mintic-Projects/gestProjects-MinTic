@@ -8,11 +8,13 @@ import useFormData from 'hooks/useFormData';
 import { toast } from 'react-toastify';
 import { EDITAR_USUARIO } from 'graphql/usuarios/mutations';
 import DropDown from 'components/Dropdown';
-import { Enum_EstadoUsuario } from 'utils/enum';
+import { Enum_EstadoUsuario, Enum_EstadoUsuario_Lider } from 'utils/enum';
+import { useUser } from 'context/userContext';
 
 const EditarUsuario = () => {
   const { form, formData, updateFormData } = useFormData(null);
   const { _id } = useParams();
+  const {userData} = useUser();
 
   const {
     data: queryData,
@@ -79,7 +81,7 @@ const EditarUsuario = () => {
           name='estado'
           defaultValue={queryData.Usuario.estado}
           required={true}
-          options={Enum_EstadoUsuario}
+          options={userData.rol === 'ADMINISTRADOR' ? Enum_EstadoUsuario: Enum_EstadoUsuario_Lider}
         />
         <span className='font-bold text-lg'>Rol del usuario:</span>
         <span className= 'mb-2'>{queryData.Usuario.rol}</span>
