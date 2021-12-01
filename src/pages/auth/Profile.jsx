@@ -1,17 +1,19 @@
-import React, {useContext, useEffect} from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { useQuery, useMutation } from '@apollo/client';
-import { GET_USUARIO } from 'graphql/usuarios/queries';
+import React, {useContext, useEffect, useState} from 'react';
+import { Link } from 'react-router-dom';
+import { useMutation } from '@apollo/client';
 import { SupremacyContext } from 'context/supremacyContext';
 import InputAuth from 'components/InputAuth';
-import DropdownAuth from 'components/DropdownAuth';
 import useFormData from 'hooks/useFormData';
 import { toast } from 'react-toastify';
-import { EDITAR_USUARIO } from 'graphql/usuarios/mutations';
-import { Enum_Rol } from 'utils/enum';
+import { EDITAR_PERFIL} from 'graphql/usuarios/mutations';
 import ButtonAccept from 'components/ButtonAccept';
+import { useUser } from 'context/userContext';
+
 
 const EditarPerfil = () => {
+
+    const { userData } = useUser();
+
 
     const { setCurrentSection } = useContext(SupremacyContext);
 
@@ -20,27 +22,17 @@ const EditarPerfil = () => {
     }, []);
 
     const { form, formData, updateFormData } = useFormData(null);
-    const { _id } = useParams();
-
-    const {
-        data: queryData,
-        error: queryError,
-        loading: queryLoading,
-    } = useQuery(GET_USUARIO, {
-        variables: { _id },
-    });
-
-    console.log(queryData);
-
+  
     const [editarUsuario, { data: mutationData, loading: mutationLoading, error: mutationError }] =
-        useMutation(EDITAR_USUARIO);
+    useMutation(EDITAR_PERFIL);
+    
 
     const submitForm = (e) => {
         e.preventDefault();
-        console.log('fd', formData);
-        delete formData.rol;
+        console.log('id',userData._id)
+        let _id = userData._id;
         editarUsuario({
-        variables: { _id, ...formData },
+        variables: {_id, ...formData },
         });
     };
 
@@ -49,18 +41,6 @@ const EditarPerfil = () => {
         toast.success('Usuario modificado correctamente');
         }
     }, [mutationData]);
-
-    useEffect(() => {
-        if (mutationError) {
-        toast.error('Error modificando el usuario');
-        }
-
-        if (queryError) {
-        toast.error('Error consultando el usuario');
-        }
-    }, [queryError, mutationError]);
-
-    if (queryLoading) return <div>Cargando....</div>; 
 
 
     return (
@@ -72,7 +52,7 @@ const EditarPerfil = () => {
                     className='label-auth'
                     label='Nombre:'
                     type='text'
-                    // defaultValue={queryData.Usuario.nombre}
+                    defaultValue={userData.nombre}
                     required={true}
                 />
                 <InputAuth 
@@ -80,7 +60,7 @@ const EditarPerfil = () => {
                     className='label-auth'
                     label='Apellido:'
                     type='text'
-                    defaultValue=''
+                    defaultValue={userData.apellido}
                     required
                 />
                 <InputAuth 
@@ -88,29 +68,32 @@ const EditarPerfil = () => {
                     className='label-auth'
                     label='Identificación:'
                     type='text'
-                    // defaultValue={queryData.Usuario.identificacion}
+                    defaultValue={userData.identificacion}
                     required
                 />
-                <DropdownAuth
+                <InputAuth 
+                    name='rol'
+                    className='label-auth'
                     label='Rol:'
-                    name='rol'                    
-                    required={true}
-                    options={Enum_Rol}
-                /> 
+                    type='text'
+                    defaultValue={userData.rol}
+                    disabled
+                    readOnly
+                />
                 <InputAuth 
                     name='correo'
                     className='label-auth'
                     label='Correo Electrónico:'
                     type='email'
-                    // defaultValue={queryData.Usuario.correo}
+                    defaultValue={userData.correo}
                     required
                 />
-                <InputAuth 
+                {/* <InputAuth 
                     name='password'
                     className='label-auth'
                     label='Contraseña:'
                     type='password'
-                    defaultValue=''
+                    defaultValue=""
                     required
                 />            
                 <InputAuth 
@@ -120,7 +103,7 @@ const EditarPerfil = () => {
                     type='password'
                     defaultValue=''
                     required
-                />     
+                />      */}
             </div>            
             <div className="p-1 mx-auto flex justify-around text-xs md:text-sm" >
                 <button  className="cancel-button-auth w-3/12">         
