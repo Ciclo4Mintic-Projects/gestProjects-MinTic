@@ -22,7 +22,6 @@ import EstadoProyectos from 'pages/proyectos/EstadoProyectos';
 import AuthLayout from 'layouts/AuthLayout';
 import jwt_decode from 'jwt-decode';
 import { AuthContext } from 'context/authContext';
-import EditarProyectos from 'pages/proyectos/EditarProyectos';
 import { Token } from 'graphql';
 import CrearProyecto from 'pages/proyectos/CrearProyecto';
 import EditarProyectoLider from 'pages/proyectos/EditarProyectoLider';

@@ -32,11 +32,5 @@
     RECHAZADO: 'Rechazado',
     PENDIENTE: 'Pendiente',
   };
-  const Enum_EstadoProyecto = {
-
-  };
-  const Enum_FaseProyecto = {
-
-  };
   
   export { Enum_Rol, Enum_EstadoUsuario, Enum_EstadoInscripcion, Enum_EstadoUsuario_Lider, Enum_EstadoProyecto, Enum_FaseProyecto };
