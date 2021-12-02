@@ -30,6 +30,7 @@ const AvancesLog = () => {
     })
   }
 
+
   return (
     <div >
       <form className=" mx-12" onSubmit={submitForm} ref={form}>
@@ -90,6 +91,8 @@ const AvancesLog = () => {
     </div>
   )
 }
+
+
 
 
 export default AvancesLog

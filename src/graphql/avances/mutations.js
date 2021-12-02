@@ -15,9 +15,44 @@ const EDITAR_AVANCE = gql`
       titulo
       descripcion
     }
-
   }
+`
+
+const CREAR_AVANCE = gql`
+  mutation CrearAvance(
+    $fecha: Date!
+    $descripcion: String! 
+    $proyecto: String! 
+    $creadoPor: String! 
+    $titulo: String!
+  ){
+    crearAvance(
+      fecha: $fecha
+      descripcion: $descripcion
+      proyecto: $proyecto
+      creadoPor: $creadoPor
+      titulo: $titulo
+    ){
+      _id
+      titulo
+    }
+  }
+
+`
+
+const ELIMINAR_AVANCE = gql`
+mutation EliminarAvance(
+  $_id: String!
+){
+  eliminarAvance(
+    _id: $_id
+  ){
+    _id
+    titulo
+  }
+}
 
 
 `
-export { EDITAR_AVANCE }
+
+export { EDITAR_AVANCE, CREAR_AVANCE, ELIMINAR_AVANCE }

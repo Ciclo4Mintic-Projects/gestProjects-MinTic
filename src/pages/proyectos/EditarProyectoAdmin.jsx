@@ -1,16 +1,18 @@
-import React, { useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { useQuery, useMutation } from '@apollo/client';
-import { GET_INSCRIPCION } from 'graphql/inscripcion/queries';
+import React, { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { useMutation, useQuery } from '@apollo/client';
 import Input from 'components/Input';
 import ButtonLoading from 'components/ButtonLoading';
 import useFormData from 'hooks/useFormData';
 import { toast } from 'react-toastify';
-import { APROBAR_INSCRIPCION } from 'graphql/inscripcion/mutations';
 import DropDown from 'components/Dropdown';
-import { Enum_EstadoInscripcion } from 'utils/enum';
+import { Enum_EstadoProyecto, Enum_FaseProyecto } from 'utils/enum';
+import { EDITAR_PROYECTO } from 'graphql/proyectos/mutations';
+import { GET_PROYECTO } from '../../graphql/proyectos/queries';
+import { useUser } from 'context/userContext';
 
-const EditarProyectoAdmin = () => {
+const EditarProyectoLider = () => {
+  const { userData } = useUser();
   const { form, formData, updateFormData } = useFormData(null);
   const { _id } = useParams();
 
@@ -18,72 +20,73 @@ const EditarProyectoAdmin = () => {
     data: queryData,
     error: queryError,
     loading: queryLoading,
-  } = useQuery(GET_INSCRIPCION, {
+  } = useQuery(GET_PROYECTO, {
     variables: { _id },
   });
 
-  console.log(queryData);
-
-  const [aprobarInscripcion, { data: mutationData, loading: mutationLoading, error: mutationError }] =
-    useMutation(APROBAR_INSCRIPCION);
+  const [editarProyecto, { data: mutationData, loading: mutationLoading, error: mutationError }] =
+    useMutation(EDITAR_PROYECTO);
 
   const submitForm = (e) => {
     e.preventDefault();
-    console.log('fd', formData);
     delete formData.rol;
-    aprobarInscripcion({
+    editarProyecto({
       variables: { _id, ...formData },
     });
   };
 
   useEffect(() => {
     if (mutationData) {
-      toast.success('Inscripcion modificada correctamente');
-      window.location.href = "/inscripcion"
+      toast.success('Proyecto modificado correctamente');
+      window.location.href = "/proyectos"
     }
   }, [mutationData]);
 
   useEffect(() => {
     if (mutationError) {
-      toast.error('Error modificando el inscripcion');
+      toast.error('Error modificando el proyecto');
     }
 
     if (queryError) {
-      toast.error('Error consultando inscripcion');
+      toast.error('Error consultando proyecto');
     }
-  }, [queryError, mutationError]);
+  }, [mutationError, queryError]);
 
   if (queryLoading) return <div>Cargando....</div>;
 
   return (
-    <div className='flew flex-col h-full items-center justify-center p-10 border border-gray-400 rounded-xl ml-10 mr-10 bg-grayLight'>
-      <Link to='/inscripcion'>
+    <div className='flew flex-col items-center justify-center p-10 border border-gray-400 rounded-xl ml-10 mr-10 bg-grayLight'>
+      <Link to='/proyectos'>
         <i className='fas fa-arrow-left text-gray-600 cursor-pointer font-bold text-xl hover:text-gray-900' />
       </Link>
-      <h1 className='m-4 text-3xl text-gray-800 font-bold text-center'>Aprobar Inscripcion</h1>
+      <h1 className='m-4 text-3xl text-gray-800 font-bold text-center'>Editar proyecto</h1>
+
       <form
         onSubmit={submitForm}
         onChange={updateFormData}
         ref={form}
         className='flex flex-col items-center justify-center'
       >
-        <span className='font-bold text-lg'>Id Inscripcion: </span>
-        <span className= 'mb-2'>{queryData.Inscripcion._id}</span>
-        <span className='font-bold text-lg'>Proyecto: </span>
-        <span className= 'mb-2'>{queryData.Inscripcion.proyecto.nombre}</span>
-        <span className='font-bold text-lg'>Estudiante:</span>
-        <span className= 'mb-2'>{queryData.Inscripcion.estudiante.nombre +" "+ queryData.Inscripcion.estudiante.apellido}</span>
+        <span className='font-bold text-lg'>Nombre:</span>
+        <span className= 'mb-2'>{queryData.Proyecto.nombre}</span>
+        <span className='font-bold text-lg'>Presupuesto:</span>
+        <span className= 'mb-2'>{queryData.Proyecto.presupuesto}</span>
+        <span className='font-bold text-lg'>Objetivo general:</span>
+        <span className= 'mb-2'>{queryData.Proyecto.objetivoGeneral}</span>
         <DropDown
-          label='Estado de la inscripción:'
+          label='Estado del proyecto:'
           name='estado'
-          defaultValue={queryData.Inscripcion.estado}
+          defaultValue={queryData.Proyecto.estado}
           required={true}
-          options={Enum_EstadoInscripcion}
+          options={Enum_EstadoProyecto}
         />
-        <span className='font-bold text-lg'>Fecha de ingreso:</span>
-        <span className= 'mb-2'>{queryData.Inscripcion.fechaIngreso}</span>
-        <span className='font-bold text-lg'>Fecha de egreso:</span>
-        <span className= 'mb-2'>{queryData.Inscripcion.fechaEgreso}</span>
+        <DropDown
+          label='Fase del proyecto:'
+          name='fase'
+          defaultValue={queryData.Proyecto.fase}
+          required={true}
+          options={Enum_FaseProyecto}
+        />
         <ButtonLoading
           disabled={Object.keys(formData).length === 0}
           loading={mutationLoading}
@@ -94,4 +97,4 @@ const EditarProyectoAdmin = () => {
   );
 };
 
-export default EditarProyectoAdmin;
+export default EditarProyectoLider;
