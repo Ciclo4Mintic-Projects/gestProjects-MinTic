@@ -6,7 +6,6 @@ import SidebarRoute from "./SidebarRoute";
 const Logout = () => {
     const { setToken } = useAuth();
     const deleteToken = () => {
-      console.log('eliminar token');
       setToken(null);
     };
     return (

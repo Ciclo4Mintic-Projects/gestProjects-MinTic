@@ -27,7 +27,6 @@ const SignUp = () => {
     const submitFormSignUp = (e) => {
         e.preventDefault();
         setError('');
-        console.log(formData);
         registro({variables: formData });
     };
 

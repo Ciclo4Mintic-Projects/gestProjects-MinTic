@@ -29,8 +29,6 @@ const EditarPerfil = () => {
     const submitForm = (e) => {
         e.preventDefault();
         let _id = userData._id;
-        console.log('enviando');
-        console.log({_id, ...formData} )
         cambiarPassword({
             variables: {_id, ...formData },
         });
