@@ -57,7 +57,7 @@ function App() {
   const setToken = (token) => {
     setAuthToken(token)
     // console.log('setToken', token)
-    if(token){
+    if (token) {
       localStorage.setItem('token', JSON.stringify(token));
       //localStorage.setItem('token', token);
     } else {
@@ -84,30 +84,30 @@ function App() {
 
   return (
     <ApolloProvider client={client}>
-      <AuthContext.Provider value={{ authToken, setAuthToken, setToken}}>
+      <AuthContext.Provider value={{ authToken, setAuthToken, setToken }}>
         <UserContext.Provider value={{ userData, setUserData }}>
           <SupremacyContextProvider>
             <BrowserRouter>
-              <Routes> 
-                <Route path='/auth' element={<AuthLayout/>}>
+              <Routes>
+                <Route path='/auth' element={<AuthLayout />}>
                   <Route path='registro' element={<SignUp />} />
                   <Route path='login' element={<Login />} />
-                </Route>      
+                </Route>
                 <Route path='/' element={<PrivateLayout />}>
                   <Route path='' element={<Index />} />
-                  <Route path='/perfil' element={<Profile />} />             
-                  <Route path='/perfil/cambiarpassword' element={<ChangePassword/>} />             
-                  <Route path='proyectos' element={<EstadoProyectos />} />            
-                  <Route path='proyectos' element={<EstadoProyectos />} /> 
-                  <Route path='proyectos/crear' element={<CrearProyecto />} />           
-                  <Route path='proyectos/editarLider/:_id' element={<EditarProyectoLider />} /> 
-                  <Route path='proyectos/editarAdmin/:_id' element={<EditarProyectoAdmin />} /> 
+                  <Route path='/perfil' element={<Profile />} />
+                  <Route path='/perfil/cambiarpassword' element={<ChangePassword />} />
+                  <Route path='proyectos' element={<EstadoProyectos />} />
+                  <Route path='proyectos' element={<EstadoProyectos />} />
+                  <Route path='proyectos/crear' element={<CrearProyecto />} />
+                  <Route path='proyectos/editarLider/:_id' element={<EditarProyectoLider />} />
+                  <Route path='proyectos/editarAdmin/:_id' element={<EditarProyectoAdmin />} />
                   <Route path='usuarios' element={<EstadoUsuarios />} />
                   <Route path='usuarios/editar/:_id' element={<EditarUsuario />} />
                   <Route path='inscripcion' element={<Inscripcion />} />
                   <Route path='inscripcion/editar/:_id' element={<EditarInscripcion />} />
                   <Route path='avances' element={<IndexAvances />} />
-                  <Route path='avances/edit/:id' element={<AvancesLog />} />
+                  <Route path='avances/edit/:_id' element={<AvancesLog />} />
                   <Route path='avances/add' element={<AvancesAdd />} />
                 </Route>
               </Routes>
