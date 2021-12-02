@@ -27,21 +27,13 @@ const EstadoUsuarios = () => {
   if (loading) return <div>Cargando....</div>;
 
   return (
-    <PrivateRoute roleList={['ADMINISTRADOR']} stateList={['AUTORIZADO']}>
+    <PrivateRoute roleList={['ADMINISTRADOR', 'LIDER']} stateList={['AUTORIZADO']}>
       <div className='flex h-full w-full flex-col items-center justify-start p-8'>
         <div className='flex flex-col'>
           <h2 className='text-3xl font-poppins text-blackTem text-center'>
             Página de administración de Usuarios
           </h2>
-
-        <div className="w-96 bg-white border border-gray-300 rounded-xl flex m-3 self-start py-2 justify-between">
-          <input 
-          //value={busqueda} 
-          //onChange={(e) => setBusqueda(e.target.value)} 
-          placeholder="Busqueda" 
-          className="focus-within:outline-none m-0 w-72 pl-2"/>
-          <div className="pr-2"><i class="fas fa-search"></i></div>
-          </div>
+          
           <div>
         <table className = 'tabla'>
           <thead>

@@ -31,14 +31,6 @@ const Inscripcion = () => {
           Página de Inscripciones
         </h2>
 
-      <div className="w-96 bg-white border border-gray-300 rounded-xl flex m-3 self-start py-2 justify-between">
-        <input 
-        //value={busqueda} 
-        //onChange={(e) => setBusqueda(e.target.value)} 
-        placeholder="Busqueda" 
-        className="focus-within:outline-none m-0 w-72 pl-2"/>
-        <div className="pr-2"><i class="fas fa-search"></i></div>
-        </div>
         <div>
       <table className = 'tabla'>
         <thead>
