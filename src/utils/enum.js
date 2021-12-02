@@ -15,6 +15,18 @@
     AUTORIZADO: 'Autorizado',
   };
 
+  const Enum_EstadoProyecto = {
+    ACTIVO: 'Activo',
+    INACTIVO: 'Inactivo',
+  };
+
+  const Enum_FaseProyecto = {
+    PENDIENTE: 'Pendiente',
+    INICIADO: 'Iniciado',
+    DESARROLLO: 'Desarrollo',
+    TERMINADO:  'Terminado'
+  };
+
   const Enum_EstadoInscripcion = {
     ACEPTADO: 'Aceptado',
     RECHAZADO: 'Rechazado',
