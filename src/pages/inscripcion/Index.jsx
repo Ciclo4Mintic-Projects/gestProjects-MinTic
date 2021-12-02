@@ -8,6 +8,7 @@ import { GET_INSCRIPCIONES } from 'graphql/inscripcion/queries';
 import { Link } from 'react-router-dom';
 import { Enum_EstadoInscripcion } from 'utils/enum';
 import PrivateComponent from 'components/PrivateComponent';
+import PrivateRoute from 'components/PrivateRoute';
 
 const Inscripcion = () => {
 
@@ -26,6 +27,7 @@ const Inscripcion = () => {
   if (loading) return <div>Cargando....</div>;
 
   return (
+    <PrivateRoute roleList={['LIDER', 'ESTUDIANTE']} stateList={['AUTORIZADO']}>
     <div className='flex h-full w-full flex-col items-center justify-start p-8'>
       <div className='flex flex-col'>
         <h2 className='text-3xl font-poppins text-blackTem text-center'>
@@ -76,6 +78,7 @@ const Inscripcion = () => {
       </div>
       
     </div>
+    </PrivateRoute>
   );
 };
 
