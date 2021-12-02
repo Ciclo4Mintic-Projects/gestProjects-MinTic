@@ -12,6 +12,7 @@ const GET_PROYECTOS = gql`
     fase
     lider {
       nombre
+      apellido
     }
     avances {
       descripcion

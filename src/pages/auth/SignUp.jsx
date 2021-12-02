@@ -1,4 +1,4 @@
-import React, {useRef, useEffect} from 'react';
+import React, {useRef, useEffect, useState} from 'react';
 import Logo from 'components/Logo';
 import InputAuth from 'components/InputAuth';
 import ButtonAccept from 'components/ButtonAccept';
@@ -22,20 +22,27 @@ const SignUp = () => {
     const [registro, { data: dataMutation, loading: loadingMutation, error: errorMutation }] =
     useMutation(REGISTRO);
 
+    const [error, setError] = useState('');
+
     const submitFormSignUp = (e) => {
         e.preventDefault();
+        setError('');
         registro({variables: formData });
     };
 
     useEffect(() => {
-        console.log('data mutation', dataMutation);
         if(dataMutation) {
             if(dataMutation.registro.token) {
                 setToken(dataMutation.registro.token);
                 navigate('/');
+            } else {
+                setError(dataMutation.registro.error)
             }
         }
+ 
     }, [dataMutation, setToken, navigate]);
+
+
    
     return (
         <div className="auth-screen">
@@ -105,6 +112,9 @@ const SignUp = () => {
                         defaultValue=''
                         // required
                     />                     
+                    <div className="p-2 flex mx-auto">
+                        <h2 className="text-sm text-center mt-4 text-redTem font-extrabold">{error}</h2>
+                    </div>
                     <div className="p-6 mx-auto flex justify-center text-xs md:text-sm" >
                         <button  className="cancel-button-auth w-3/12 mx-auto lg:mx-6">         
                             <Link to= '/auth/login'>

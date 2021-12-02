@@ -51,9 +51,9 @@
 }
 
 .profile-container {
-    @apply  m-auto sm:mx-40 mb-14 md:mb-10 mt-2 text-xs rounded-lg bg-backgContTem w-auto h-4/5
+    @apply  m-auto mx-10 md:mx-20 lg:mx-40 mb-14 lg:mb-10 mt-2 text-xs rounded-lg bg-backgContTem w-auto h-4/5
 }
 
 .form-profile {
-    @apply flex flex-col p-3 sm:grid sm:grid-cols-2 sm:gap-3 sm:gap-x-6
+    @apply flex flex-col p-3 lg:grid lg:grid-cols-2 lg:gap-3 lg:gap-x-6
 }

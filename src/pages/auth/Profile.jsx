@@ -1,17 +1,26 @@
-import React, {useContext, useEffect} from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { useQuery, useMutation } from '@apollo/client';
-import { GET_USUARIO } from 'graphql/usuarios/queries';
+import React, {useContext, useEffect, useState} from 'react';
+import { Link } from 'react-router-dom';
+import { useMutation } from '@apollo/client';
 import { SupremacyContext } from 'context/supremacyContext';
 import InputAuth from 'components/InputAuth';
-import DropdownAuth from 'components/DropdownAuth';
 import useFormData from 'hooks/useFormData';
 import { toast } from 'react-toastify';
-import { EDITAR_USUARIO } from 'graphql/usuarios/mutations';
-import { Enum_Rol } from 'utils/enum';
+import { EDITAR_PERFIL} from 'graphql/usuarios/mutations';
 import ButtonAccept from 'components/ButtonAccept';
+import { useUser } from 'context/userContext';
+import { useAuth } from 'context/authContext';
+import jwt_decode from 'jwt-decode';
 
-const EditarPerfil = () => {
+
+const EditarPerfil = (props) => {
+
+    const { userData, setUserData } = useUser();
+
+    const {setToken} = useAuth();
+    
+    const [error, setError] = useState('');
+    const [isEditing, setIsEditing] = useState(false);
+
 
     const { setCurrentSection } = useContext(SupremacyContext);
 
@@ -20,48 +29,63 @@ const EditarPerfil = () => {
     }, []);
 
     const { form, formData, updateFormData } = useFormData(null);
-    const { _id } = useParams();
-
-    const {
-        data: queryData,
-        error: queryError,
-        loading: queryLoading,
-    } = useQuery(GET_USUARIO, {
-        variables: { _id },
-    });
-
-    console.log(queryData);
-
-    const [editarUsuario, { data: mutationData, loading: mutationLoading, error: mutationError }] =
-        useMutation(EDITAR_USUARIO);
+  
+    const [editarPerfil, { data: mutationData, loading: mutationLoading, error: mutationError }] =
+    useMutation(EDITAR_PERFIL);
+    
 
     const submitForm = (e) => {
         e.preventDefault();
-        console.log('fd', formData);
-        delete formData.rol;
-        editarUsuario({
-        variables: { _id, ...formData },
+        setError('');
+        if(equals()){
+            toast.error('No se ha modificado ningún campo')
+            return false;
+        }
+        let _id = userData._id;
+        editarPerfil({
+        variables: {_id, ...formData },
         });
     };
-
+    
     useEffect(() => {
-        if (mutationData) {
-        toast.success('Usuario modificado correctamente');
+        if (mutationData) {                       
+            if (mutationData.editarPerfil.token) {
+                setToken(mutationData.editarPerfil.token)
+                const decodedProfile = jwt_decode(mutationData.editarPerfil.token);
+                setUserData({
+                    _id: decodedProfile._id,
+                    nombre: decodedProfile.nombre,
+                    apellido: decodedProfile.apellido,
+                    identificacion: decodedProfile.identificacion,
+                    correo: decodedProfile.correo,
+                    rol: decodedProfile.rol,
+                    estado: decodedProfile.estado,
+                });
+                toast.success('Perfil editado correctamente');
+            } else {
+                toast.error('No se pudo editar el Perfil');
+            }
         }
-    }, [mutationData]);
 
-    useEffect(() => {
-        if (mutationError) {
-        toast.error('Error modificando el usuario');
+      }, [mutationData]);
+
+      const equals = () =>{
+        
+        for(var i in formData){
+            for(var j in userData){
+                //si los name de los campos son iguales
+                if(i === j){
+                    //si los valores son diferentes
+                    if(formData[i] !== userData[j]){
+                        return false
+                    }
+                }
+            }
         }
+         return true;
+      }
 
-        if (queryError) {
-        toast.error('Error consultando el usuario');
-        }
-    }, [queryError, mutationError]);
-
-    if (queryLoading) return <div>Cargando....</div>; 
-
+   
 
     return (
 
@@ -72,7 +96,7 @@ const EditarPerfil = () => {
                     className='label-auth'
                     label='Nombre:'
                     type='text'
-                    // defaultValue={queryData.Usuario.nombre}
+                    defaultValue={userData.nombre}
                     required={true}
                 />
                 <InputAuth 
@@ -80,7 +104,7 @@ const EditarPerfil = () => {
                     className='label-auth'
                     label='Apellido:'
                     type='text'
-                    defaultValue=''
+                    defaultValue={userData.apellido}
                     required
                 />
                 <InputAuth 
@@ -88,53 +112,43 @@ const EditarPerfil = () => {
                     className='label-auth'
                     label='Identificación:'
                     type='text'
-                    // defaultValue={queryData.Usuario.identificacion}
+                    defaultValue={userData.identificacion}
                     required
                 />
-                <DropdownAuth
+                <InputAuth 
+                    name='rol'
+                    className='label-auth'
                     label='Rol:'
-                    name='rol'                    
-                    required={true}
-                    options={Enum_Rol}
-                /> 
+                    type='text'
+                    defaultValue={userData.rol}
+                    disabled
+                    readOnly
+                />
                 <InputAuth 
                     name='correo'
                     className='label-auth'
                     label='Correo Electrónico:'
                     type='email'
-                    // defaultValue={queryData.Usuario.correo}
+                    defaultValue={userData.correo}
                     required
                 />
-                <InputAuth 
-                    name='password'
-                    className='label-auth'
-                    label='Contraseña:'
-                    type='password'
-                    defaultValue=''
-                    required
-                />            
-                <InputAuth 
-                    name='verifyPassword'
-                    className='label-auth'
-                    label='Verificar Contraseña:'
-                    type='password'
-                    defaultValue=''
-                    required
-                />     
             </div>            
-            <div className="p-1 mx-auto flex justify-around text-xs md:text-sm" >
-                <button  className="cancel-button-auth w-3/12">         
-                    <Link to= '/'>
-                        Cancelar
-                    </Link>
-                </button>
+            <div className="p-1 mx-auto flex justify-center text-xs md:text-sm" >
+                <Link className="" to= '/'>
+                    <button  className="cancel-button-auth mr-6 lg:px-8">         
+                            Cancelar
+                    </button>
+                </Link>
                 <ButtonAccept
                     disabled={Object.keys(formData).length === 0}
                     loading={false}
                     text='Aceptar'
-                    className='accept-button-auth w-3/12'
+                    className='accept-button-auth w-2/12'
                 />
             </div>
+            <Link to= '/perfil/cambiarpassword' className="link-register font-extrabold flex justify-center p-4 text-sm">
+                Cambiar Contraseña
+            </Link>
         </form>     
     )
 }

@@ -5,14 +5,18 @@ import React, { useEffect, useState }  from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useAuth } from 'context/authContext';
+import { useUser } from 'context/userContext';
 import { useMutation } from '@apollo/client';
 import { REFRESH_TOKEN } from 'graphql/auth/mutations';
 import { useNavigate } from 'react-router-dom';
+import jwtDecode from 'jwt-decode';
 
 
 const PrivateLayout = () => {
 
   const navigate = useNavigate();
+
+  const { userData, setUserData } = useUser();
 
   const { authToken, setToken } = useAuth();
 
@@ -26,16 +30,17 @@ const PrivateLayout = () => {
   }, [refreshToken]);
 
   useEffect(() => {
-    if (dataMutation) {
-      if (dataMutation.refreshToken.token) {
-        setToken(dataMutation.refreshToken.token);
-      } else {
+      if(!authToken){
+      let localToken = localStorage.getItem('token')
+      console.log('localtoken', JSON.parse(localToken))
+      if(localToken){
+        setToken(JSON.parse(localToken))
+      }else {
         setToken(null);
         navigate('/auth/login');
       }
-      setLoadingAuth(false);
     }
-  }, [dataMutation, setToken, loadingAuth, navigate]);
+  }, [navigate]);
 
   return (
 

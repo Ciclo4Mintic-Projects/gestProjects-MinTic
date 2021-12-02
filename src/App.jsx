@@ -14,6 +14,7 @@ import 'styles/globals.css';
 import SignUp from 'pages/auth/SignUp';
 import Login from 'pages/auth/Login';
 import Profile from 'pages/auth/Profile';
+import ChangePassword from 'pages/auth/ChangePassword'
 import Inscripcion from 'pages/inscripcion/Index';
 import EditarInscripcion from 'pages/inscripcion/Editar';
 import SupremacyContextProvider from 'context/supremacyContext';
@@ -22,6 +23,10 @@ import AuthLayout from 'layouts/AuthLayout';
 import jwt_decode from 'jwt-decode';
 import { AuthContext } from 'context/authContext';
 import EditarProyectos from 'pages/proyectos/EditarProyectos';
+import { Token } from 'graphql';
+import CrearProyecto from 'pages/proyectos/CrearProyecto';
+import EditarProyectoLider from 'pages/proyectos/EditarProyectoLider';
+import EditarProyectoAdmin from 'pages/proyectos/EditarProyectoAdmin';
 
 
 
@@ -51,8 +56,10 @@ function App() {
 
   const setToken = (token) => {
     setAuthToken(token)
+    // console.log('setToken', token)
     if(token){
       localStorage.setItem('token', JSON.stringify(token));
+      //localStorage.setItem('token', token);
     } else {
       localStorage.removeItem('token');
     }
@@ -61,6 +68,8 @@ function App() {
   useEffect(() => {
     if (authToken) {
       const decoded = jwt_decode(authToken);
+      // console.log('nuevo', decoded);
+      // console.log('nuevo', authToken);
       setUserData({
         _id: decoded._id,
         nombre: decoded.nombre,
@@ -68,6 +77,7 @@ function App() {
         identificacion: decoded.identificacion,
         correo: decoded.correo,
         rol: decoded.rol,
+        estado: decoded.estado,
       });
     }
   }, [authToken]);
@@ -86,7 +96,12 @@ function App() {
                 <Route path='/' element={<PrivateLayout />}>
                   <Route path='' element={<Index />} />
                   <Route path='/perfil' element={<Profile />} />             
+                  <Route path='/perfil/cambiarpassword' element={<ChangePassword/>} />             
                   <Route path='proyectos' element={<EstadoProyectos />} />            
+                  <Route path='proyectos' element={<EstadoProyectos />} /> 
+                  <Route path='proyectos/crear' element={<CrearProyecto />} />           
+                  <Route path='proyectos/editarLider/:_id' element={<EditarProyectoLider />} /> 
+                  <Route path='proyectos/editarAdmin/:_id' element={<EditarProyectoAdmin />} /> 
                   <Route path='usuarios' element={<EstadoUsuarios />} />
                   <Route path='usuarios/editar/:_id' element={<EditarUsuario />} />
                   <Route path='inscripcion' element={<Inscripcion />} />

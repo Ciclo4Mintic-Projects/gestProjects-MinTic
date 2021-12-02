@@ -1,6 +1,6 @@
 import React from 'react';
 
-const InputAuth = ({name, className, label, type, placeholder, defaultValue, required }) => {
+const InputAuth = ({name, className, label, type, placeholder, defaultValue, required, readOnly }) => {
   return (
     <label htmlFor={name} className={className}>
       <span className="hidden sm:block">
@@ -13,6 +13,7 @@ const InputAuth = ({name, className, label, type, placeholder, defaultValue, req
       placeholder={placeholder}
       defaultValue={defaultValue}
       required
+      readOnly={readOnly}
       />
     </label>
   );

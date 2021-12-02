@@ -2,7 +2,7 @@ import React from 'react';
 
 const Input = ({ label, name, defaultValue, type, required, styles, placeholder }) => {
   return (
-    <label htmlFor={name} className='flex flex-col my-3'>
+    <label htmlFor={name} className='flex flex-col my-3 font-bold w-5/6'>
       <span>{label}</span>
       <input
         required={required}

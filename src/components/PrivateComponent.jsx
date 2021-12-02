@@ -1,10 +1,10 @@
 import { useUser } from 'context/userContext';
 import React from 'react';
 
-const PrivateComponent = ({ roleList, children }) => {
+const PrivateComponent = ({ stateList, roleList, children }) => {
   const { userData } = useUser();
 
-  if (roleList.includes(userData.rol)) {
+  if (roleList.includes(userData.rol) && stateList.includes(userData.estado)) {
     return children;
   }
 

@@ -8,6 +8,7 @@ import { useMutation } from '@apollo/client';
 import { LOGIN } from 'graphql/auth/mutations';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from 'context/authContext';
+import jwt_decode from 'jwt-decode';
 
 
 const Login = () => {
@@ -21,9 +22,11 @@ const Login = () => {
     const [login, {data:dataMutation, loading:mutationLoading, error:mutationError}] = 
     useMutation(LOGIN);
     
+    const [error, setError] = useState('');
+
     const submitForm = (e) => {
         e.preventDefault();
-
+        setError('');
         login({
             variables:formData,
         });
@@ -32,10 +35,15 @@ const Login = () => {
     useEffect(() => {
         if (dataMutation){
             if (dataMutation.login.token) {
+                console.log('token en autenticacion', dataMutation.login.token)
+                console.log(jwt_decode(dataMutation.login.token))
                 setToken(dataMutation.login.token);
                 navigate('/');
-            }           
+            }else{
+                setError(dataMutation.login.error)
+            }          
         }     
+
     }, [dataMutation, setToken, navigate]);
 
     
@@ -46,6 +54,11 @@ const Login = () => {
                 <Logo height={'h-16'} sizeText={'text-xl'}/>
                 <h2 className="text-sm text-center mt-4 text-purpleHover font-bold">Bienvenido a la Plataforma <br/> de Gestión de Proyectos</h2>
             </div>
+            { error != '' && 
+            <div className="p-2 -mt-6">
+                <h2 className="text-sm text-center mt-4 text-redTem font-extrabold">{error}</h2>
+            </div>
+            }
             <form ref={form} onSubmit={submitForm} onChange={updateFormData} className="form-auth px-8 items-center" >
                 <InputAuth 
                     name='correo'
