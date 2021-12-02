@@ -80,7 +80,7 @@ const EstadoProyectos = () => {
                     <td className="flex flex-col justify-between">
                     <PrivateComponent roleList={['LIDER', 'ADMINISTRADOR']} stateList={['AUTORIZADO']}>
                       <Link to={`/proyectos/editar${userData.rol}/${u._id}`}>
-                        <button className='bg-purpleTem text-purpleTem10 px-2 rounded-xl mb-1 hover:bg-purpleHover'>Editar</button>
+                        {(userData.rol==='LIDER' && u.estado ==='ACTIVO')||userData.rol==='ADMINISTRADOR'?<button className='bg-purpleTem text-purpleTem10 px-2 rounded-xl mb-1 hover:bg-purpleHover'>Editar</button>:<></>}
                       </Link>
                     </PrivateComponent>
                       <Link to={'/'}>
