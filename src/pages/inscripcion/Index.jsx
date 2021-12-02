@@ -7,6 +7,7 @@ import { useQuery } from '@apollo/client';
 import { GET_INSCRIPCIONES } from 'graphql/inscripcion/queries';
 import { Link } from 'react-router-dom';
 import { Enum_EstadoInscripcion } from 'utils/enum';
+import PrivateComponent from 'components/PrivateComponent';
 
 const Inscripcion = () => {
 
@@ -42,7 +43,9 @@ const Inscripcion = () => {
             <th>Estado</th>
             <th>Fecha ingreso</th>
             <th>Fecha egreso</th>
-            <th>Acciones</th>            
+            <PrivateComponent roleList={['LIDER']} stateList={['AUTORIZADO']}>
+            <th>Acciones</th>
+            </PrivateComponent>            
           </tr>
         </thead>
         <tbody>
@@ -57,14 +60,13 @@ const Inscripcion = () => {
                   <td>{Enum_EstadoInscripcion[i.estado]}</td>
                   <td>{i.fechaIngreso}</td>
                   <td>{i.fechaEgreso}</td>
+                  <PrivateComponent roleList={['LIDER']} stateList={['AUTORIZADO']}>
                   <td>
                     <Link to={`/inscripcion/editar/${i._id}`}>
                       <button className='bg-purpleTem text-purpleTem10 px-2 rounded-xl hover:bg-purpleHover my-2'>Editar</button>
-                    </Link>
-                    <Link to='/avance'>
-                      <button className='bg-purpleTem text-purpleTem10 px-2 rounded-xl hover:bg-purpleHover'>Avance</button>
-                    </Link>
+                    </Link>                 
                   </td>
+                  </PrivateComponent>
                 </tr>
               );
             })}
