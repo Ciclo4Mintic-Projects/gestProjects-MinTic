@@ -50,6 +50,7 @@ const EditarProyectoLider = () => {
     if (queryData && queryData.Proyecto.objetivosEspecificos) {
       setObjetivos(queryData.Proyecto.objetivosEspecificos.slice())
       console.log("objetivos", objetivos)
+      document.getElementById('check').click()
     }
   }, [queryData]);
 
@@ -59,7 +60,7 @@ const EditarProyectoLider = () => {
     }
 
     if (queryError) {
-      toast.error('Error consultando inscripcion');
+      toast.error('Error consultando proyecto');
     }
   }, [mutationError, queryError]);
 
@@ -100,7 +101,7 @@ const EditarProyectoLider = () => {
         <span>Objetivos especificos:</span>
         <h3>Texto del objetivo</h3>
         <input type="text" onChange={handleChange} value={objetivo} className='block w-full mb-2' />
-        <h3>Indice del objetivo</h3>
+        <h3>Número del objetivo</h3>
         <input type="number" onChange={handleChangeIndex} value={index} className='block w-full' />
 
         <button onClick={agregarObjetivo} className='inline my-2 bg-indigo-700 hover:bg-indigo-500 text-purpleTem10 m-4 p-2 font-bold text-sm rounded-3xl'>agregar objetivo</button>
@@ -122,12 +123,8 @@ const EditarProyectoLider = () => {
         <Input label='Nombre:' name='nombre' type='text' defaultValue={queryData.Proyecto.nombre} />
         <Input label='Presupuesto:' name='presupuesto' type='number' defaultValue={queryData.Proyecto.presupuesto} />
         <Input label='Objetivo general:' name='objetivoGeneral' type='text' defaultValue={queryData.Proyecto.objetivoGeneral} />
-        <DropDown
-          label='Confimar cambios'
-          value={"No"}
-          required={true}
-          options={["Si", "No"]}
-        />
+        <input type="checkbox" id='check' hidden/>
+        
         <ButtonLoading
           disabled={Object.keys(formData).length === 0}
           loading={mutationLoading}
