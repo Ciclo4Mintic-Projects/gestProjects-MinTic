@@ -59,7 +59,6 @@ function App() {
     // console.log('setToken', token)
     if (token) {
       localStorage.setItem('token', JSON.stringify(token));
-      //localStorage.setItem('token', token);
     } else {
       localStorage.removeItem('token');
     }
@@ -68,8 +67,6 @@ function App() {
   useEffect(() => {
     if (authToken) {
       const decoded = jwt_decode(authToken);
-      // console.log('nuevo', decoded);
-      // console.log('nuevo', authToken);
       setUserData({
         _id: decoded._id,
         nombre: decoded.nombre,

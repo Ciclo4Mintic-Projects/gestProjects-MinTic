@@ -1,26 +1,24 @@
 import { SupremacyContext } from "context/supremacyContext";
 import React, {useState, useContext, useEffect} from "react";
 import { useAuth } from 'context/authContext';
+import { useNavigate } from 'react-router-dom';
 
 const DropdownHeader = () => {
     
-    const { authToken, setToken, setAuthToken } = useAuth();
+    const navigate = useNavigate();
 
+    const { setToken } = useAuth();
+    
     const [dropdown, setDropdown] = useState(false);
-
+    
     const openCloseDropdown = () => {
         setDropdown(!dropdown)
     }
 
-    const deleteToken = () => {     
-        console.log(authToken)  
-        setAuthToken(null)
+    const deleteToken = () => { 
         setToken(null);
+        navigate('/auth/login');
       };
-
-    useEffect(() => {
-    //    console.log('auth token', authToken)
-    }, [authToken])
 
     return ( 
         <div className="dropdown-container">
@@ -29,7 +27,7 @@ const DropdownHeader = () => {
                 dropdown && 
                 <div class="dropdown-options">                            
                     <a href="/perfil">Editar perfil</a>
-                    <a onClick={() => deleteToken()}>Cerrar sesión</a>
+                    <a className='cursor-pointer' onClick={() => deleteToken()}>Cerrar sesión</a>
                 </div>
             }
         </div>
