@@ -28,4 +28,25 @@ const EDITAR_USUARIO = gql`
   }
 `;
 
-export { EDITAR_USUARIO };
+const EDITAR_PERFIL = gql`
+  mutation EditarPerfil(
+    $_id: String!
+    $nombre: String!
+    $apellido: String!
+    $identificacion: String!
+    $correo: String!
+  ) {
+    editarPerfil(
+      _id: $_id
+      nombre: $nombre
+      apellido: $apellido
+      identificacion: $identificacion
+      correo: $correo
+    ) {
+      token
+      error
+    }
+  }
+`;
+
+export { EDITAR_USUARIO, EDITAR_PERFIL };

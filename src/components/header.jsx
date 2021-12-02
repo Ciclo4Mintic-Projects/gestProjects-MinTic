@@ -19,7 +19,7 @@ const DropdownHeader = () => {
       };
 
     useEffect(() => {
-       console.log('auth token', authToken)
+    //    console.log('auth token', authToken)
     }, [authToken])
 
     return ( 
