@@ -39,4 +39,20 @@ const CREAR_AVANCE = gql`
   }
 
 `
-export { EDITAR_AVANCE, CREAR_AVANCE }
+
+const ELIMINAR_AVANCE = gql`
+mutation EliminarAvance(
+  $_id: String!
+){
+  eliminarAvance(
+    _id: $_id
+  ){
+    _id
+    titulo
+  }
+}
+
+
+`
+
+export { EDITAR_AVANCE, CREAR_AVANCE, ELIMINAR_AVANCE }

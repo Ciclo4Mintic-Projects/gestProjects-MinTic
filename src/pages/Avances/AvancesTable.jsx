@@ -1,13 +1,22 @@
 import React from 'react'
 import ButtonPurple from '../../components/ButtonPurple'
 import { NavLink } from 'react-router-dom';
-import { useQuery } from '@apollo/client'
+import { useQuery, useMutation } from '@apollo/client'
 import { GET_AVANCES } from 'graphql/avances/queries'
-
+import { ELIMINAR_AVANCE } from 'graphql/avances/mutations';
 
 const AvancesTable = ({ avancesData }) => {
-  const { data, error, loading } = useQuery(GET_AVANCES)
+  const { data: queryData, error: queryError, loading: queryLoading } = useQuery(GET_AVANCES)
 
+  const [eliminarAvance, { data: mutationData, loading: mutationLoading, error: mutationError }] = useMutation(ELIMINAR_AVANCE)
+
+
+  const eliminarUnAvance = (_id) => {
+    console.log("")
+    eliminarAvance({
+      variables: { _id }
+    })
+  }
 
   return (
     <table className="tabla">
@@ -21,7 +30,7 @@ const AvancesTable = ({ avancesData }) => {
         </tr>
       </thead>
       <tbody>
-        {data && data.Avances.map((avance) => {
+        {queryData && queryData.Avances.map((avance) => {
           return (
             <tr key={avance._id}>
               <td>{avance.creadoPor.nombre + " " + avance.creadoPor.apellido}</td>
@@ -36,7 +45,7 @@ const AvancesTable = ({ avancesData }) => {
                     <i className="fas fa-edit" />
                   </ButtonPurple>
                 </NavLink>
-                <ButtonPurple>
+                <ButtonPurple eliminar={eliminarUnAvance} _id={avance._id}>
                   <i className="fas fa-trash" />
                 </ButtonPurple>
 
