@@ -8,6 +8,7 @@ import { useMutation } from '@apollo/client';
 import { LOGIN } from 'graphql/auth/mutations';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from 'context/authContext';
+import jwt_decode from 'jwt-decode';
 
 
 const Login = () => {
@@ -34,6 +35,8 @@ const Login = () => {
     useEffect(() => {
         if (dataMutation){
             if (dataMutation.login.token) {
+                console.log('token en autenticacion', dataMutation.login.token)
+                console.log(jwt_decode(dataMutation.login.token))
                 setToken(dataMutation.login.token);
                 navigate('/');
             }else{

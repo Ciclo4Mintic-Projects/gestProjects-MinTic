@@ -8,11 +8,18 @@ import { toast } from 'react-toastify';
 import { EDITAR_PERFIL} from 'graphql/usuarios/mutations';
 import ButtonAccept from 'components/ButtonAccept';
 import { useUser } from 'context/userContext';
+import { useAuth } from 'context/authContext';
+import jwt_decode from 'jwt-decode';
 
 
-const EditarPerfil = () => {
+const EditarPerfil = (props) => {
 
-    const { userData } = useUser();
+    const { userData, setUserData } = useUser();
+
+    const {setToken} = useAuth();
+    
+    const [error, setError] = useState('');
+    const [isEditing, setIsEditing] = useState(false);
 
 
     const { setCurrentSection } = useContext(SupremacyContext);
@@ -23,25 +30,62 @@ const EditarPerfil = () => {
 
     const { form, formData, updateFormData } = useFormData(null);
   
-    const [editarUsuario, { data: mutationData, loading: mutationLoading, error: mutationError }] =
+    const [editarPerfil, { data: mutationData, loading: mutationLoading, error: mutationError }] =
     useMutation(EDITAR_PERFIL);
     
 
     const submitForm = (e) => {
         e.preventDefault();
-        console.log('id',userData._id)
+        setError('');
+        if(equals()){
+            toast.error('No se ha modificado ningún campo')
+            return false;
+        }
         let _id = userData._id;
-        editarUsuario({
+        editarPerfil({
         variables: {_id, ...formData },
         });
     };
-
+    
     useEffect(() => {
-        if (mutationData) {
-        toast.success('Usuario modificado correctamente');
+        if (mutationData) {                       
+            if (mutationData.editarPerfil.token) {
+                setToken(mutationData.editarPerfil.token)
+                const decodedProfile = jwt_decode(mutationData.editarPerfil.token);
+                setUserData({
+                    _id: decodedProfile._id,
+                    nombre: decodedProfile.nombre,
+                    apellido: decodedProfile.apellido,
+                    identificacion: decodedProfile.identificacion,
+                    correo: decodedProfile.correo,
+                    rol: decodedProfile.rol,
+                    estado: decodedProfile.estado,
+                });
+                toast.success('Perfil editado correctamente');
+            } else {
+                toast.error('No se pudo editar el Perfil');
+            }
         }
-    }, [mutationData]);
 
+      }, [mutationData]);
+
+      const equals = () =>{
+        
+        for(var i in formData){
+            for(var j in userData){
+                //si los name de los campos son iguales
+                if(i === j){
+                    //si los valores son diferentes
+                    if(formData[i] !== userData[j]){
+                        return false
+                    }
+                }
+            }
+        }
+         return true;
+      }
+
+   
 
     return (
 
