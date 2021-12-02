@@ -7,27 +7,43 @@ import DropDown from 'components/Dropdown'
 import backArrow from 'assets/Arrow.svg'
 import diskette from 'assets/diskette.svg'
 import { GET_PROYECTOS } from 'graphql/proyectos/queries'
+import { useUser } from 'context/userContext';
+import { CREAR_AVANCE } from 'graphql/avances/mutations';
 
 const AvancesAdd = () => {
+
+  const { userData, setUserData } = useUser();
+
+  const { _id } = userData;
 
   const { form, formData, updateFormData } = useFormData(null)
 
   const { data: queryData, error: queryError, loading: queryLoading } = useQuery(GET_PROYECTOS)
 
+  const [crearAvance, { data: mutationData, loading: mutationLoading, error: mutationError }] = useMutation(CREAR_AVANCE)
 
-  console.log(queryData)
+  const fecha = new Date()
+
+
+
   const submitForm = (e) => {
-    // e.preventDefault();
-    // console.log("form datas: ", formData);
-    // editarAvance({
-    //   variables: { ...formData, _id }
-    // })
+    e.preventDefault();
+    console.log("form datas: ", formData);
+    crearAvance({
+      variables: { ...formData, creadoPor: _id, fecha }
+    })
   }
   if (queryLoading) {
     return <div>Cargando...</div>
   }
 
   if (queryData) {
+
+    const proyectos = queryData.Proyectos.map(p => [p._id, p.nombre]);
+    const objProyectos = Object.fromEntries(proyectos)
+    console.log(objProyectos);
+
+
 
     return (
       <div >
@@ -45,7 +61,7 @@ const AvancesAdd = () => {
                   <DropDown
                     name="proyecto"
                     defaultValue=""
-                    options={queryData.Proyectos.map(p => p.nombre)}
+                    options={objProyectos}
                     required={true}
                   />
                 </div>
