@@ -28,4 +28,35 @@ const CREAR_PROYECTO = gql`
     }
 `;
 
-export { CREAR_PROYECTO };
+const EDITAR_PROYECTO = gql`
+    mutation EditarProyecto(
+        $_id: String!, 
+        $nombre: String, 
+        $presupuesto: Float, 
+        $estado: Enum_EstadoProyecto, 
+        $fase: Enum_FaseProyecto, 
+        $objetivoGeneral: String, 
+        $objetivosEspecificos: [String]
+        ) {
+        editarProyecto(
+            _id: $_id, 
+            nombre: $nombre, 
+            presupuesto: $presupuesto, 
+            estado: $estado, 
+            fase: $fase, 
+            objetivoGeneral: 
+            $objetivoGeneral, 
+            objetivosEspecificos: $objetivosEspecificos
+        ) {
+            _id
+            nombre
+            estado
+            fase
+            fechaFin
+            fechaInicio
+            presupuesto  
+            }
+        }
+`;
+
+export { CREAR_PROYECTO, EDITAR_PROYECTO };

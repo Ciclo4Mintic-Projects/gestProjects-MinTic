@@ -1,47 +1,57 @@
-import React, { useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { useQuery, useMutation } from '@apollo/client';
-import { GET_PROYECTOS } from 'graphql/proyectos/queries';
+import React, { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { useMutation, useQuery } from '@apollo/client';
 import Input from 'components/Input';
 import ButtonLoading from 'components/ButtonLoading';
 import useFormData from 'hooks/useFormData';
 import { toast } from 'react-toastify';
-import { APROBAR_INSCRIPCION } from 'graphql/inscripcion/mutations';
 import DropDown from 'components/Dropdown';
 import { Enum_EstadoInscripcion } from 'utils/enum';
+import { EDITAR_PROYECTO } from 'graphql/proyectos/mutations';
+import { GET_PROYECTO } from '../../graphql/proyectos/queries';
+import { useUser } from 'context/userContext';
 
 const EditarProyectoLider = () => {
+  const { userData } = useUser();
   const { form, formData, updateFormData } = useFormData(null);
   const { _id } = useParams();
+  const [objetivos, setObjetivos] = useState([]);
+  const [objetivo, setObjetivo] = useState("");
+  const [index, setIndex] = useState(0);
 
   const {
     data: queryData,
     error: queryError,
     loading: queryLoading,
-  } = useQuery(GET_PROYECTOS, {
+  } = useQuery(GET_PROYECTO, {
     variables: { _id },
   });
 
-  console.log(queryData);
-
-  const [aprobarInscripcion, { data: mutationData, loading: mutationLoading, error: mutationError }] =
-    useMutation(APROBAR_INSCRIPCION);
+  const [editarProyecto, { data: mutationData, loading: mutationLoading, error: mutationError }] =
+    useMutation(EDITAR_PROYECTO);
 
   const submitForm = (e) => {
     e.preventDefault();
-    console.log('fd', formData);
     delete formData.rol;
-    aprobarInscripcion({
-      variables: { _id, ...formData },
+    formData.presupuesto = parseFloat(formData.presupuesto)
+    editarProyecto({
+      variables: { ...formData, objetivosEspecificos: objetivos, _id },
     });
   };
 
   useEffect(() => {
     if (mutationData) {
       toast.success('Proyecto modificado correctamente');
-      window.location.href = "/inscripcion"
+      window.location.href = "/proyectos"
     }
   }, [mutationData]);
+
+  useEffect(() => {
+    if (queryData && queryData.Proyecto.objetivosEspecificos) {
+      setObjetivos(queryData.Proyecto.objetivosEspecificos.slice())
+      console.log("objetivos", objetivos)
+    }
+  }, [queryData]);
 
   useEffect(() => {
     if (mutationError) {
@@ -49,50 +59,75 @@ const EditarProyectoLider = () => {
     }
 
     if (queryError) {
-      toast.error('Error consultando proyecto');
+      toast.error('Error consultando inscripcion');
     }
-  }, [queryError, mutationError]);
+  }, [mutationError, queryError]);
 
   if (queryLoading) return <div>Cargando....</div>;
 
+  const handleChange = (evento) => {
+    setObjetivo(evento.target.value)
+  }
+
+  const handleChangeIndex = (evento) => {
+    setIndex(parseInt(evento.target.value))
+  }
+
+  const agregarObjetivo = () => {
+    objetivos.push(objetivo);
+    setObjetivo("")
+  }
+
+  const modificarObjetivo = () => {
+    objetivos.splice(index - 1, 1, objetivo);
+    setObjetivo("")
+    setIndex(0)
+  }
+
+  const eliminarObjetivo = () => {
+    objetivos.splice(index - 1, 1);
+    setIndex(0)
+  }
+
   return (
-    <div className='flew flex-col h-full items-center justify-center p-10 border border-gray-400 rounded-xl ml-10 mr-10 bg-grayLight'>
-      <Link to='/inscripcion'>
+    <div className='flew flex-col items-center justify-center p-10 border border-gray-400 rounded-xl ml-10 mr-10 bg-grayLight'>
+      <Link to='/proyectos'>
         <i className='fas fa-arrow-left text-gray-600 cursor-pointer font-bold text-xl hover:text-gray-900' />
       </Link>
       <h1 className='m-4 text-3xl text-gray-800 font-bold text-center'>Editar proyecto</h1>
+
+      <div className='mx-24 font-bold'>
+        <span>Objetivos especificos:</span>
+        <h3>Texto del objetivo</h3>
+        <input type="text" onChange={handleChange} value={objetivo} className='block w-full mb-2' />
+        <h3>Indice del objetivo</h3>
+        <input type="number" onChange={handleChangeIndex} value={index} className='block w-full' />
+
+        <button onClick={agregarObjetivo} className='inline my-2 bg-indigo-700 hover:bg-indigo-500 text-purpleTem10 m-4 p-2 font-bold text-sm rounded-3xl'>agregar objetivo</button>
+        <button onClick={modificarObjetivo} className='inline my-2 bg-indigo-700 hover:bg-indigo-500 text-purpleTem10 m-4 p-2 font-bold text-sm rounded-3xl'>modificar objetivo</button>
+        <button onClick={eliminarObjetivo} className='inline my-2 bg-indigo-700 hover:bg-indigo-500 text-purpleTem10 m-4 p-2 font-bold text-sm rounded-3xl'>eliminar objetivo</button>
+        <span className="block">objetivos especificos agregados:</span>
+        <ul className='font-light'>
+          {objetivos.map((objetivo, index) => { return <li>{index + 1}. {objetivo}</li> })}
+        </ul>
+      </div>
+
+
       <form
         onSubmit={submitForm}
         onChange={updateFormData}
         ref={form}
         className='flex flex-col items-center justify-center'
       >
-        <span className='font-bold text-lg'>Id proyecto: </span>
-        <span className= 'mb-2'>{queryData.Proyecto._id}</span>
-        <span className='font-bold text-lg'>Nombre: </span>
-        <span className= 'mb-2'>{queryData.Proyecto.nombre}</span>
-        <span className='font-bold text-lg'>Presupuesto:</span>
-        <span className= 'mb-2'>{queryData.Proyecto.presupuesto}</span>
+        <Input label='Nombre:' name='nombre' type='text' defaultValue={queryData.Proyecto.nombre} />
+        <Input label='Presupuesto:' name='presupuesto' type='number' defaultValue={queryData.Proyecto.presupuesto} />
+        <Input label='Objetivo general:' name='objetivoGeneral' type='text' defaultValue={queryData.Proyecto.objetivoGeneral} />
         <DropDown
-          label='Estado del proyecto:'
-          name='estado'
-          defaultValue={queryData.Proyecto.estado}
+          label='Confimar cambios'
+          value={"No"}
           required={true}
-          options={Enum_EstadoProyecto}
+          options={["Si", "No"]}
         />
-        <DropDown
-          label='Fase del proyecto:'
-          name='fase'
-          defaultValue={queryData.Proyecto.fase}
-          required={true}
-          options={Enum_FaseProyecto}
-        />
-        <span className='font-bold text-lg'>Fecha inicio:</span>
-        <span className= 'mb-2'>{queryData.Proyecto.fechaInicio}</span>
-        <span className='font-bold text-lg'>Fecha fin:</span>
-        <span className= 'mb-2'>{queryData.Proyecto.fechaFin}</span>
-        <span className='font-bold text-lg'>Líder:</span>
-        <span className= 'mb-2'>{queryData.Proyecto.lider}</span>
         <ButtonLoading
           disabled={Object.keys(formData).length === 0}
           loading={mutationLoading}

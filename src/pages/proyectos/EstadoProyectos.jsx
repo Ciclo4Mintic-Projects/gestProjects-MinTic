@@ -79,11 +79,11 @@ const EstadoProyectos = () => {
                     <td>{u.fase}</td>
                     <td className="flex flex-col justify-between">
                     <PrivateComponent roleList={['LIDER', 'ADMINISTRADOR']} stateList={['AUTORIZADO']}>
-                      <Link to={`/proyectos/editar/${u._id}`}>
+                      <Link to={`/proyectos/editar${userData.rol}/${u._id}`}>
                         <button className='bg-purpleTem text-purpleTem10 px-2 rounded-xl mb-1 hover:bg-purpleHover'>Editar</button>
                       </Link>
                     </PrivateComponent>
-                      <Link to={`editar/${u._id}`}>
+                      <Link to={'/'}>
                         <button className='bg-purpleTem text-purpleTem10 px-2 rounded-xl mb-1 hover:bg-purpleHover'>Detalles</button>
                       </Link>
                       <PrivateComponent roleList={['ESTUDIANTE']} stateList={['AUTORIZADO']}>

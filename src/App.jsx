@@ -21,7 +21,6 @@ import EstadoProyectos from 'pages/proyectos/EstadoProyectos';
 import AuthLayout from 'layouts/AuthLayout';
 import jwt_decode from 'jwt-decode';
 import { AuthContext } from 'context/authContext';
-import EditarProyectos from 'pages/proyectos/EditarProyectos';
 import CrearProyecto from 'pages/proyectos/CrearProyecto';
 import EditarProyectoLider from 'pages/proyectos/EditarProyectoLider';
 import EditarProyectoAdmin from 'pages/proyectos/EditarProyectoAdmin';
@@ -93,8 +92,8 @@ function App() {
                   <Route path='/perfil' element={<Profile />} />             
                   <Route path='proyectos' element={<EstadoProyectos />} /> 
                   <Route path='proyectos/crear' element={<CrearProyecto />} />           
-                  <Route path='proyectos/editarLider/:_id' element={<EditarProyectoLider />} /> 
-                  <Route path='proyectos/editarAdmin/:_id' element={<EditarProyectoAdmin />} /> 
+                  <Route path='proyectos/editarLIDER/:_id' element={<EditarProyectoLider />} /> 
+                  <Route path='proyectos/editarADMINISTRADOR/:_id' element={<EditarProyectoAdmin />} /> 
                   <Route path='usuarios' element={<EstadoUsuarios />} />
                   <Route path='usuarios/editar/:_id' element={<EditarUsuario />} />
                   <Route path='inscripcion' element={<Inscripcion />} />
