@@ -9,6 +9,8 @@ import { toast } from 'react-toastify';
 import { APROBAR_INSCRIPCION } from 'graphql/inscripcion/mutations';
 import DropDown from 'components/Dropdown';
 import { Enum_EstadoInscripcion } from 'utils/enum';
+import { Enum_EstadoProyecto } from 'utils/enum';
+import { Enum_FaseProyecto } from 'utils/enum';
 
 const EditarProyectoLider = () => {
   const { form, formData, updateFormData } = useFormData(null);
