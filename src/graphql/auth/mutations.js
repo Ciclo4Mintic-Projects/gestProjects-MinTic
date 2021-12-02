@@ -8,6 +8,7 @@ const REGISTRO = gql`
         $correo: String!
         $rol: Enum_Rol!
         $password: String! 
+        $verifypassword: String! 
     ) {
         registro(
             nombre: $nombre
@@ -16,6 +17,7 @@ const REGISTRO = gql`
             correo: $correo
             rol: $rol
             password: $password
+            verifypassword: $verifypassword
         ){
             token
             error
