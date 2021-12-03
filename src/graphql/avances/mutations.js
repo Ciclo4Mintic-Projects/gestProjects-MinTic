@@ -51,8 +51,26 @@ mutation EliminarAvance(
     titulo
   }
 }
+`
+
+
+const CREAR_OBSERVACION = gql`
+mutation CrearObservacion(
+  $_id: String!
+  $observacion: String
+  ){
+  crearObservacion(
+    _id: $_id
+    observacion: $observacion
+    ){
+    _id
+    titulo
+    observaciones
+  }
+}
+
 
 
 `
 
-export { EDITAR_AVANCE, CREAR_AVANCE, ELIMINAR_AVANCE }
+export { EDITAR_AVANCE, CREAR_AVANCE, ELIMINAR_AVANCE, CREAR_OBSERVACION }

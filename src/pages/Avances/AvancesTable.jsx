@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client'
 import { GET_AVANCES } from 'graphql/avances/queries'
 import { ELIMINAR_AVANCE } from 'graphql/avances/mutations';
+import PrivateComponent from 'components/PrivateComponent'
 
 const AvancesTable = ({ avancesData }) => {
   const { data: queryData, error: queryError, loading: queryLoading } = useQuery(GET_AVANCES)
