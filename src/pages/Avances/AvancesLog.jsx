@@ -84,6 +84,13 @@ const AvancesLog = () => {
             {queryData.Avance.observaciones.length == 0 &&
               <p className=" text-grayTem">No hay observaciones creadas</p>
             }
+            {
+              queryData.Avance.observaciones.length != 0 && queryData.Avance.observaciones.map(
+                obs => {
+                  return <p>{obs}</p>
+                }
+              )
+            }
 
           </div>
         </div>
