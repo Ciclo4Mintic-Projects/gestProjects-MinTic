@@ -35,8 +35,6 @@ const Login = () => {
     useEffect(() => {
         if (dataMutation){
             if (dataMutation.login.token) {
-                console.log('token en autenticacion', dataMutation.login.token)
-                console.log(jwt_decode(dataMutation.login.token))
                 setToken(dataMutation.login.token);
                 navigate('/');
             }else{

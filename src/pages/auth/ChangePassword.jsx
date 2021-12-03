@@ -5,42 +5,45 @@ import { SupremacyContext } from 'context/supremacyContext';
 import InputAuth from 'components/InputAuth';
 import useFormData from 'hooks/useFormData';
 import { toast } from 'react-toastify';
-import { EDITAR_PERFIL} from 'graphql/usuarios/mutations';
 import ButtonAccept from 'components/ButtonAccept';
 import { useUser } from 'context/userContext';
+import { CAMBIAR_PASSWORD } from 'graphql/auth/mutations';
 
 
 const EditarPerfil = () => {
 
     const { userData } = useUser();
 
-
+    
     const { setCurrentSection } = useContext(SupremacyContext);
-
+    
     useEffect(() => {
         setCurrentSection('Cambiar Contraseña');
     }, []);
-
-    const { form, formData, updateFormData } = useFormData(null);
-  
-    const [editarUsuario, { data: mutationData, loading: mutationLoading, error: mutationError }] =
-    useMutation(EDITAR_PERFIL);
     
+    const { form, formData, updateFormData } = useFormData(null);
+
+    const [cambiarPassword, { data: dataMutation, loading: loadingMutation, error: errorMutation }] =
+    useMutation(CAMBIAR_PASSWORD);
 
     const submitForm = (e) => {
         e.preventDefault();
-        console.log('id',userData._id)
         let _id = userData._id;
-        editarUsuario({
-        variables: {_id, ...formData },
+        cambiarPassword({
+            variables: {_id, ...formData },
         });
     };
-
+    
+   
     useEffect(() => {
-        if (mutationData) {
-        toast.success('Usuario modificado correctamente');
+        if (dataMutation) {
+            if(dataMutation.cambiarPassword.type == "error"){
+                toast.error(dataMutation.cambiarPassword.message)
+            }else{
+                toast.success(dataMutation.cambiarPassword.message);        
+            }        
         }
-    }, [mutationData]);
+    }, [dataMutation]);
 
 
     return (
@@ -56,7 +59,7 @@ const EditarPerfil = () => {
                     required
                 />            
                 <InputAuth 
-                    name='password'
+                    name='newpassword'
                     className='label-auth'
                     label='Nueva Contraseña:'
                     type='password'
@@ -64,7 +67,7 @@ const EditarPerfil = () => {
                     required
                 />            
                 <InputAuth 
-                    name='verifyPassword'
+                    name='verifypassword'
                     className='label-auth'
                     label='Verificar Contraseña:'
                     type='password'

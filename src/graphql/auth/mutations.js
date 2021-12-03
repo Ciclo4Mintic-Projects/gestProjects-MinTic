@@ -7,7 +7,8 @@ const REGISTRO = gql`
         $identificacion: String!
         $correo: String!
         $rol: Enum_Rol!
-        $password: String!
+        $password: String! 
+        $verifypassword: String! 
     ) {
         registro(
             nombre: $nombre
@@ -16,6 +17,7 @@ const REGISTRO = gql`
             correo: $correo
             rol: $rol
             password: $password
+            verifypassword: $verifypassword
         ){
             token
             error
@@ -32,6 +34,25 @@ const LOGIN = gql`
   }
 `;
 
+const CAMBIAR_PASSWORD = gql`    
+    mutation CambiarPassword(
+      $_id: String!,
+      $password: String!, 
+      $newpassword: String!, 
+      $verifypassword: String!) 
+      {
+        cambiarPassword(
+          _id: $_id, 
+          password: $password, 
+          newpassword: $newpassword, 
+          verifypassword: $verifypassword
+          ) {
+            message,
+            type
+          }
+       }
+`;
+
 const REFRESH_TOKEN = gql`
 mutation RefreshToken {
   refreshToken {
@@ -41,4 +62,4 @@ mutation RefreshToken {
 }
 `
 
-export { REGISTRO, LOGIN, REFRESH_TOKEN };
+export { REGISTRO, LOGIN, CAMBIAR_PASSWORD, REFRESH_TOKEN };

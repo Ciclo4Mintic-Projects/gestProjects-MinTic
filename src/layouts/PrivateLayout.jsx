@@ -32,7 +32,6 @@ const PrivateLayout = () => {
   useEffect(() => {
       if(!authToken){
       let localToken = localStorage.getItem('token')
-      console.log('localtoken', JSON.parse(localToken))
       if(localToken){
         setToken(JSON.parse(localToken))
       }else {
