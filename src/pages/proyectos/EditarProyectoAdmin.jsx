@@ -9,6 +9,7 @@ import DropDown from 'components/Dropdown';
 import { Enum_EstadoProyecto, Enum_FaseProyecto } from 'utils/enum';
 import { EDITAR_PROYECTO } from 'graphql/proyectos/mutations';
 import { GET_PROYECTO } from '../../graphql/proyectos/queries';
+import { TERMINAR_INSCRIPCION } from 'graphql/inscripcion/mutations';
 import { useUser } from 'context/userContext';
 
 const EditarProyectoLider = () => {
@@ -27,12 +28,19 @@ const EditarProyectoLider = () => {
   const [editarProyecto, { data: mutationData, loading: mutationLoading, error: mutationError }] =
     useMutation(EDITAR_PROYECTO);
 
+  const [terminarInscripcion, { data: mutationData2, loading: mutationLoading2, error: mutationError2 }] =
+    useMutation(TERMINAR_INSCRIPCION);
+
   const submitForm = (e) => {
     e.preventDefault();
+    console.log(formData)
     delete formData.rol;
     editarProyecto({
       variables: { _id, ...formData },
     });
+    if (formData.estado === 'INACTIVO') {
+      terminarInscripcion( {variables: {proyecto: _id}})
+    }
   };
 
   useEffect(() => {
@@ -40,7 +48,12 @@ const EditarProyectoLider = () => {
       toast.success('Proyecto modificado correctamente');
       window.location.href = "/proyectos"
     }
-  }, [mutationData]);
+    if (mutationData2) {
+      toast.success('Proyecto modificado correctamente');
+      window.location.href = "/proyectos"
+    }
+    console.log(mutationData)
+  }, [mutationData, mutationData2]);
 
   useEffect(() => {
     if (mutationError) {
@@ -50,7 +63,7 @@ const EditarProyectoLider = () => {
     if (queryError) {
       toast.error('Error consultando proyecto');
     }
-  }, [mutationError, queryError]);
+  }, [mutationError, queryError, mutationError2]);
 
   if (queryLoading) return <div>Cargando....</div>;
 
@@ -68,11 +81,11 @@ const EditarProyectoLider = () => {
         className='flex flex-col items-center justify-center'
       >
         <span className='font-bold text-lg'>Nombre:</span>
-        <span className= 'mb-2'>{queryData.Proyecto.nombre}</span>
+        <span className='mb-2'>{queryData.Proyecto.nombre}</span>
         <span className='font-bold text-lg'>Presupuesto:</span>
-        <span className= 'mb-2'>{queryData.Proyecto.presupuesto}</span>
+        <span className='mb-2'>{queryData.Proyecto.presupuesto}</span>
         <span className='font-bold text-lg'>Objetivo general:</span>
-        <span className= 'mb-2'>{queryData.Proyecto.objetivoGeneral}</span>
+        <span className='mb-2'>{queryData.Proyecto.objetivoGeneral}</span>
         <DropDown
           label='Estado del proyecto:'
           name='estado'

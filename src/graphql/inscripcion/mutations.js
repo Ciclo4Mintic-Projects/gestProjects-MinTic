@@ -17,4 +17,13 @@ const CREAR_INSCRIPCION = gql`
   }
 `;
 
-export { APROBAR_INSCRIPCION, CREAR_INSCRIPCION };
+const TERMINAR_INSCRIPCION = gql`
+ mutation Mutation($proyecto: String!) {
+  inscripcionTerminada(proyecto: $proyecto) {
+  _id
+  estado
+  }
+}
+`;
+
+export { APROBAR_INSCRIPCION, CREAR_INSCRIPCION, TERMINAR_INSCRIPCION };
