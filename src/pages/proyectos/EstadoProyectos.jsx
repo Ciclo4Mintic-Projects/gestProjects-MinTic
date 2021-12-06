@@ -83,7 +83,7 @@ const EstadoProyectos = () => {
                         {(userData.rol==='LIDER' && u.estado ==='ACTIVO' && u.fase!=='TERMINADO')||(userData.rol==='ADMINISTRADOR' && u.fase!=='TERMINADO')?<button className='bg-purpleTem text-purpleTem10 px-2 rounded-xl mb-1 hover:bg-purpleHover'>Editar</button>:null}
                       </Link>
                     </PrivateComponent>
-                      <Link to={'/'}>
+                      <Link to={`/proyectos/detalle/${u._id}`}>
                         <button className='bg-purpleTem text-purpleTem10 px-2 rounded-xl mb-1 hover:bg-purpleHover'>Detalles</button>
                       </Link>
                       <PrivateComponent roleList={['ESTUDIANTE']} stateList={['AUTORIZADO']}>

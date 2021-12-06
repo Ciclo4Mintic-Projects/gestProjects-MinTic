@@ -26,6 +26,7 @@ import { Token } from 'graphql';
 import CrearProyecto from 'pages/proyectos/CrearProyecto';
 import EditarProyectoLider from 'pages/proyectos/EditarProyectoLider';
 import EditarProyectoAdmin from 'pages/proyectos/EditarProyectoAdmin';
+import DetalleProyecto from 'pages/proyectos/DetalleProyecto';
 
 
 
@@ -98,6 +99,7 @@ function App() {
                   <Route path='proyectos/crear' element={<CrearProyecto />} />           
                   <Route path='proyectos/editarLIDER/:_id' element={<EditarProyectoLider />} /> 
                   <Route path='proyectos/editarADMINISTRADOR/:_id' element={<EditarProyectoAdmin />} /> 
+                  <Route path='proyectos/detalle/:_id' element={<DetalleProyecto />} /> 
                   <Route path='usuarios' element={<EstadoUsuarios />} />
                   <Route path='usuarios/editar/:_id' element={<EditarUsuario />} />
                   <Route path='inscripcion' element={<Inscripcion />} />
