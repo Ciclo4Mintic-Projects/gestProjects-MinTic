@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
+import { SupremacyContext } from 'context/supremacyContext';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ReactLoading from 'react-loading';
@@ -13,6 +14,12 @@ import { CREAR_INSCRIPCION } from 'graphql/inscripcion/mutations';
 import { useUser } from 'context/userContext';
 
 const EstadoProyectos = () => {
+
+  const { setCurrentSection } = useContext(SupremacyContext);
+
+  useEffect(() => {
+      setCurrentSection('Proyectos');
+  }, []);
 
   const {userData} = useUser();  
   const { data, error, loading } = useQuery(GET_PROYECTOS);

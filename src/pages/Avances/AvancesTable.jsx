@@ -1,12 +1,20 @@
-import React from 'react'
+import React, {useContext, useEffect} from 'react';
+import { SupremacyContext } from 'context/supremacyContext';
 import ButtonPurple from '../../components/ButtonPurple'
 import { NavLink } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client'
 import { GET_AVANCES } from 'graphql/avances/queries'
 import { ELIMINAR_AVANCE } from 'graphql/avances/mutations';
-import PrivateComponent from 'components/PrivateComponent'
+import PrivateComponent from 'components/PrivateComponent';
 
 const AvancesTable = ({ avancesData }) => {
+
+  const { setCurrentSection } = useContext(SupremacyContext);
+
+  useEffect(() => {
+      setCurrentSection('Avances');
+  }, []);
+
   const { data: queryData, error: queryError, loading: queryLoading } = useQuery(GET_AVANCES)
 
   const [eliminarAvance, { data: mutationData, loading: mutationLoading, error: mutationError }] = useMutation(ELIMINAR_AVANCE)

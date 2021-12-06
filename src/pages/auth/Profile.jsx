@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
+import { SupremacyContext } from 'context/supremacyContext';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-import { SupremacyContext } from 'context/supremacyContext';
 import InputAuth from 'components/InputAuth';
 import useFormData from 'hooks/useFormData';
 import { toast } from 'react-toastify';

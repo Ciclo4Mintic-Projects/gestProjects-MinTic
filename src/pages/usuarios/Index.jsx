@@ -1,9 +1,9 @@
 
+import React, { useEffect, useContext } from 'react';
+import { SupremacyContext } from 'context/supremacyContext';
 import { toast } from 'react-toastify';
 import { Dialog, Tooltip } from '@material-ui/core';
 import ReactLoading from 'react-loading';
-import { SupremacyContext } from 'context/supremacyContext';
-import React, { useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_USUARIOS } from 'graphql/usuarios/queries';
 import { Link } from 'react-router-dom';
@@ -11,6 +11,12 @@ import { Enum_Rol, Enum_EstadoUsuario } from 'utils/enum';
 import PrivateRoute from 'components/PrivateRoute';
 
 const EstadoUsuarios = () => {
+
+  const { setCurrentSection } = useContext(SupremacyContext);
+
+  useEffect(() => {
+      setCurrentSection('Usuarios');
+  }, []);
 
   const { data, error, loading } = useQuery(GET_USUARIOS);
 

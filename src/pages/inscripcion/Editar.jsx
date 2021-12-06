@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
 import { GET_INSCRIPCION } from 'graphql/inscripcion/queries';
@@ -9,8 +9,16 @@ import { toast } from 'react-toastify';
 import { APROBAR_INSCRIPCION } from 'graphql/inscripcion/mutations';
 import DropDown from 'components/Dropdown';
 import { Enum_EstadoInscripcion } from 'utils/enum';
+import { SupremacyContext } from 'context/supremacyContext';
 
 const EditarUsuario = () => {
+
+  const { setCurrentSection } = useContext(SupremacyContext);
+
+  useEffect(() => {
+      setCurrentSection('Inscripciones');
+  }, []);
+
   const { form, formData, updateFormData } = useFormData(null);
   const { _id } = useParams();
 

@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
+import { SupremacyContext } from 'context/supremacyContext';
 import { Link, useParams } from 'react-router-dom';
 import { useMutation, useQuery } from '@apollo/client';
 import Input from 'components/Input';
@@ -12,6 +13,13 @@ import { GET_PROYECTO } from '../../graphql/proyectos/queries';
 import { useUser } from 'context/userContext';
 
 const EditarProyectoLider = () => {
+  
+  const { setCurrentSection } = useContext(SupremacyContext);
+
+  useEffect(() => {
+      setCurrentSection('Proyectos');
+  }, []);
+
   const { userData } = useUser();
   const { form, formData, updateFormData } = useFormData(null);
   const { _id } = useParams();

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useContext, useEffect} from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import useFormData from 'hooks/useFormData'
 import ButtonCircle from 'components/ButtonCircle'
@@ -9,8 +9,16 @@ import diskette from 'assets/diskette.svg'
 import { GET_PROYECTOS } from 'graphql/proyectos/queries'
 import { useUser } from 'context/userContext';
 import { CREAR_AVANCE } from 'graphql/avances/mutations';
+import { SupremacyContext } from 'context/supremacyContext';
 
 const AvancesAdd = () => {
+
+  const { setCurrentSection } = useContext(SupremacyContext);
+
+  useEffect(() => {
+    setCurrentSection('Avances');
+}, []);
+
 
   const { userData, setUserData } = useUser();
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import Input from 'components/Input';
@@ -9,8 +9,17 @@ import DropDown from 'components/Dropdown';
 import { Enum_EstadoInscripcion } from 'utils/enum';
 import { CREAR_PROYECTO } from 'graphql/proyectos/mutations';
 import { useUser } from 'context/userContext';
+import { SupremacyContext } from 'context/supremacyContext';
 
 const CrearProyecto = () => {
+
+    const { setCurrentSection } = useContext(SupremacyContext);
+
+    useEffect(() => {
+        setCurrentSection('Proyectos');
+    }, []);
+
+
     const {userData} = useUser();
     const { form, formData, updateFormData } = useFormData(null);
     const [objetivos, setObjetivos] = useState([]);

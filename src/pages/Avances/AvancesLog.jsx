@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useContext, useEffect} from 'react';
 import ButtonCircle from 'components/ButtonCircle'
 import diskette from 'assets/diskette.svg'
 import backArrow from 'assets/Arrow.svg'
@@ -8,9 +8,16 @@ import { GET_AVANCE } from 'graphql/avances/queries'
 import useFormData from 'hooks/useFormData'
 import { EDITAR_AVANCE } from 'graphql/avances/mutations';
 import { CREAR_OBSERVACION } from 'graphql/avances/mutations'
-import PrivateComponent from 'components/PrivateComponent'
+import PrivateComponent from 'components/PrivateComponent';
+import { SupremacyContext } from 'context/supremacyContext';
 
 const AvancesLog = () => {
+
+  const { setCurrentSection } = useContext(SupremacyContext);
+
+  useEffect(() => {
+    setCurrentSection('Avances');
+}, []);
 
   const { form, formData, updateFormData } = useFormData(null)
 

@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
+import { SupremacyContext } from 'context/supremacyContext';
 import { useParams, Link } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
 import { GET_USUARIO } from 'graphql/usuarios/queries';
@@ -12,6 +13,13 @@ import { Enum_EstadoUsuario, Enum_EstadoUsuario_Lider } from 'utils/enum';
 import { useUser } from 'context/userContext';
 
 const EditarUsuario = () => {
+
+  const { setCurrentSection } = useContext(SupremacyContext);
+
+  useEffect(() => {
+      setCurrentSection('Usuarios');
+  }, []);
+
   const { form, formData, updateFormData } = useFormData(null);
   const { _id } = useParams();
   const {userData} = useUser();

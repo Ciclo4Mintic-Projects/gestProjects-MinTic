@@ -1,11 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import {useQuery } from '@apollo/client';
 import { toast } from 'react-toastify';
 import { GET_PROYECTO } from '../../graphql/proyectos/queries';
-
+import { SupremacyContext } from 'context/supremacyContext';
 
 const DetalleProyecto = () => {
+
+  const { setCurrentSection } = useContext(SupremacyContext);
+
+  useEffect(() => {
+      setCurrentSection('Proyectos');
+  }, []);
+
   const { _id } = useParams();
   const [objetivos, setObjetivos] = useState([]);
   const {

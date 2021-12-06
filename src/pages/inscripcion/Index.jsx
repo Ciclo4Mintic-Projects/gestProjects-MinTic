@@ -2,7 +2,7 @@ import { toast } from 'react-toastify';
 import { Dialog, Tooltip } from '@material-ui/core';
 import ReactLoading from 'react-loading';
 import { SupremacyContext } from 'context/supremacyContext';
-import React, { useEffect } from 'react';
+import React, { useContext ,useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_INSCRIPCIONES } from 'graphql/inscripcion/queries';
 import { Link } from 'react-router-dom';
@@ -11,6 +11,12 @@ import PrivateComponent from 'components/PrivateComponent';
 import PrivateRoute from 'components/PrivateRoute';
 
 const Inscripcion = () => {
+
+  const { setCurrentSection } = useContext(SupremacyContext);
+
+  useEffect(() => {
+      setCurrentSection('Inscripciones');
+  }, []);
 
   const { data, error, loading } = useQuery(GET_INSCRIPCIONES);
 
