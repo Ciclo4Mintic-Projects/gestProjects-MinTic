@@ -12,7 +12,7 @@ const IndexAvances = () => {
     <PrivateRoute roleList={['LIDER', 'ESTUDIANTE']} stateList={['AUTORIZADO']}>
       <div>
         <div className="  mx-12">
-          <h2 className="text-4xl font-bold font-poppins ">Avances</h2>
+          <h2 className="text-3xl font-poppins text-blackTem text-center">Página de Avances</h2>
           <div className=" flex mt-10 flex-col">
             <NavLink to={"/avances/add"}>
               <PrivateComponent stateList={["AUTORIZADO"]} roleList={["ESTUDIANTE"]}>
