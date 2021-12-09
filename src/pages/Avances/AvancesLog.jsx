@@ -10,6 +10,7 @@ import { EDITAR_AVANCE } from 'graphql/avances/mutations';
 import { CREAR_OBSERVACION } from 'graphql/avances/mutations'
 import PrivateComponent from 'components/PrivateComponent';
 import { SupremacyContext } from 'context/supremacyContext';
+import { toast } from 'react-toastify';
 
 const AvancesLog = () => {
 
@@ -39,6 +40,7 @@ const AvancesLog = () => {
     editarAvance({
       variables: { ...formData, _id }
     })
+    toast.success('Avance editado correctamente');
   }
 
   const submitForm2 = (e) => {
@@ -47,7 +49,7 @@ const AvancesLog = () => {
     crearObservacion({
       variables: { ...formData, _id }
     })
-
+    toast.success('Observación creada correctamente');
   }
 
 

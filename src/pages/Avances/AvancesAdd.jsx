@@ -10,6 +10,7 @@ import { GET_PROYECTOS } from 'graphql/proyectos/queries'
 import { useUser } from 'context/userContext';
 import { CREAR_AVANCE } from 'graphql/avances/mutations';
 import { SupremacyContext } from 'context/supremacyContext';
+import { toast } from 'react-toastify';
 
 const AvancesAdd = () => {
 
@@ -40,6 +41,7 @@ const AvancesAdd = () => {
     crearAvance({
       variables: { ...formData, creadoPor: _id, fecha }
     })
+    toast.success('Avance guardado correctamente');
   }
   if (queryLoading) {
     return <div>Cargando...</div>

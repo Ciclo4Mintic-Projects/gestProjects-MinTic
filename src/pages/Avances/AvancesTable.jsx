@@ -6,6 +6,7 @@ import { useQuery, useMutation } from '@apollo/client'
 import { GET_AVANCES } from 'graphql/avances/queries'
 import { ELIMINAR_AVANCE } from 'graphql/avances/mutations';
 import PrivateComponent from 'components/PrivateComponent';
+import { toast } from 'react-toastify';
 
 const AvancesTable = ({ avancesData }) => {
 
@@ -25,6 +26,7 @@ const AvancesTable = ({ avancesData }) => {
     eliminarAvance({
       variables: { _id }
     })
+    toast.success('Avance eliminado correctamente');
   }
 
   return (
