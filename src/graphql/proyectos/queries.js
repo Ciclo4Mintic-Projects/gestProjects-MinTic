@@ -32,6 +32,13 @@ const GET_PROYECTO = gql`
       fase
       objetivoGeneral
       objetivosEspecificos
+      avances {
+      fecha
+      descripcion
+      creadoPor {
+        nombre
+      }
+    }
     }
   }
 `;
