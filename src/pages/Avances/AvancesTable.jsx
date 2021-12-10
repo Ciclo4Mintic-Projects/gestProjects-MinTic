@@ -43,7 +43,6 @@ const AvancesTable = ({ avancesData }) => {
     eliminarAvance({
       variables: { _id }
     })
-    toast.success('Avance eliminado correctamente');
   }
 
   if (queryLoading) {

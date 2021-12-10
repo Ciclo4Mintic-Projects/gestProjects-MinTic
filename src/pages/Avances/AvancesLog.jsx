@@ -64,7 +64,6 @@ const AvancesLog = () => {
     editarAvance({
       variables: { ...formData, _id }
     })
-    toast.success('Avance editado correctamente');
   }
 
   const submitForm2 = (e) => {
@@ -73,7 +72,6 @@ const AvancesLog = () => {
     crearObservacion({
       variables: { ...formData, _id }
     })
-    toast.success('Observación creada correctamente');
   }
 
 

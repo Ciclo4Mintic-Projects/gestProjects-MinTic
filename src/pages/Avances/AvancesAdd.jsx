@@ -61,7 +61,6 @@ const AvancesAdd = () => {
     crearAvance({
       variables: { ...formData, creadoPor: _id, fecha }
     })
-    toast.success('Avance guardado correctamente');
   }
   if (queryLoading) {
     return <div>Cargando...</div>
