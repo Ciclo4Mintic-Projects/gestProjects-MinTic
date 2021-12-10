@@ -5,11 +5,12 @@ const GET_INSCRIPCIONES = gql`
         Inscripciones {
             _id
             proyecto {
-            nombre
-            lider {
+                _id
                 nombre
-                apellido
-            }
+                lider {
+                    nombre
+                    apellido
+                }
             }
             estudiante {
                 nombre

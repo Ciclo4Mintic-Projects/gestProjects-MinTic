@@ -1,5 +1,6 @@
-import React, {useContext, useEffect} from 'react';
+import React, { useContext, useEffect } from 'react';
 import ButtonCircle from 'components/ButtonCircle'
+import ButtonPurple from 'components/ButtonPurple'
 import diskette from 'assets/diskette.svg'
 import backArrow from 'assets/Arrow.svg'
 import { NavLink, useParams } from 'react-router-dom';
@@ -11,6 +12,8 @@ import { CREAR_OBSERVACION } from 'graphql/avances/mutations'
 import PrivateComponent from 'components/PrivateComponent';
 import { SupremacyContext } from 'context/supremacyContext';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom'
+
 
 const AvancesLog = () => {
 
@@ -18,7 +21,7 @@ const AvancesLog = () => {
 
   useEffect(() => {
     setCurrentSection('Avances');
-}, []);
+  }, []);
 
   const { form, formData, updateFormData } = useFormData(null)
 
@@ -31,6 +34,27 @@ const AvancesLog = () => {
 
   const [crearObservacion, { data: obsData, loading: obsLoading, error: obsError }] = useMutation(CREAR_OBSERVACION)
 
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (mutationData) {
+      toast.success('Avance modificado correctamente')
+      navigate("/avances")
+    }
+    if (obsData) {
+      toast.success('Se ha guardado tu observación')
+    }
+  }, [mutationData, obsData]);
+
+  useEffect(() => {
+    if (mutationError) {
+      toast.error('Error modificando el avance')
+    }
+    if (obsError) {
+      toast.error('Error al añadir la observación')
+    }
+  }, [mutationError, obsError]);
+
   if (queryLoading) { return <div>cargando...</div> }
 
 
@@ -40,7 +64,6 @@ const AvancesLog = () => {
     editarAvance({
       variables: { ...formData, _id }
     })
-    toast.success('Avance editado correctamente');
   }
 
   const submitForm2 = (e) => {
@@ -49,7 +72,6 @@ const AvancesLog = () => {
     crearObservacion({
       variables: { ...formData, _id }
     })
-    toast.success('Observación creada correctamente');
   }
 
 
@@ -92,14 +114,20 @@ const AvancesLog = () => {
 
               </textarea>
               <div>
-                <h3 className=" font-bold text-2xl mb-4">Observaciones</h3>
+                <h3 className=" font-bold text-2xl mb-4 text-purpleTem">Observaciones</h3>
                 {queryData.Avance.observaciones.length == 0 &&
                   <p className=" text-grayTem">No hay observaciones creadas</p>
                 }
                 {
                   queryData.Avance.observaciones.length != 0 && queryData.Avance.observaciones.map(
                     obs => {
-                      return <p>{obs}</p>
+                      return (
+                        <div>
+                          <span className=" text-purpleTem fas fa-angle-right mr-2"></span>
+                          <span className="text-black">{obs}</span>
+                        </div>
+                      )
+                      {/* <p>{obs}</p> */ }
                     }
                   )
                 }
@@ -125,7 +153,7 @@ const AvancesLog = () => {
               </div>
               <p className=" outline-none resize-none my-10"> {queryData.Avance.descripcion} </p>
               <div className="mt-8">
-                <h3 className=" font-bold text-2xl mb-4">Observaciones</h3>
+                <h3 className=" font-bold text-2xl mb-4 text-purpleTem">Observaciones</h3>
 
                 {queryData.Avance.observaciones.length == 0 &&
                   <p className=" text-grayTem">No hay observaciones creadas</p>
@@ -133,15 +161,18 @@ const AvancesLog = () => {
                 {
                   queryData.Avance.observaciones.length != 0 && queryData.Avance.observaciones.map(
                     obs => {
-                      return <p>{obs}</p>
+                      return <div>
+                        <span className=" text-purpleTem fas fa-angle-right mr-2"></span>
+                        <span className="text-black">{obs}</span>
+                      </div>
                     }
                   )
                 }
 
                 <form className="mt-6" action="" onSubmit={submitForm2} ref={form}>
-                  <p className="text-grayTem">Escribe alguna observación:</p>
-                  <input type="text" className=" w-96" name="observacion" />
-                  <ButtonCircle update={updateFormData}>Enviar</ButtonCircle>
+                  <p className="text-grayTem mb-4">Escribe alguna observación:</p>
+                  <input type="text" className=" w-9/12 h-12 px-2 mr-2 outline-none" name="observacion" />
+                  <ButtonPurple update={updateFormData} >Enviar</ButtonPurple>
                 </form>
 
               </div>

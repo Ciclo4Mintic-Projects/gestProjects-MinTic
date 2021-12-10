@@ -1,5 +1,5 @@
-import React, {useContext, useEffect} from 'react';
-import { NavLink, useParams } from 'react-router-dom';
+import React, { useContext, useEffect } from 'react';
+import { NavLink, useParams, useNavigate } from 'react-router-dom';
 import useFormData from 'hooks/useFormData'
 import ButtonCircle from 'components/ButtonCircle'
 import { useQuery, useMutation } from '@apollo/client'
@@ -7,10 +7,13 @@ import DropDown from 'components/Dropdown'
 import backArrow from 'assets/Arrow.svg'
 import diskette from 'assets/diskette.svg'
 import { GET_PROYECTOS } from 'graphql/proyectos/queries'
+import { GET_INSCRIPCIONES } from 'graphql/inscripcion/queries'
 import { useUser } from 'context/userContext';
 import { CREAR_AVANCE } from 'graphql/avances/mutations';
 import { SupremacyContext } from 'context/supremacyContext';
 import { toast } from 'react-toastify';
+
+
 
 const AvancesAdd = () => {
 
@@ -18,7 +21,7 @@ const AvancesAdd = () => {
 
   useEffect(() => {
     setCurrentSection('Avances');
-}, []);
+  }, []);
 
 
   const { userData, setUserData } = useUser();
@@ -27,11 +30,28 @@ const AvancesAdd = () => {
 
   const { form, formData, updateFormData } = useFormData(null)
 
-  const { data: queryData, error: queryError, loading: queryLoading } = useQuery(GET_PROYECTOS)
+  const { data: queryData, error: queryError, loading: queryLoading } = useQuery(GET_INSCRIPCIONES)
 
   const [crearAvance, { data: mutationData, loading: mutationLoading, error: mutationError }] = useMutation(CREAR_AVANCE)
 
   const fecha = new Date()
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (mutationData) {
+      toast.success('Avance creado correctamente')
+      window.location.href = "/avances"
+      //navigate("/avances")
+
+    }
+  }, [mutationData, navigate])
+
+  useEffect(() => {
+    if (mutationError) {
+      toast.error('Error al añadir avance')
+    }
+  }, [mutationError])
 
 
 
@@ -59,9 +79,12 @@ const AvancesAdd = () => {
     return <div>Cargando...</div>
   }
 
+  console.log(queryData)
+
   if (queryData) {
 
-    const proyectos = queryData.Proyectos.map(p => [p._id, p.nombre]);
+    const inscripcionesAceptadas = queryData.Inscripciones.filter(i => i.estado === "ACEPTADO")
+    const proyectos = inscripcionesAceptadas.map(i => [i.proyecto._id, i.proyecto.nombre])
     const objProyectos = Object.fromEntries(proyectos)
     console.log(objProyectos);
 
