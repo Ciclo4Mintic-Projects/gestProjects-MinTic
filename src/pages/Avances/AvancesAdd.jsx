@@ -38,23 +38,6 @@ const AvancesAdd = () => {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (mutationData) {
-      toast.success('Avance creado correctamente')
-      window.location.href = "/avances"
-      //navigate("/avances")
-
-    }
-  }, [mutationData, navigate])
-
-  useEffect(() => {
-    if (mutationError) {
-      toast.error('Error al añadir avance')
-    }
-  }, [mutationError])
-
-
-
   const submitForm = (e) => {
     e.preventDefault();
     console.log("form datas: ", formData);
@@ -69,6 +52,7 @@ const AvancesAdd = () => {
         toast.error(mutationData.crearAvance.mensaje)
       }else {
         toast.success(mutationData.crearAvance.mensaje)
+        navigate("/avances")
       }
     }
 
