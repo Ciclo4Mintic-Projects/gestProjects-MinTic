@@ -106,10 +106,10 @@ const AvancesLog = () => {
               <textarea
                 name="descripcion"
                 id=""
-                cols="170"
-                rows="10"
+                cols=""
+                rows=""
                 defaultValue={queryData.Avance.descripcion}
-                className=" outline-none resize-none"
+                className=" outline-none resize-none w-3/4 h-40"
               >
 
               </textarea>
