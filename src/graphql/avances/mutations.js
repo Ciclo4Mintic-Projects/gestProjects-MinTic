@@ -33,8 +33,8 @@ const CREAR_AVANCE = gql`
       creadoPor: $creadoPor
       titulo: $titulo
     ){
-      _id
-      titulo
+      mensaje
+      estado
     }
   }
 

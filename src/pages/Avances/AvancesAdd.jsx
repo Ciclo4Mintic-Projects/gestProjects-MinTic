@@ -41,8 +41,20 @@ const AvancesAdd = () => {
     crearAvance({
       variables: { ...formData, creadoPor: _id, fecha }
     })
-    toast.success('Avance guardado correctamente');
   }
+
+  useEffect(() => {
+    if(mutationData){
+      if(mutationData.crearAvance.estado === 'error'){
+        toast.error(mutationData.crearAvance.mensaje)
+      }else {
+        toast.success(mutationData.crearAvance.mensaje)
+      }
+    }
+
+  }, [mutationData])
+
+
   if (queryLoading) {
     return <div>Cargando...</div>
   }
@@ -52,8 +64,6 @@ const AvancesAdd = () => {
     const proyectos = queryData.Proyectos.map(p => [p._id, p.nombre]);
     const objProyectos = Object.fromEntries(proyectos)
     console.log(objProyectos);
-
-
 
     return (
       <div >
