@@ -47,12 +47,12 @@ const AvancesAdd = () => {
   }
 
   useEffect(() => {
-    if(mutationData){
-      if(mutationData.crearAvance.estado === 'error'){
+    if (mutationData) {
+      if (mutationData.crearAvance.estado === 'error') {
         toast.error(mutationData.crearAvance.mensaje)
-      }else {
+      } else {
         toast.success(mutationData.crearAvance.mensaje)
-        navigate("/avances")
+        window.location.href = "/avances"
       }
     }
 
@@ -93,7 +93,7 @@ const AvancesAdd = () => {
                   />
                 </div>
                 <input
-                  className="  text-3xl font-bold outline-none w-full"
+                  className="  text-3xl font-bold outline-none w-3/4"
                   defaultValue=""
                   placeholder="Escribe el nombre del avance"
                   name="titulo"
@@ -110,10 +110,10 @@ const AvancesAdd = () => {
             <textarea
               name="descripcion"
               id=""
-              cols="170"
-              rows="10"
+              cols=""
+              rows=""
               defaultValue=""
-              className=" outline-none resize-none"
+              className=" outline-none w-3/4 h-40 resize-none"
               placeholder="Escribe algo"
             >
 
