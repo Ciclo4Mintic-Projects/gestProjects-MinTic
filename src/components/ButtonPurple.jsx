@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ButtonPurple = ({ children, eliminar, _id }) => {
+const ButtonPurple = ({ children, eliminar, _id, update }) => {
 
 
 
@@ -8,6 +8,12 @@ const ButtonPurple = ({ children, eliminar, _id }) => {
   if (eliminar && _id) {
     return (
       <button className=" px-4 h-12 bg-purpleTem text-backgContTem rounded-3xl font-semibold hover:bg-purple-400 " onClick={() => { eliminar(_id) }}>
+        {children}
+      </button>
+    )
+  } else if (update) {
+    return (
+      <button className=" px-4 h-12 bg-purpleTem text-backgContTem rounded-3xl font-semibold hover:bg-purple-400 " onClick={update}>
         {children}
       </button>
     )
