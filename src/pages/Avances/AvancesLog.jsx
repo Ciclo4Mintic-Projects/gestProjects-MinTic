@@ -14,6 +14,7 @@ import { SupremacyContext } from 'context/supremacyContext';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom'
 
+
 const AvancesLog = () => {
 
   const { setCurrentSection } = useContext(SupremacyContext);
@@ -63,6 +64,7 @@ const AvancesLog = () => {
     editarAvance({
       variables: { ...formData, _id }
     })
+    toast.success('Avance editado correctamente');
   }
 
   const submitForm2 = (e) => {
@@ -71,7 +73,7 @@ const AvancesLog = () => {
     crearObservacion({
       variables: { ...formData, _id }
     })
-
+    toast.success('Observación creada correctamente');
   }
 
 
