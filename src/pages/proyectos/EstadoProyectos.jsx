@@ -22,13 +22,14 @@ const EstadoProyectos = () => {
   }, []);
 
   const {userData} = useUser();  
-  const { data, error, loading } = useQuery(GET_PROYECTOS);
+  const { data, error, loading, refetch } = useQuery(GET_PROYECTOS);
   const [creaInscripcion, { data: mutationData, loading: mutationLoading, error: mutationError }] =
     useMutation(CREAR_INSCRIPCION);
 
 
   useEffect(() => {
     console.log('data servidor', data);
+    refetch()
   }, [data]);
 
   useEffect(() => {

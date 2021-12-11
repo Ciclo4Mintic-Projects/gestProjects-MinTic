@@ -18,10 +18,11 @@ const Inscripcion = () => {
       setCurrentSection('Inscripciones');
   }, []);
 
-  const { data, error, loading } = useQuery(GET_INSCRIPCIONES);
+  const { data, error, loading, refetch } = useQuery(GET_INSCRIPCIONES);
 
   useEffect(() => {
     console.log('data servidor', data);
+    refetch()
   }, [data]);
 
   useEffect(() => {

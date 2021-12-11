@@ -17,11 +17,15 @@ const AvancesTable = ({ avancesData }) => {
     setCurrentSection('Avances');
   }, []);
 
-  const { data: queryData, error: queryError, loading: queryLoading } = useQuery(GET_AVANCES)
+  const { data: queryData, error: queryError, loading: queryLoading, refetch } = useQuery(GET_AVANCES)
 
   const [eliminarAvance, { data: mutationData, loading: mutationLoading, error: mutationError }] = useMutation(ELIMINAR_AVANCE)
 
   const navigate = useNavigate();
+
+  useEffect(()=>{
+    refetch();
+  }, [queryData]);
 
   useEffect(() => {
     if (mutationData) {

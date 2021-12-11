@@ -18,10 +18,11 @@ const EstadoUsuarios = () => {
       setCurrentSection('Usuarios');
   }, []);
 
-  const { data, error, loading } = useQuery(GET_USUARIOS);
+  const { data, error, loading, refetch } = useQuery(GET_USUARIOS);
 
   useEffect(() => {
     console.log('data servidor', data);
+    refetch()
   }, [data]);
 
   useEffect(() => {
