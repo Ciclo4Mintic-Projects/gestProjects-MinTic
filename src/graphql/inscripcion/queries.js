@@ -11,6 +11,8 @@ const GET_INSCRIPCIONES = gql`
                     nombre
                     apellido
                 }
+                estado
+                fase
             }
             estudiante {
                 nombre
