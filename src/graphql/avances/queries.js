@@ -33,6 +33,8 @@ const GET_AVANCE = gql`
       proyecto{
         _id
         nombre
+        estado
+        fase
       }
     }
   }
