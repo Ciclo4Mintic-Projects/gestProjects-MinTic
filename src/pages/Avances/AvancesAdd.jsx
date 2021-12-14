@@ -68,7 +68,9 @@ const AvancesAdd = () => {
   if (queryData) {
 
     const inscripcionesAceptadas = queryData.Inscripciones.filter(i => i.estado === "ACEPTADO")
-    const proyectos = inscripcionesAceptadas.map(i => [i.proyecto._id, i.proyecto.nombre])
+    const proyectosActivos = inscripcionesAceptadas.filter(p => p.proyecto.estado === "ACTIVO")
+    const proyectosNoTerminados = proyectosActivos.filter(p => p.proyecto.fase !== "TERMINADO")
+    const proyectos = proyectosNoTerminados.map(i => [i.proyecto._id, i.proyecto.nombre])
     const objProyectos = Object.fromEntries(proyectos)
     console.log(objProyectos);
 
