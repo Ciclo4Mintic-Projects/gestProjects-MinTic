@@ -74,6 +74,7 @@ const AvancesLog = () => {
     })
   }
 
+  console.log(queryData)
 
   return (
     <div>
@@ -168,12 +169,14 @@ const AvancesLog = () => {
                     }
                   )
                 }
+                {queryData.Avance.proyecto.estado === 'ACTIVO' &&
+                  <form className="mt-6" action="" onSubmit={submitForm2} ref={form}>
+                    <p className="text-grayTem mb-4">Escribe alguna observación:</p>
+                    <input type="text" className=" w-9/12 h-12 px-2 mr-2 outline-none" name="observacion" />
+                    <ButtonPurple update={updateFormData} >Enviar</ButtonPurple>
+                  </form>
+                }
 
-                <form className="mt-6" action="" onSubmit={submitForm2} ref={form}>
-                  <p className="text-grayTem mb-4">Escribe alguna observación:</p>
-                  <input type="text" className=" w-9/12 h-12 px-2 mr-2 outline-none" name="observacion" />
-                  <ButtonPurple update={updateFormData} >Enviar</ButtonPurple>
-                </form>
 
               </div>
             </div>
